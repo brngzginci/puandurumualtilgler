@@ -1,20 +1,20 @@
-/**
- * Vercel Function
- * Adres: /api/standings
- */
-
 import * as providerModule from "../server/providers/sahadan";
+
+type StandingsParams =
+  Parameters<typeof providerModule.fetchSahadanStandings>[0];
 
 export default {
   async fetch(request: Request): Promise<Response> {
     try {
       const url = new URL(request.url);
 
-      const league =
-        url.searchParams.get("league") || "tff-1-lig";
+      const league = (
+        url.searchParams.get("league") || "tff-1-lig"
+      ) as StandingsParams["leagueId"];
 
-      const group =
-        url.searchParams.get("group") || "overall";
+      const group = (
+        url.searchParams.get("group") || "overall"
+      ) as StandingsParams["groupId"];
 
       const season =
         url.searchParams.get("season") || "2026-2027";
@@ -23,36 +23,19 @@ export default {
         url.searchParams.get("refresh") === "true" ||
         url.searchParams.get("refresh") === "1";
 
-    const fetchStandings =
-        providerModule.fetchSahadanStandings;
-
-      if (typeof fetchStandings !== "function") {
-        return Response.json(
-          {
-            success: false,
-            code: "PROVIDER_EXPORT_NOT_FOUND",
-            message:
-              "Sahadan veri çekme fonksiyonu bulunamadı.",
-            availableExports: Object.keys(providerModule)
-          },
-          {
-            status: 500
-          }
-        );
-      }
-
-      const result = await fetchStandings({
-        leagueId: league,
-        groupId: group,
-        season,
-        refresh
-      });
+      const result =
+        await providerModule.fetchSahadanStandings({
+          leagueId: league,
+          groupId: group,
+          season,
+          refresh,
+        });
 
       return Response.json(result, {
         status: 200,
         headers: {
-          "Cache-Control": "no-store"
-        }
+          "Cache-Control": "no-store",
+        },
       });
     } catch (error) {
       console.error("STANDINGS_FUNCTION_ERROR", error);
@@ -68,15 +51,15 @@ export default {
           message:
             error instanceof Error
               ? error.message
-              : String(error)
+              : String(error),
         },
         {
           status: 500,
           headers: {
-            "Cache-Control": "no-store"
-          }
-        }
+            "Cache-Control": "no-store",
+          },
+        },
       );
     }
-  }
+  },
 };
