@@ -11,7 +11,7 @@ import {
   getCompetitionConfig,
   getCompetitionGroup,
   getStandingsCacheKey
-} from "../../src/config/competitions";
+} from "../../src/config/competitions.js";
 import { findTeamByInputName } from "../../src/teams";
 import { StandingRow, ProviderStandingsResult } from "../../src/types";
 
