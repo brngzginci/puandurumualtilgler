@@ -23,9 +23,8 @@ export default {
         url.searchParams.get("refresh") === "true" ||
         url.searchParams.get("refresh") === "1";
 
-      const fetchStandings =
-        providerModule.fetchSahadanStandings ||
-        providerModule.default;
+    const fetchStandings =
+        providerModule.fetchSahadanStandings;
 
       if (typeof fetchStandings !== "function") {
         return Response.json(
