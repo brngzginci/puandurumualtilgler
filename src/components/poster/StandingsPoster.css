@@ -1,0 +1,31 @@
+/* Reference Poster CSS Structure (1080x1350) */
+
+.poster-canvas-root {
+  width: 1080px;
+  height: 1350px;
+  background-color: #001314;
+  color: #F5F5F5;
+  box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+  transform: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px 38px 24px 38px;
+  font-family: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  user-select: none;
+}
+
+/* Very subtle inner border accent matching reference */
+.poster-inner-frame {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 1px solid rgba(80, 150, 145, 0.42);
+  border-radius: 14px;
+  pointer-events: none;
+  z-index: 20;
+}

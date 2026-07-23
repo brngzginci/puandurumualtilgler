@@ -1,0 +1,6 @@
+{
+  "name": "1. Lig Sosyal Medya Tasarım Stüdyosu",
+  "description": "Trendyol 1. Lig 2026-2027 Sezonu Puan Durumu Sosyal Medya Tasarım Kartı Oluşturucu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,468 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/* Lower League Poster Root Container */
+.lower-league-poster-root {
+  width: 1080px;
+  height: 1350px;
+  background-color: #F4F5F7;
+  color: #111827;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Left Sidebar (Orange) */
+.lower-league-sidebar {
+  width: 164px;
+  height: 100%;
+  background: #F56612;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32px 10px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  z-index: 10;
+  position: relative;
+  overflow: hidden;
+}
+
+.lower-league-sidebar-watermark {
+  position: absolute;
+  top: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 260px;
+  line-height: 1;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.10);
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.lower-league-sidebar-pattern {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #ffffff 0,
+    #ffffff 1px,
+    transparent 0,
+    transparent 18px
+  );
+  z-index: 0;
+}
+
+.lower-league-sidebar-logo-box {
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.lower-league-sidebar-logo-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.lower-league-sidebar-title-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.lower-league-sidebar-league-num {
+  font-size: 88px;
+  font-weight: 850;
+  line-height: 0.78;
+  letter-spacing: -2px;
+  text-align: center;
+}
+
+.lower-league-sidebar-league-text {
+  font-size: 48px;
+  font-weight: 850;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.lower-league-sidebar-group-badge {
+  font-size: 13px;
+  font-weight: 800;
+  background-color: rgba(0, 0, 0, 0.28);
+  padding: 8px 14px;
+  border-radius: 8px;
+  margin-top: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  color: #FFFFFF;
+}
+
+.lower-league-sidebar-season {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  color: rgba(255, 255, 255, 0.78);
+  margin-top: 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+/* Week Card (Black Box in Sidebar) */
+.lower-league-week-card {
+  width: 138px;
+  background-color: #000000;
+  border-radius: 14px;
+  padding: 16px 10px;
+  text-align: center;
+  color: #FFFFFF;
+  box-shadow: 0 10px 26px rgba(16, 24, 40, 0.12);
+  position: relative;
+  z-index: 1;
+}
+
+.lower-league-week-title {
+  font-size: 10px;
+  font-weight: 800;
+  color: #9CA3AF;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.lower-league-week-num {
+  font-size: 50px;
+  font-weight: 900;
+  line-height: 1;
+  margin: 4px 0;
+  color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
+}
+
+.lower-league-week-sub {
+  font-size: 13px;
+  font-weight: 800;
+  color: #D1D5DB;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Right Main Area */
+.lower-league-main {
+  width: 916px;
+  height: 100%;
+  padding: 28px 32px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+/* Header */
+.lower-league-header-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lower-league-header-title {
+  font-size: 60px;
+  font-weight: 950;
+  color: #000000;
+  line-height: 0.95;
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.lower-league-header-subtitle {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #4B5563;
+  margin-top: 6px;
+}
+
+/* Social Strip */
+.lower-league-social-strip {
+  width: 100%;
+  height: 60px;
+  background: linear-gradient(90deg, #E84D09 0%, #F56612 100%);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  color: #FFFFFF;
+  box-shadow: 0 10px 26px rgba(16, 24, 40, 0.12);
+  margin-top: 12px;
+  box-sizing: border-box;
+}
+
+.lower-league-social-logo-box {
+  width: 40px;
+  height: 40px;
+  background-color: #000000;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.lower-league-social-items {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-left: 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+}
+
+.lower-league-social-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Turquoise Table */
+.lower-league-table-card {
+  width: 100%;
+  flex: 1;
+  background-color: #0AAFA7;
+  border-radius: 20px;
+  margin: 14px 0;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 26px rgba(16, 24, 40, 0.12);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.lower-league-table-header {
+  height: 38px;
+  background-color: #078C87;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #FFFFFF;
+  font-size: 15px;
+  font-weight: 750;
+  margin-bottom: 6px;
+  box-sizing: border-box;
+}
+
+.lower-league-col-team {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.lower-league-rank-header {
+  width: 30px;
+  text-align: center;
+  flex-shrink: 0;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.lower-league-team-header-title {
+  font-size: 15px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.lower-league-col-stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.lower-league-stat-cell {
+  width: 30px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.lower-league-stat-cell-lg {
+  width: 36px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.lower-league-stat-cell-av {
+  width: 44px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.lower-league-stat-cell-points {
+  width: 46px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.lower-league-table-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  justify-content: space-between;
+}
+
+/* Row Item */
+.lower-league-row {
+  width: 100%;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 0 12px;
+  color: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.lower-league-row-even {
+  background-color: #078F8A;
+}
+
+.lower-league-row-odd {
+  background-color: #10B8B0;
+}
+
+.lower-league-rank-cell {
+  width: 30px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 800;
+  flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.lower-league-team-logo-container {
+  width: 26px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lower-league-team-logo {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+.lower-league-team-name {
+  font-size: 18px;
+  font-weight: 650;
+  color: #FFFFFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 8px;
+}
+
+.lower-league-stat-val {
+  font-size: 16px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.lower-league-stat-val-pts {
+  font-size: 19px;
+  font-weight: 800;
+  color: #FFFFFF;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Footer Section */
+.lower-league-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 100px;
+}
+
+.lower-league-note-card {
+  width: 440px;
+  height: 100%;
+  background-color: #F26819;
+  border-radius: 14px;
+  padding: 14px 18px;
+  color: #FFFFFF;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 10px 26px rgba(16, 24, 40, 0.12);
+}
+
+.lower-league-note-text {
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.35;
+  white-space: pre-line;
+}
+
+.lower-league-legend-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 380px;
+}
+
+.lower-league-legend-badge {
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 800;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 0 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 10px 26px rgba(16, 24, 40, 0.12);
+}
+
