@@ -5,15 +5,13 @@
 
 import * as cheerio from "cheerio";
 import {
-  COMPETITIONS,
-  LeagueId,
-  GroupId,
   getCompetitionConfig,
   getCompetitionGroup,
-  getStandingsCacheKey
+  getStandingsCacheKey,
 } from "../../src/config/competitions.js";
-import { findTeamByInputName } from "../../src/teams";
-import { StandingRow, ProviderStandingsResult } from "../../src/types";
+import type { LeagueId, GroupId } from "../../src/config/competitions.js";
+import { findTeamByInputName } from "../../src/teams.js";
+import type { StandingRow, ProviderStandingsResult } from "../../src/types.js";
 
 const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
