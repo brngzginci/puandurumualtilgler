@@ -19,7 +19,8 @@ import {
   ExternalLink,
   ChevronRight,
   Eye,
-  Sliders
+  Sliders,
+  Sparkles
 } from "lucide-react";
 import { toPng, getFontEmbedCSS } from "html-to-image";
 import { 
@@ -437,6 +438,7 @@ export default function App() {
   const [jsonSuccess, setJsonSuccess] = useState<boolean>(false);
   const [isExporting, setIsExporting] = useState<boolean>(false);
   const [exportError, setExportError] = useState<string | null>(null);
+  const [exportResolution, setExportResolution] = useState<"hd" | "4k" | "4k_ultra">("4k");
   const [activeProvider, setActiveProvider] = useState<string>("manual");
   const [matchedTeams, setMatchedTeams] = useState<Record<string, Team | null>>({});
   const [keepSourceRanking, setKeepSourceRanking] = useState<boolean>(false);
@@ -1564,24 +1566,38 @@ export default function App() {
         ? await getFontEmbedCSS(node) 
         : undefined;
 
-      const colors = config.theme === "dark" 
-        ? { bg: config.backgroundColor || "#0B0F19" } 
+      // Get background color dynamically from the DOM node or template
+      const computedStyle = window.getComputedStyle(node);
+      const computedBg = computedStyle.backgroundColor;
+      
+      const themeBg = config.theme === "dark" 
+        ? (config.backgroundColor || "#0B0F19")
         : config.theme === "light" 
-          ? { bg: config.backgroundColor || "#F8FAFC" } 
-          : { bg: config.backgroundColor };
+          ? (config.backgroundColor || "#F8FAFC")
+          : config.backgroundColor;
+
+      // If computedBg is valid and not transparent/rgba(0,0,0,0), prefer computed style or themeBg
+      const actualBg = (computedBg && computedBg !== "rgba(0, 0, 0, 0)" && computedBg !== "transparent")
+        ? computedBg
+        : (selection.leagueId === "tff-1-lig" ? "#001314" : (themeBg || "#F4F5F7"));
+
+      const targetPixelRatio = exportResolution === "4k_ultra" ? 3 : exportResolution === "4k" ? 2 : 1;
+      const expectedWidth = 1080 * targetPixelRatio;
+      const expectedHeight = 1350 * targetPixelRatio;
 
       const htmlToImageOptions: any = {
         width: 1080,
         height: 1350,
-        pixelRatio: 1, // exact output scale
+        pixelRatio: targetPixelRatio, // exact output scale: 1=1080p, 2=4K (2160x2700), 3=4K+ (3240x4050)
         cacheBust: true,
         skipAutoScale: true,
-        backgroundColor: colors.bg,
+        backgroundColor: actualBg,
         style: {
           width: "1080px",
           height: "1350px",
           minWidth: "1080px",
           minHeight: "1350px",
+          backgroundColor: actualBg,
           transform: "none",
           transformOrigin: "top left"
         }
@@ -1622,8 +1638,8 @@ export default function App() {
       });
 
       const size = await sizeValidationPromise;
-      if (size.width !== 1080 || size.height !== 1350) {
-        throw new Error(`Çıktı görseli boyutu hatalı. Beklenen: 1080x1350 piksel, Üretilen: ${size.width}x${size.height} piksel.`);
+      if (size.width !== expectedWidth || size.height !== expectedHeight) {
+        throw new Error(`Çıktı görseli boyutu hatalı. Beklenen: ${expectedWidth}x${expectedHeight} piksel, Üretilen: ${size.width}x${size.height} piksel.`);
       }
 
       // Measure byte size by parsing dataURL
@@ -1955,6 +1971,67 @@ export default function App() {
 
           {/* Export Action Controls */}
           <div className="w-full max-w-lg mt-6 pt-4 border-t border-gray-800/60 flex flex-col gap-3">
+            
+            {/* Resolution Selector Component */}
+            <div className="bg-[#111827]/80 border border-gray-800/80 p-3 rounded-xl flex flex-col gap-2">
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-gray-300 flex items-center gap-1.5">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  İndirme Çözünürlüğü:
+                </span>
+                <span className="text-[11px] font-medium text-amber-400 font-semibold">
+                  {exportResolution === "hd" && "1080 x 1350 px (Standart HD)"}
+                  {exportResolution === "4k" && "2160 x 2700 px (4K Ultra HD)"}
+                  {exportResolution === "4k_ultra" && "3240 x 4050 px (4K+ Extreme)"}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-3 gap-1.5 p-1 bg-gray-950/70 rounded-lg border border-gray-800">
+                <button
+                  type="button"
+                  onClick={() => setExportResolution("hd")}
+                  className={`py-2 px-2 rounded-md font-bold text-xs transition-all flex flex-col items-center justify-center ${
+                    exportResolution === "hd"
+                      ? "bg-gray-800 text-white border border-gray-700 shadow-sm"
+                      : "text-gray-400 hover:text-gray-200 hover:bg-gray-900/50"
+                  }`}
+                >
+                  <span>HD (1080p)</span>
+                  <span className="text-[9px] font-normal opacity-70">1080x1350</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setExportResolution("4k")}
+                  className={`py-2 px-2 rounded-md font-bold text-xs transition-all flex flex-col items-center justify-center ${
+                    exportResolution === "4k"
+                      ? "bg-gradient-to-r from-amber-500 to-amber-600 text-black shadow-md border border-amber-400/50 font-extrabold"
+                      : "text-gray-400 hover:text-gray-200 hover:bg-gray-900/50"
+                  }`}
+                >
+                  <span className="flex items-center gap-1">
+                    <span>✨ 4K UHD</span>
+                  </span>
+                  <span className={`text-[9px] font-medium ${exportResolution === "4k" ? "text-black/80" : "opacity-70"}`}>2160x2700</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setExportResolution("4k_ultra")}
+                  className={`py-2 px-2 rounded-md font-bold text-xs transition-all flex flex-col items-center justify-center ${
+                    exportResolution === "4k_ultra"
+                      ? "bg-gradient-to-r from-emerald-500 to-emerald-600 text-black shadow-md border border-emerald-400/50 font-extrabold"
+                      : "text-gray-400 hover:text-gray-200 hover:bg-gray-900/50"
+                  }`}
+                >
+                  <span className="flex items-center gap-1">
+                    <span>🔥 4K+ Extreme</span>
+                  </span>
+                  <span className={`text-[9px] font-medium ${exportResolution === "4k_ultra" ? "text-black/80" : "opacity-70"}`}>3240x4050</span>
+                </button>
+              </div>
+            </div>
+
             <button
               onClick={handleExportPNG}
               disabled={isExporting}
@@ -1967,12 +2044,16 @@ export default function App() {
               {isExporting ? (
                 <>
                   <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
-                  <span>Görsel Oluşturuluyor...</span>
+                  <span>{exportResolution.includes("4k") ? "4K Görsel İşleniyor..." : "Görsel Oluşturuluyor..."}</span>
                 </>
               ) : (
                 <>
                   <Download className="w-5 h-5" />
-                  <span>Yüksek Çözünürlüklü PNG İndir</span>
+                  <span>
+                    {exportResolution === "hd" && "HD PNG İndir (1080x1350)"}
+                    {exportResolution === "4k" && "✨ 4K Ultra HD PNG İndir (2160x2700)"}
+                    {exportResolution === "4k_ultra" && "🔥 4K+ Extreme PNG İndir (3240x4050)"}
+                  </span>
                 </>
               )}
             </button>
@@ -1983,7 +2064,7 @@ export default function App() {
               </p>
             )}
             <p className="text-[11px] text-gray-500 text-center leading-relaxed">
-              * Tasarımdaki tüm metinler, logolar ve fontlar indirildiğinde tam 1080x1350 piksel olarak kristal netliğinde dışa aktarılır.
+              * Tasarımdaki tüm metinler, logolar ve fontlar seçilen çözünürlükte ({exportResolution === "hd" ? "1080x1350" : exportResolution === "4k" ? "2160x2700 4K Ultra HD" : "3240x4050 4K+ Extreme"}) kristal netliğinde dışa aktarılır.
             </p>
           </div>
 
@@ -3161,7 +3242,9 @@ export default function App() {
                     <div className="flex items-center justify-between p-3 rounded-lg bg-gray-950/50 border border-gray-900">
                       <span className="text-gray-400 font-medium">Tasarım Çözünürlüğü:</span>
                       {validation?.correctSize ? (
-                        <span className="text-emerald-400 font-bold flex items-center gap-1">✓ 1080x1350 Piksel (Standart HD En/Boy)</span>
+                        <span className="text-emerald-400 font-bold flex items-center gap-1">
+                          ✓ {1080 * (exportResolution === "4k_ultra" ? 3 : exportResolution === "4k" ? 2 : 1)}x{1350 * (exportResolution === "4k_ultra" ? 3 : exportResolution === "4k" ? 2 : 1)} Piksel ({exportResolution === "hd" ? "Standart HD" : exportResolution === "4k" ? "✨ 4K Ultra HD" : "🔥 4K+ Extreme"})
+                        </span>
                       ) : (
                         <span className="text-red-400 font-bold flex items-center gap-1">✗ UYARI: Boyutlar kararsız</span>
                       )}
