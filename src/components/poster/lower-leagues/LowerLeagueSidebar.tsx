@@ -58,8 +58,8 @@ export const LowerLeagueSidebar: React.FC<LowerLeagueSidebarProps> = ({
         <div className="lower-league-sidebar-league-text">LİG</div>
 
         {competition.requiresGroup && group && (
-          <div className="lower-league-sidebar-group-badge">
-            {group.name.toUpperCase()}
+          <div lang="tr" className="lower-league-sidebar-group-badge">
+            {group.name.toLocaleUpperCase("tr-TR")}
           </div>
         )}
 

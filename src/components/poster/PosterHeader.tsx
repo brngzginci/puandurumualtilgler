@@ -37,6 +37,7 @@ export const PosterHeader: React.FC<PosterHeaderProps> = ({ config }) => {
       {/* Center: Two-line Title */}
       <div className="flex-1 flex flex-col items-center justify-center text-center px-2">
         <h1
+          lang="tr"
           className="text-[#F5F5F5] font-extrabold uppercase tracking-tight text-center text-[54px] leading-[1.05]"
           style={{
             fontFamily: config.headerFontFamily || "'Montserrat Variable', 'Oswald Variable', sans-serif"
@@ -45,6 +46,7 @@ export const PosterHeader: React.FC<PosterHeaderProps> = ({ config }) => {
           {config.title || "TRENDYOL 1. LİG"}
         </h1>
         <h2
+          lang="tr"
           className="text-[#F5F5F5] font-extrabold uppercase tracking-tight text-center text-[54px] leading-[1.05]"
           style={{
             fontFamily: config.headerFontFamily || "'Montserrat Variable', 'Oswald Variable', sans-serif"

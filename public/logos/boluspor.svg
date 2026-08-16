@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+    <defs>
+      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.15" />
+      </filter>
+    </defs>
+    <g filter="url(#shadow)">
+      
+    <!-- Stripes Shield -->
+    <path d="M 10,15 L 110,15 C 110,15 110,85 60,115 C 10,85 10,15 10,15 Z" fill="#FF0000" stroke="#008000" stroke-width="8" />
+    <!-- Vertical Stripes -->
+    <path d="M 35,17 C 35,17 38,70 42,85" stroke="#008000" stroke-width="8" />
+    <path d="M 60,17 C 60,17 60,85 60,105" stroke="#008000" stroke-width="8" />
+    <path d="M 85,17 C 85,17 82,70 78,85" stroke="#008000" stroke-width="8" />
+    <!-- White backing for text visibility -->
+    <rect x="25" y="45" width="70" height="36" rx="8" fill="#FF0000" stroke="#008000" stroke-width="3" />
+    <text x="60" y="72" font-family="'Plus Jakarta Sans', 'Arial Black', sans-serif" font-size="28" font-weight="900" fill="#FFFFFF" text-anchor="middle">BOL</text>
+    
+    </g>
+  </svg>

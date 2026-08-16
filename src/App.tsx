@@ -89,7 +89,7 @@ const DEFAULT_CONFIG: DesignConfig = {
   currentWeek: 0,
   totalWeeks: 38,
   showNote: true,
-  noteText: "+Ligin 00. haftası itibarıyla oynanan\nmaçlar sonucu oluşan puan durumudur.\nEk olarak buraya dipnot eklenebilir.",
+  noteText: "+Ligin 00. haftası itibarıyla güncel puan durumudur.",
   showSocialStrip: true,
   directPromotionStart: 1,
   directPromotionEnd: 2,
@@ -418,6 +418,12 @@ export default function App() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
+        if (parsed.title && parsed.title.includes("1. LIG")) {
+          parsed.title = parsed.title.replace("1. LIG", "1. LİG");
+        }
+        if (parsed.noteText && parsed.noteText.includes("Ek olarak buraya dipnot eklenebilir.")) {
+          parsed.noteText = parsed.noteText.replace(/\n?Ek olarak buraya dipnot eklenebilir\./, "").trim();
+        }
         return { ...DEFAULT_CONFIG, ...parsed };
       } catch (e) {
         console.error("Error loading config from localStorage:", e);
@@ -576,7 +582,7 @@ export default function App() {
 
     let newStandings: StandingRow[] = overrideStandings || [];
     let newCurrentWeek = 0;
-    let newNoteText = `+Ligin 00. haftası itibarıyla oynanan\nmaçlar sonucu oluşan puan durumudur.\nEk olarak buraya dipnot eklenebilir.`;
+    let newNoteText = `+Ligin 00. haftası itibarıyla güncel puan durumudur.`;
 
     if (overrideStandings) {
       newCurrentWeek = overrideMetadata?.currentWeek ?? 0;
@@ -586,7 +592,11 @@ export default function App() {
         const parsed = JSON.parse(targetSaved);
         newStandings = parsed.standings || [];
         newCurrentWeek = parsed.currentWeek ?? 0;
-        if (parsed.noteText) newNoteText = parsed.noteText;
+        if (parsed.noteText) {
+          newNoteText = parsed.noteText.includes("Ek olarak buraya dipnot eklenebilir.")
+            ? parsed.noteText.replace(/\n?Ek olarak buraya dipnot eklenebilir\./, "").trim()
+            : parsed.noteText;
+        }
       } catch (e) {
         console.error("Error reading workspace:", e);
       }
@@ -605,9 +615,9 @@ export default function App() {
     setStandings(newStandings);
     setConfig((prev) => ({
       ...prev,
-      title: targetCompConfig.name.toUpperCase(),
+      title: targetCompConfig.name.toLocaleUpperCase("tr-TR"),
       subtitle: targetCompConfig.requiresGroup
-        ? targetGroupConfig.name.toUpperCase() + " PUAN DURUMU"
+        ? targetGroupConfig.name.toLocaleUpperCase("tr-TR") + " PUAN DURUMU"
         : "PUAN DURUMU",
       currentWeek: newCurrentWeek,
       noteText: newNoteText

@@ -25,7 +25,7 @@ export const LowerLeagueHeader: React.FC<LowerLeagueHeaderProps> = ({
     ? "NESİNE 2. LİG"
     : competition.id === "tff-3-lig"
     ? "NESİNE 3. LİG"
-    : competition.name.toUpperCase();
+    : competition.name.toLocaleUpperCase("tr-TR");
 
   const displayTitle = titleOverride || defaultTitle;
 
@@ -33,7 +33,7 @@ export const LowerLeagueHeader: React.FC<LowerLeagueHeaderProps> = ({
   
   let groupPart = "";
   if (competition.requiresGroup && group) {
-    groupPart = group.name.toUpperCase();
+    groupPart = group.name.toLocaleUpperCase("tr-TR");
   } else {
     groupPart = "PUAN DURUMU";
   }
@@ -43,8 +43,8 @@ export const LowerLeagueHeader: React.FC<LowerLeagueHeaderProps> = ({
 
   return (
     <div className="lower-league-header-container">
-      <h1 className="lower-league-header-title">{displayTitle}</h1>
-      <div className="lower-league-header-subtitle">
+      <h1 lang="tr" className="lower-league-header-title">{displayTitle}</h1>
+      <div lang="tr" className="lower-league-header-subtitle">
         {finalSubtitle}
       </div>
     </div>

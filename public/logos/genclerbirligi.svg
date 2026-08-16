@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+    <defs>
+      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.15" />
+      </filter>
+    </defs>
+    <g filter="url(#shadow)">
+      
+    <!-- Quarters Circle -->
+    <circle cx="60" cy="60" r="50" fill="#FF0000" stroke="#000000" stroke-width="8" />
+    <path d="M 60,10 L 60,110 M 10,60 L 110,60" stroke="#000000" stroke-width="6" />
+    <circle cx="60" cy="60" r="28" fill="#FF0000" stroke="#000000" stroke-width="4" />
+    <text x="60" y="70" font-family="'Plus Jakarta Sans', 'Arial Black', sans-serif" font-size="24" font-weight="900" fill="#FFFFFF" text-anchor="middle">GB</text>
+    
+    </g>
+  </svg>

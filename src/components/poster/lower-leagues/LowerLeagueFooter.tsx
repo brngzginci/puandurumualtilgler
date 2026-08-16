@@ -21,12 +21,13 @@ export const LowerLeagueFooter: React.FC<LowerLeagueFooterProps> = ({
   const currentWeek = config.currentWeek || 0;
   let defaultNote = "";
   if (currentWeek > 0) {
-    defaultNote = `+ Ligin ${currentWeek}. haftası itibarıyla oynanan\nkarşılaşmalar sonucunda oluşan\npuan durumudur.`;
+    defaultNote = `+ Ligin ${currentWeek}. haftası itibarıyla güncel puan durumudur.`;
   } else {
-    defaultNote = `Sezon başlangıcı öncesi güncel\npuan durumu görünümüdür.`;
+    defaultNote = `Sezon başlangıcı öncesi güncel puan durumu görünümüdür.`;
   }
 
-  const noteContent = config.noteText && config.noteText.trim() !== "" ? config.noteText : defaultNote;
+  const rawNote = config.noteText && config.noteText.trim() !== "" ? config.noteText : defaultNote;
+  const noteContent = rawNote.replace(/\r?\n+/g, " ").replace(/\s+/g, " ").trim();
 
   // Determine top promotion label based on competition
   let topPromotionLabel = "Doğrudan Yükselme";

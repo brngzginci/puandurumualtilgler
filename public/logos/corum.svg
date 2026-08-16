@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+    <defs>
+      <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+        <feDropShadow dx="0" dy="4" stdDeviation="4" flood-opacity="0.15" />
+      </filter>
+    </defs>
+    <g filter="url(#shadow)">
+      
+    <!-- Shield Outline -->
+    <path d="M 10,15 L 110,15 C 110,15 110,85 60,115 C 10,85 10,15 10,15 Z" fill="#FF0000" stroke="#000000" stroke-width="8" />
+    <path d="M 18,21 L 102,21 C 102,21 102,80 60,105 C 18,80 18,21 18,21 Z" fill="none" stroke="#000000" stroke-width="2" opacity="0.5" />
+    <circle cx="60" cy="45" r="18" fill="#000000" opacity="0.15" />
+    <text x="60" y="75" font-family="'Plus Jakarta Sans', 'Arial Black', sans-serif" font-size="32" font-weight="900" fill="#FFFFFF" text-anchor="middle" letter-spacing="-1">ÇOR</text>
+    <path d="M 45,15 L 60,30 L 75,15" fill="none" stroke="#000000" stroke-width="4" />
+    
+    </g>
+  </svg>

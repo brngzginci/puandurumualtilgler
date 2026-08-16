@@ -1,11 +1,11 @@
- /**
+/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import React from "react";
 import { StandingRow, DesignConfig, Team } from "../../types";
-import { TeamLogoPlaceholder } from "../DesignCanvas";
+import { TeamLogo, TeamLogoPlaceholder } from "../DesignCanvas";
 import { getRankZoneColor } from "../../design/posterTheme";
 
 interface StandingRowItemProps {
@@ -34,30 +34,6 @@ export const StandingRowItem: React.FC<StandingRowItemProps> = ({
       ? `+${row.goalDifference}`
       : `${row.goalDifference}`;
 
-  const teamId =
-    (row as any).teamId ||
-    (team as any)?.id ||
-    "";
-
-  const customLogo =
-    team && team.logo !== team.defaultLogo
-      ? team.logo
-      : "";
-
-  const logoCandidates = [
-    teamId ? `/logos/${encodeURIComponent(teamId)}.png` : "",
-    customLogo || "",
-    team?.defaultLogo || ""
-  ].filter((logo) => typeof logo === "string" && logo.length > 0);
-
-  const [logoIndex, setLogoIndex] = React.useState(0);
-
-  React.useEffect(() => {
-    setLogoIndex(0);
-  }, [teamId, customLogo, team?.defaultLogo]);
-
-  const activeLogo = logoCandidates[logoIndex] || "";
-
   return (
     <div
       className="w-full grid items-center text-white h-[42px] transition-colors"
@@ -82,38 +58,20 @@ export const StandingRowItem: React.FC<StandingRowItemProps> = ({
         <div className="w-[40px] h-[40px] shrink-0 flex items-center justify-center">
           {isSafeMode ? (
             <TeamLogoPlaceholder shortName={row.teamName} />
-          ) : activeLogo ? (
-            <img
-              key={`${teamId}-${logoIndex}`}
-              src={activeLogo}
-              alt={team?.displayName || row.teamName}
-              className="w-[34px] h-[34px] object-contain rounded-md"
-              onError={() => {
-                if (logoIndex < logoCandidates.length - 1) {
-                  setLogoIndex((prev) => prev + 1);
-                } else {
-                  setLogoIndex(logoCandidates.length);
-                }
-              }}
-              draggable={false}
+          ) : team ? (
+            <TeamLogo
+              team={team}
+              customLogo={team.logo !== team.defaultLogo ? team.logo : undefined}
+              borderRadius="rounded-md"
             />
           ) : (
             <TeamLogoPlaceholder shortName={row.teamName} />
           )}
-
-          {!isSafeMode &&
-            !activeLogo &&
-            logoIndex >= logoCandidates.length && (
-              <TeamLogoPlaceholder shortName={row.teamName} />
-            )}
         </div>
-
         <span
           className="font-bold text-[#F5F5F5] text-[22px] truncate tracking-tight"
           style={{
-            fontFamily:
-              config.bodyFontFamily ||
-              "'Plus Jakarta Sans Variable', sans-serif"
+            fontFamily: config.bodyFontFamily || "'Plus Jakarta Sans Variable', sans-serif"
           }}
         >
           {team?.displayName || row.teamName}

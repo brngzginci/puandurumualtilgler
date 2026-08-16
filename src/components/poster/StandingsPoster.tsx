@@ -61,10 +61,12 @@ export const StandingsPoster: React.FC<StandingsPosterProps> = ({
 
         {/* Sağ Alt: Dynamic Note + Social Media Strip */}
         <div className="flex-1 h-full bg-[#001011] border border-[#B4C3C3]/30 rounded-2xl p-3 flex flex-col justify-between shadow-md">
-          <PosterNote
-            noteText={config.noteText}
-            currentWeek={config.currentWeek}
-          />
+          <div className="flex-1 flex flex-col justify-center">
+            <PosterNote
+              noteText={config.noteText}
+              currentWeek={config.currentWeek}
+            />
+          </div>
           <SocialMediaStrip />
         </div>
       </div>
