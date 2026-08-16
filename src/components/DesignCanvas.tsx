@@ -89,13 +89,15 @@ export function TeamLogo({
     );
   }
 
+  const isRemote = logoState.source.startsWith("http://") || logoState.source.startsWith("https://");
+
   return (
     <img
       src={logoState.source}
       alt={`${team.displayName} logosu`}
       data-team-id={team.id}
       data-export-optional-image="true"
-      crossOrigin="anonymous"
+      {...(isRemote ? { crossOrigin: "anonymous" } : {})}
       referrerPolicy="no-referrer"
       style={{
         width: "30px",

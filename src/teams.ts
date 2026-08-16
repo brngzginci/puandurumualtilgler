@@ -27,6 +27,42 @@ export type TeamResolutionStatus =
 
 export const TEAMS: Team[] = [
   {
+    id: "adanaspor",
+    officialName: "Adanaspor",
+    displayName: "Adanaspor",
+    shortName: "Adanaspor",
+    aliases: ["Adanaspor", "Adanaspor A.Ş.", "Adana"],
+    colors: ["#FF7A00", "#FFFFFF", "#FFFFFF"],
+    defaultLogo: "/logos/adanaspor.svg",
+    primaryColor: "#FF7A00",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "amed",
+    officialName: "Amed Sportif Faaliyetler",
+    displayName: "Amed SK",
+    shortName: "Amed SK",
+    aliases: ["Amed Sportif Faaliyetler", "Amed SK", "Amed", "Amedspor", "Amed Sportif"],
+    colors: ["#009639", "#E30A17", "#FFFFFF"],
+    defaultLogo: "/logos/amed.svg",
+    primaryColor: "#009639",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "ankaragucu",
+    officialName: "MKE Ankaragücü",
+    displayName: "MKE Ankaragücü",
+    shortName: "Ankaragücü",
+    aliases: ["MKE Ankaragücü", "Ankaragücü", "Ankaragucu", "MKE Ankaragucu"],
+    colors: ["#FFCC00", "#002D62", "#FFFFFF"],
+    defaultLogo: "/logos/ankaragucu.svg",
+    primaryColor: "#FFCC00",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#002D62"
+  },
+  {
     id: "antalyaspor",
     officialName: "Antalyaspor",
     displayName: "Antalyaspor",
@@ -95,6 +131,30 @@ export const TEAMS: Team[] = [
     textOnPrimary: "#FFFFFF"
   },
   {
+    id: "corum",
+    officialName: "Ahlatcı Çorum FK",
+    displayName: "Çorum FK",
+    shortName: "Çorum FK",
+    aliases: ["Ahlatcı Çorum FK", "Çorum FK", "Ahlatci Corum FK", "Corum FK", "Çorum", "Corum", "Çorumspor"],
+    colors: ["#E30A17", "#000000", "#FFFFFF"],
+    defaultLogo: "/logos/corum.svg",
+    primaryColor: "#E30A17",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "erzurumspor",
+    officialName: "Erzurumspor FK",
+    displayName: "Erzurumspor FK",
+    shortName: "Erzurumspor",
+    aliases: ["Erzurumspor FK", "Erzurumspor", "Erzurum Spor", "Büyükşehir Belediye Erzurumspor", "BB Erzurumspor"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    defaultLogo: "/logos/erzurumspor.svg",
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
     id: "esenlererok",
     officialName: "Esenler Erokspor",
     displayName: "Esenler Erokspor",
@@ -103,6 +163,41 @@ export const TEAMS: Team[] = [
     colors: ["#FFCC00", "#0055A5", "#000000"],
     primaryColor: "#FFCC00",
     secondaryColor: "#0055A5",
+    textOnPrimary: "#000000"
+  },
+  {
+    id: "genclerbirligi",
+    officialName: "Gençlerbirliği",
+    displayName: "Gençlerbirliği",
+    shortName: "Gençlerbirliği",
+    aliases: ["Gençlerbirliği", "Genclerbirligi", "Gençler", "Gencler"],
+    colors: ["#E30A17", "#000000", "#FFFFFF"],
+    defaultLogo: "/logos/genclerbirligi.svg",
+    primaryColor: "#E30A17",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "igdir",
+    officialName: "Iğdır FK",
+    displayName: "Iğdır FK",
+    shortName: "Iğdır FK",
+    aliases: ["Iğdır FK", "Iğdır", "Alagöz Holding Iğdır FK", "Alagöz Holding Iğdır", "Igdir FK", "Igdir"],
+    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
+    defaultLogo: "/logos/igdir.svg",
+    primaryColor: "#009639",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "istanbulspor",
+    officialName: "İstanbulspor",
+    displayName: "İstanbulspor",
+    shortName: "İstanbulspor",
+    aliases: ["İstanbulspor", "Istanbulspor", "İstanbul", "Uğur Okulları İstanbulspor"],
+    colors: ["#FFCC00", "#000000", "#000000"],
+    primaryColor: "#FFCC00",
+    secondaryColor: "#000000",
     textOnPrimary: "#000000"
   },
   {
@@ -118,26 +213,14 @@ export const TEAMS: Team[] = [
     textOnPrimary: "#FFFFFF"
   },
   {
-    id: "igdir",
-    officialName: "Iğdır FK",
-    displayName: "Iğdır FK",
-    shortName: "Iğdır FK",
-    aliases: ["Iğdır FK", "Iğdır", "Alagöz Holding Iğdır", "Igdir FK", "Igdir"],
-    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
-    defaultLogo: "/logos/igdir.svg",
-    primaryColor: "#009639",
-    secondaryColor: "#FFFFFF",
-    textOnPrimary: "#FFFFFF"
-  },
-  {
-    id: "istanbulspor",
-    officialName: "İstanbulspor",
-    displayName: "İstanbulspor",
-    shortName: "İstanbulspor",
-    aliases: ["İstanbulspor", "Istanbulspor", "İstanbul"],
-    colors: ["#FFCC00", "#000000", "#000000"],
+    id: "kayserispor",
+    officialName: "Kayserispor",
+    displayName: "Kayserispor",
+    shortName: "Kayserispor",
+    aliases: ["Kayserispor", "Kayseri"],
+    colors: ["#FFCC00", "#E30A17", "#000000"],
     primaryColor: "#FFCC00",
-    secondaryColor: "#000000",
+    secondaryColor: "#E30A17",
     textOnPrimary: "#000000"
   },
   {
@@ -153,15 +236,16 @@ export const TEAMS: Team[] = [
     textOnPrimary: "#FFFFFF"
   },
   {
-    id: "kayserispor",
-    officialName: "Kayserispor",
-    displayName: "Kayserispor",
-    shortName: "Kayserispor",
-    aliases: ["Kayserispor", "Kayseri"],
-    colors: ["#FFCC00", "#E30A17", "#000000"],
-    primaryColor: "#FFCC00",
-    secondaryColor: "#E30A17",
-    textOnPrimary: "#000000"
+    id: "kocaelispor",
+    officialName: "Kocaelispor",
+    displayName: "Kocaelispor",
+    shortName: "Kocaelispor",
+    aliases: ["Kocaelispor", "Kocaeli", "Kocaelispor Kulübü"],
+    colors: ["#009639", "#000000", "#FFFFFF"],
+    defaultLogo: "/logos/kocaelispor.svg",
+    primaryColor: "#009639",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF"
   },
   {
     id: "manisafk",
@@ -210,6 +294,30 @@ export const TEAMS: Team[] = [
     textOnPrimary: "#FFFFFF"
   },
   {
+    id: "sakaryaspor",
+    officialName: "Sakaryaspor",
+    displayName: "Sakaryaspor",
+    shortName: "Sakaryaspor",
+    aliases: ["Sakaryaspor", "Sakarya", "Sakaryaspor A.Ş."],
+    colors: ["#009639", "#000000", "#FFFFFF"],
+    defaultLogo: "/logos/sakaryaspor.svg",
+    primaryColor: "#009639",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "sanliurfaspor",
+    officialName: "Şanlıurfaspor",
+    displayName: "Şanlıurfaspor",
+    shortName: "Şanlıurfaspor",
+    aliases: ["Şanlıurfaspor", "Sanliurfaspor", "Şanlıurfa", "Sanliurfa", "Urfaspor", "Urfa", "Central Hospital Ümraniyespor"],
+    colors: ["#FFCC00", "#009639", "#FFFFFF"],
+    defaultLogo: "/logos/sanliurfaspor.svg",
+    primaryColor: "#FFCC00",
+    secondaryColor: "#009639",
+    textOnPrimary: "#000000"
+  },
+  {
     id: "sariyer",
     officialName: "Sarıyer",
     displayName: "Sarıyer",
@@ -236,7 +344,7 @@ export const TEAMS: Team[] = [
     officialName: "Ümraniyespor",
     displayName: "Ümraniyespor",
     shortName: "Ümraniyespor",
-    aliases: ["Ümraniyespor", "Umraniyespor", "Ümraniye"],
+    aliases: ["Ümraniyespor", "Umraniyespor", "Ümraniye", "Central Hospital Ümraniyespor"],
     colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
     defaultLogo: "/logos/umraniyespor.svg",
     primaryColor: "#E30A17",
@@ -253,6 +361,18 @@ export const TEAMS: Team[] = [
     primaryColor: "#E30A17",
     secondaryColor: "#000000",
     textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "yenimalatyaspor",
+    officialName: "Yeni Malatyaspor",
+    displayName: "Yeni Malatyaspor",
+    shortName: "Yeni Malatya",
+    aliases: ["Yeni Malatyaspor", "Malatyaspor", "Yeni Malatya"],
+    colors: ["#FFCC00", "#000000", "#FFFFFF"],
+    defaultLogo: "/logos/yenimalatyaspor.svg",
+    primaryColor: "#FFCC00",
+    secondaryColor: "#000000",
+    textOnPrimary: "#000000"
   }
 ];
 

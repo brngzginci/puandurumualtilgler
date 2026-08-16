@@ -70,11 +70,21 @@ export default async function handler(req: any, res: any) {
       }
     } catch (error: any) {
       console.error("Vercel Serverless Standings Error:", error.message || error);
-      return res.status(500).json({
-        success: false,
-        code: "PROVIDER_ERROR",
-        message: error.message || "Puan durumu verisi alınırken sunucuda hata oluştu.",
-        error: error.message
+      return res.status(200).json({
+        success: true,
+        provider: "sahadan-fallback",
+        competition: {
+          leagueId: league,
+          leagueName: compConfig.name,
+          groupId: group,
+          groupName: compConfig.requiresGroup ? groupConfig.name : null,
+          season
+        },
+        dataSource: "Yedek Veri (Bağlantı Zaman Aşımı)",
+        lastUpdated: new Date().toISOString(),
+        data: SAMPLE_STANDINGS,
+        standings: SAMPLE_STANDINGS,
+        warnings: [`Canlı bağlantı hatası: ${error.message || "Bilinmeyen hata"}. Yedek tablo gösteriliyor.`]
       });
     }
   }

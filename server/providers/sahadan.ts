@@ -14,6 +14,7 @@ import {
 } from "../../src/config/competitions";
 import { findTeamByInputName } from "../../src/teams";
 import { StandingRow, ProviderStandingsResult } from "../../src/types";
+import { SAMPLE_STANDINGS } from "../../src/sampleStandings";
 
 const CACHE_TTL_MS = 15 * 60 * 1000; // 15 minutes
 
@@ -362,12 +363,13 @@ async function doFetchSahadanStandings(input: {
   const response = await fetch(compConfig.sourceUrl, {
     headers: {
       "User-Agent":
-        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130 Safari/537.36",
-      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-      "Accept-Language": "tr-TR,tr;q=0.9,en;q=0.5",
-      "Cache-Control": "no-cache"
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+      Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+      "Accept-Language": "tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7",
+      "Cache-Control": "no-cache",
+      Pragma: "no-cache"
     },
-    signal: AbortSignal.timeout(15000)
+    signal: AbortSignal.timeout(9000)
   });
 
   if (!response.ok) {
@@ -535,7 +537,47 @@ export async function fetchSahadanStandings(input: {
     })
     .catch((err) => {
       inFlightRequests.delete(inFlightKey);
-      throw err;
+      console.warn("Sahadan fetch error:", err.message);
+
+      // Check if we have any cached entry (even if expired)
+      const staleEntry = sahadanCache.get(cacheKey);
+      if (staleEntry) {
+        return {
+          ...staleEntry.data,
+          cached: true,
+          warnings: [
+            ...(staleEntry.data.warnings || []),
+            `Canlı bağlantı hatası (${err.message}). Önceki önbellek gösteriliyor.`
+          ]
+        };
+      }
+
+      // If no cache, return fallback standings gracefully
+      const compConfig = getCompetitionConfig(input.leagueId);
+      const groupConfig = getCompetitionGroup(input.leagueId, input.groupId);
+
+      const result: ProviderStandingsResult = {
+        success: true,
+        provider: "sahadan",
+        competition: {
+          leagueId: input.leagueId,
+          leagueName: compConfig?.name || "1. Lig",
+          groupId: input.groupId,
+          groupName: groupConfig?.name || "",
+          season: input.season
+        },
+        sourceRankingPreserved: true,
+        standings: SAMPLE_STANDINGS,
+        data: SAMPLE_STANDINGS,
+        unmatchedTeams: [],
+        parsedTeamCount: SAMPLE_STANDINGS.length,
+        fetchedAt: new Date().toISOString(),
+        cached: false,
+        warnings: [
+          `Canlı bağlantı kurulamadı (${err.message}). Varsayılan tablo yüklendi.`
+        ]
+      };
+      return result;
     });
 
   inFlightRequests.set(inFlightKey, fetchPromise);
