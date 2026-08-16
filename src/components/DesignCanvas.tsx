@@ -107,7 +107,15 @@ export function TeamLogo({
         objectFit: "contain",
       }}
       onError={() => {
-        setLogoState({ status: "failed", error: "Görsel yüklenemedi" });
+        if (logoState.source && logoState.source.endsWith(".svg")) {
+          // Try png fallback
+          setLogoState({ source: logoState.source.replace(/\.svg$/, ".png"), status: "ready" });
+        } else if (logoState.source && logoState.source.endsWith(".png")) {
+          // Try svg fallback
+          setLogoState({ source: logoState.source.replace(/\.png$/, ".svg"), status: "ready" });
+        } else {
+          setLogoState({ status: "failed", error: "Görsel yüklenemedi" });
+        }
       }}
     />
   );

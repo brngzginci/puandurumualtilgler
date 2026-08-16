@@ -161,6 +161,7 @@ export const TEAMS: Team[] = [
     shortName: "Esenler Erok",
     aliases: ["Esenler Erokspor", "Erokspor", "Esenler Erok", "Erok"],
     colors: ["#FFCC00", "#0055A5", "#000000"],
+    defaultLogo: "/logos/esenlererok.svg",
     primaryColor: "#FFCC00",
     secondaryColor: "#0055A5",
     textOnPrimary: "#000000"
@@ -196,6 +197,7 @@ export const TEAMS: Team[] = [
     shortName: "İstanbulspor",
     aliases: ["İstanbulspor", "Istanbulspor", "İstanbul", "Uğur Okulları İstanbulspor"],
     colors: ["#FFCC00", "#000000", "#000000"],
+    defaultLogo: "/logos/istanbulspor.svg",
     primaryColor: "#FFCC00",
     secondaryColor: "#000000",
     textOnPrimary: "#000000"
