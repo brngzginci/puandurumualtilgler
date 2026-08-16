@@ -16,12 +16,25 @@ let lastUpdatedTime = new Date().toISOString();
 
 export const app = express();
 
+// Enable CORS
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(200);
+  }
+  next();
+});
+
 // Body parsers
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true, limit: "10mb" }));
 
-// API Routes
-app.get("/api/providers", (_req, res) => {
+const apiRouter = express.Router();
+
+// API Routes on Router
+apiRouter.get("/providers", (_req, res) => {
   res.json([
     {
       id: "sahadan",
@@ -38,7 +51,7 @@ app.get("/api/providers", (_req, res) => {
   ]);
 });
 
-app.get("/api/standings", async (req, res) => {
+apiRouter.get("/standings", async (req, res) => {
   const provider = (req.query.provider as string) || "sahadan";
   const refresh = req.query.refresh === "true";
   const league = ((req.query.league as string) || "tff-1-lig") as LeagueId;
@@ -103,7 +116,7 @@ app.get("/api/standings", async (req, res) => {
   }
 });
 
-app.post("/api/standings", (req, res) => {
+apiRouter.post("/standings", (req, res) => {
   const { standings } = req.body;
 
   if (!Array.isArray(standings)) {
@@ -140,5 +153,9 @@ app.post("/api/standings", (req, res) => {
     data: currentManualStandings
   });
 });
+
+// Mount router at both /api and root /
+app.use("/api", apiRouter);
+app.use("/", apiRouter);
 
 export default app;

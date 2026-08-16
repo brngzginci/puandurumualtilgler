@@ -89,7 +89,7 @@ const DEFAULT_CONFIG: DesignConfig = {
   currentWeek: 0,
   totalWeeks: 38,
   showNote: true,
-  noteText: "+Ligin 00. haftası itibarıyla güncel puan durumudur.",
+  noteText: "BİZİ SOSYAL MEDYADAN TAKİP EDİN",
   showSocialStrip: true,
   directPromotionStart: 1,
   directPromotionEnd: 2,
@@ -421,8 +421,8 @@ export default function App() {
         if (parsed.title && parsed.title.includes("1. LIG")) {
           parsed.title = parsed.title.replace("1. LIG", "1. LİG");
         }
-        if (parsed.noteText && parsed.noteText.includes("Ek olarak buraya dipnot eklenebilir.")) {
-          parsed.noteText = parsed.noteText.replace(/\n?Ek olarak buraya dipnot eklenebilir\./, "").trim();
+        if (!parsed.noteText || parsed.noteText.includes("Ek olarak buraya dipnot") || parsed.noteText.includes("+Ligin 00. haftası")) {
+          parsed.noteText = "BİZİ SOSYAL MEDYADAN TAKİP EDİN";
         }
         return { ...DEFAULT_CONFIG, ...parsed };
       } catch (e) {
@@ -582,7 +582,7 @@ export default function App() {
 
     let newStandings: StandingRow[] = overrideStandings || [];
     let newCurrentWeek = 0;
-    let newNoteText = `+Ligin 00. haftası itibarıyla güncel puan durumudur.`;
+    let newNoteText = "BİZİ SOSYAL MEDYADAN TAKİP EDİN";
 
     if (overrideStandings) {
       newCurrentWeek = overrideMetadata?.currentWeek ?? 0;
@@ -593,8 +593,8 @@ export default function App() {
         newStandings = parsed.standings || [];
         newCurrentWeek = parsed.currentWeek ?? 0;
         if (parsed.noteText) {
-          newNoteText = parsed.noteText.includes("Ek olarak buraya dipnot eklenebilir.")
-            ? parsed.noteText.replace(/\n?Ek olarak buraya dipnot eklenebilir\./, "").trim()
+          newNoteText = parsed.noteText.includes("Ek olarak buraya dipnot") || parsed.noteText.includes("+Ligin 00. haftası")
+            ? "BİZİ SOSYAL MEDYADAN TAKİP EDİN"
             : parsed.noteText;
         }
       } catch (e) {

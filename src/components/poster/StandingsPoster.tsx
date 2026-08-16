@@ -10,6 +10,7 @@ import StandingsTable from "./StandingsTable";
 import LeagueLegend from "./LeagueLegend";
 import WeekCard from "./WeekCard";
 import PosterNote from "./PosterNote";
+import YouTubeStrip from "./YouTubeStrip";
 import SocialMediaStrip from "./SocialMediaStrip";
 import "./StandingsPoster.css";
 
@@ -59,14 +60,13 @@ export const StandingsPoster: React.FC<StandingsPosterProps> = ({
           totalWeeks={config.totalWeeks}
         />
 
-        {/* Sağ Alt: Dynamic Note + Social Media Strip */}
-        <div className="flex-1 h-full bg-[#001011] border border-[#B4C3C3]/30 rounded-2xl p-3 flex flex-col justify-between shadow-md">
-          <div className="flex-1 flex flex-col justify-center">
-            <PosterNote
-              noteText={config.noteText}
-              currentWeek={config.currentWeek}
-            />
-          </div>
+        {/* Sağ Alt: Dynamic Note + YouTube Strip + Social Media Strip */}
+        <div className="flex-1 h-full bg-[#001011] border border-[#B4C3C3]/30 rounded-2xl p-2.5 flex flex-col justify-between shadow-md">
+          <PosterNote
+            noteText={config.noteText}
+            currentWeek={config.currentWeek}
+          />
+          <YouTubeStrip />
           <SocialMediaStrip />
         </div>
       </div>

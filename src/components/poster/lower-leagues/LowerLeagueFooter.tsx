@@ -19,12 +19,7 @@ export const LowerLeagueFooter: React.FC<LowerLeagueFooterProps> = ({
   showNote = true
 }) => {
   const currentWeek = config.currentWeek || 0;
-  let defaultNote = "";
-  if (currentWeek > 0) {
-    defaultNote = `+ Ligin ${currentWeek}. haftası itibarıyla güncel puan durumudur.`;
-  } else {
-    defaultNote = `Sezon başlangıcı öncesi güncel puan durumu görünümüdür.`;
-  }
+  const defaultNote = "BİZİ SOSYAL MEDYADAN TAKİP EDİN";
 
   const rawNote = config.noteText && config.noteText.trim() !== "" ? config.noteText : defaultNote;
   const noteContent = rawNote.replace(/\r?\n+/g, " ").replace(/\s+/g, " ").trim();

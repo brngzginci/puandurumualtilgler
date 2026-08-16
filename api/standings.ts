@@ -1,70 +1,86 @@
-export default {
-  async fetch(request: Request): Promise<Response> {
-    try {
-      const url = new URL(request.url);
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
-      /*
-       * .js uzantısı önemli.
-       * Kaynak dosya sahadan.ts olsa da Vercel çalışma anında JS çalıştırır.
-       */
-      const providerModule = await import(
-        "../server/providers/sahadan.js"
-      );
+import { fetchSahadanStandings } from "../server/providers/sahadan";
+import { COMPETITIONS, LeagueId, GroupId } from "../src/config/competitions";
+import { SAMPLE_STANDINGS } from "../src/sampleStandings";
 
-      const league =
-        url.searchParams.get("league") || "tff-1-lig";
+export default async function handler(req: any, res: any) {
+  // Set CORS headers
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
 
-      const group =
-        url.searchParams.get("group") || "overall";
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
 
-      const season =
-        url.searchParams.get("season") || "2026-2027";
+  if (req.method === "GET") {
+    const provider = (req.query?.provider as string) || "sahadan";
+    const refresh = req.query?.refresh === "true";
+    const league = ((req.query?.league as string) || "tff-1-lig") as LeagueId;
+    const group = ((req.query?.group as string) || "overall") as GroupId;
+    const season = (req.query?.season as string) || "2026-2027";
 
-      const refresh =
-        url.searchParams.get("refresh") === "true" ||
-        url.searchParams.get("refresh") === "1";
-
-      const result =
-        await providerModule.fetchSahadanStandings({
-          leagueId: league as any,
-          groupId: group as any,
-          season,
-          refresh,
-        });
-
-      return Response.json(result, {
-        status: 200,
-        headers: {
-          "Cache-Control": "no-store",
-        },
+    const compConfig = COMPETITIONS[league];
+    if (!compConfig) {
+      return res.status(400).json({
+        success: false,
+        code: "INVALID_COMPETITION_SELECTION",
+        message: "Seçilen lig veya grup desteklenmiyor."
       });
-    } catch (error) {
-      console.error("STANDINGS_FUNCTION_ERROR", error);
-
-      return Response.json(
-        {
-          success: false,
-          code: "STANDINGS_FUNCTION_ERROR",
-          errorName:
-            error instanceof Error
-              ? error.name
-              : "UnknownError",
-          message:
-            error instanceof Error
-              ? error.message
-              : String(error),
-          stack:
-            error instanceof Error
-              ? error.stack
-              : undefined,
-        },
-        {
-          status: 500,
-          headers: {
-            "Cache-Control": "no-store",
-          },
-        },
-      );
     }
-  },
-};
+
+    const groupConfig = compConfig.groups.find((g) => g.id === group);
+    if (!groupConfig) {
+      return res.status(400).json({
+        success: false,
+        code: "INVALID_COMPETITION_SELECTION",
+        message: "Seçilen lig veya grup desteklenmiyor."
+      });
+    }
+
+    try {
+      if (provider === "sahadan") {
+        const result = await fetchSahadanStandings({
+          leagueId: league,
+          groupId: group,
+          season,
+          refresh
+        });
+        return res.status(200).json(result);
+      } else {
+        return res.status(200).json({
+          success: true,
+          provider: "manual",
+          competition: {
+            leagueId: league,
+            leagueName: compConfig.name,
+            groupId: group,
+            groupName: compConfig.requiresGroup ? groupConfig.name : null,
+            season
+          },
+          lastUpdated: new Date().toISOString(),
+          dataSource: "Manuel Veri Girişi / Örnek Veri",
+          data: SAMPLE_STANDINGS,
+          standings: SAMPLE_STANDINGS
+        });
+      }
+    } catch (error: any) {
+      console.error("Vercel Serverless Standings Error:", error.message || error);
+      return res.status(500).json({
+        success: false,
+        code: "PROVIDER_ERROR",
+        message: error.message || "Puan durumu verisi alınırken sunucuda hata oluştu.",
+        error: error.message
+      });
+    }
+  }
+
+  return res.status(405).json({
+    success: false,
+    message: "Yalnızca GET metodu desteklenmektedir."
+  });
+}

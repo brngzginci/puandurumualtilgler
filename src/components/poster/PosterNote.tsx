@@ -17,7 +17,7 @@ export const PosterNote: React.FC<PosterNoteProps> = ({
   const formattedWeek =
     currentWeek < 10 ? `0${currentWeek}` : `${currentWeek}`;
 
-  const defaultNote = `+Ligin ${formattedWeek}. haftası itibarıyla güncel puan durumudur.`;
+  const defaultNote = "BİZİ SOSYAL MEDYADAN TAKİP EDİN";
 
   let textToRender = noteText && noteText.trim() ? noteText : defaultNote;
 
@@ -28,22 +28,22 @@ export const PosterNote: React.FC<PosterNoteProps> = ({
   textToRender = textToRender.replace(/\r?\n+/g, " ").replace(/\s+/g, " ").trim();
 
   return (
-    <div className="w-full bg-gradient-to-r from-[#001c1e] via-[#001618] to-[#001214] border border-[#B4C3C3]/30 rounded-xl px-3.5 py-2.5 flex items-center gap-2.5 shadow-sm overflow-hidden">
-      <span className="px-2 py-0.5 rounded-md bg-[#F4510B]/20 border border-[#F4510B]/50 text-[#FF7A00] text-[11px] font-extrabold tracking-wider uppercase shrink-0">
-        NOT
-      </span>
+    <div className="w-full h-[42px] bg-gradient-to-r from-[#001c1e] via-[#001618] to-[#001214] border border-[#B4C3C3]/30 rounded-xl px-3 flex items-center justify-center gap-2 shadow-sm overflow-hidden">
+      <span className="w-2 h-2 rounded-full bg-[#F4510B] shrink-0 animate-pulse" />
       <p
         lang="tr"
-        className="text-[#F1F5F9] font-medium text-[15px] leading-tight tracking-tight whitespace-nowrap overflow-hidden text-ellipsis flex-1"
+        className="text-[#F1F5F9] font-bold text-[14.5px] leading-tight tracking-wide uppercase whitespace-nowrap overflow-hidden text-ellipsis text-center"
         style={{
           fontFamily: "'Plus Jakarta Sans Variable', 'Montserrat Variable', sans-serif"
         }}
       >
         {textToRender}
       </p>
+      <span className="w-2 h-2 rounded-full bg-[#F4510B] shrink-0 animate-pulse" />
     </div>
   );
 };
 
 export default PosterNote;
+
 
