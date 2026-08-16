@@ -63,25 +63,23 @@ export function TeamLogo({
   customLogo?: string;
   borderRadius: string;
 }) {
+  const getInitialSource = () => {
+    return customLogo || team.logo || team.defaultLogo || `/logos/${team.id}.svg`;
+  };
+
   const [logoState, setLogoState] = useState<TeamLogoState>(() => {
-    if (customLogo) {
-      return { source: customLogo, status: "ready" };
-    }
-    if (team.defaultLogo) {
-      return { source: team.defaultLogo, status: "ready" };
-    }
-    return { status: "not-provided" };
+    const src = getInitialSource();
+    return src ? { source: src, status: "ready" } : { status: "not-provided" };
   });
 
   useEffect(() => {
-    if (customLogo) {
-      setLogoState({ source: customLogo, status: "ready" });
-    } else if (team.defaultLogo) {
-      setLogoState({ source: team.defaultLogo, status: "ready" });
+    const src = getInitialSource();
+    if (src) {
+      setLogoState({ source: src, status: "ready" });
     } else {
       setLogoState({ status: "not-provided" });
     }
-  }, [customLogo, team.defaultLogo]);
+  }, [customLogo, team.logo, team.defaultLogo, team.id]);
 
   if (logoState.status === "failed" || !logoState.source) {
     return (

@@ -80,7 +80,14 @@ export const LowerLeagueRow: React.FC<LowerLeagueRowProps> = ({
             alt={teamDisplayName}
             className="lower-league-team-logo"
             onError={(e) => {
-              (e.target as HTMLImageElement).src = shieldPlaceholder;
+              const target = e.target as HTMLImageElement;
+              if (target.src && target.src.endsWith(".svg")) {
+                target.src = target.src.replace(/\.svg$/, ".png");
+              } else if (target.src && target.src.endsWith(".png")) {
+                target.src = target.src.replace(/\.png$/, ".svg");
+              } else {
+                target.src = shieldPlaceholder;
+              }
             }}
           />
         </div>
