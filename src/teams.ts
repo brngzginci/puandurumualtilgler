@@ -313,7 +313,7 @@ export const TEAMS: Team[] = [
     officialName: "Şanlıurfaspor",
     displayName: "Şanlıurfaspor",
     shortName: "Şanlıurfaspor",
-    aliases: ["Şanlıurfaspor", "Sanliurfaspor", "Şanlıurfa", "Sanliurfa", "Urfaspor", "Urfa", "Central Hospital Ümraniyespor"],
+    aliases: ["Şanlıurfaspor", "Sanliurfaspor", "Şanlıurfa", "Sanliurfa", "Urfaspor", "Urfa", "Şanlıurfa Spor"],
     colors: ["#FFCC00", "#009639", "#FFFFFF"],
     defaultLogo: "/logos/sanliurfaspor.svg",
     primaryColor: "#FFCC00",
@@ -325,7 +325,7 @@ export const TEAMS: Team[] = [
     officialName: "Sarıyer",
     displayName: "Sarıyer",
     shortName: "Sarıyer",
-    aliases: ["Sarıyer", "Sariyer"],
+    aliases: ["Sarıyer", "Sariyer", "Sarıyer SK", "Sariyer SK", "Sarıyer Spor"],
     colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
     primaryColor: "#002D62",
     secondaryColor: "#FFFFFF",
@@ -336,7 +336,7 @@ export const TEAMS: Team[] = [
     officialName: "Sivasspor",
     displayName: "Sivasspor",
     shortName: "Sivasspor",
-    aliases: ["Sivasspor", "Sivas"],
+    aliases: ["Sivasspor", "Sivas", "Net Global Sivasspor", "EMS Yapı Sivasspor"],
     colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
     primaryColor: "#E30A17",
     secondaryColor: "#FFFFFF",
@@ -356,10 +356,10 @@ export const TEAMS: Team[] = [
   },
   {
     id: "vanspor",
-    officialName: "Vanspor",
-    displayName: "Vanspor",
+    officialName: "Vanspor FK",
+    displayName: "Vanspor FK",
     shortName: "Vanspor",
-    aliases: ["Vanspor", "Vanspor FK", "Van"],
+    aliases: ["Vanspor FK", "Vanspor", "Van Spor", "Van Spor FK", "Van", "Artı Değer Vanspor FK", "Bitexen Vanspor FK"],
     colors: ["#E30A17", "#000000", "#FFFFFF"],
     primaryColor: "#E30A17",
     secondaryColor: "#000000",
@@ -370,14 +370,373 @@ export const TEAMS: Team[] = [
     officialName: "Yeni Malatyaspor",
     displayName: "Yeni Malatyaspor",
     shortName: "Yeni Malatya",
-    aliases: ["Yeni Malatyaspor", "Malatyaspor", "Yeni Malatya"],
+    aliases: ["Yeni Malatyaspor", "Malatyaspor", "Yeni Malatya", "Malatya"],
     colors: ["#FFCC00", "#000000", "#FFFFFF"],
     defaultLogo: "/logos/yenimalatyaspor.svg",
     primaryColor: "#FFCC00",
     secondaryColor: "#000000",
     textOnPrimary: "#000000"
+  },
+  // --- Additional Turkish Teams (2. Lig, 3. Lig & Süper Lig) ---
+  {
+    id: "galatasaray",
+    officialName: "Galatasaray A.Ş.",
+    displayName: "Galatasaray",
+    shortName: "Galatasaray",
+    aliases: ["Galatasaray", "GS", "Galatasaray SK"],
+    colors: ["#A90432", "#FDB913", "#FFFFFF"],
+    primaryColor: "#A90432",
+    secondaryColor: "#FDB913",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "fenerbahce",
+    officialName: "Fenerbahçe A.Ş.",
+    displayName: "Fenerbahçe",
+    shortName: "Fenerbahçe",
+    aliases: ["Fenerbahçe", "Fenerbahce", "FB", "Fenerbahçe SK"],
+    colors: ["#002D62", "#FFED00", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFED00",
+    textOnPrimary: "#FFED00"
+  },
+  {
+    id: "besiktas",
+    officialName: "Beşiktaş A.Ş.",
+    displayName: "Beşiktaş",
+    shortName: "Beşiktaş",
+    aliases: ["Beşiktaş", "Besiktas", "BJK", "Beşiktaş JK"],
+    colors: ["#000000", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#000000",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "trabzonspor",
+    officialName: "Trabzonspor A.Ş.",
+    displayName: "Trabzonspor",
+    shortName: "Trabzonspor",
+    aliases: ["Trabzonspor", "TS", "Trabzon"],
+    colors: ["#800020", "#00A3E0", "#FFFFFF"],
+    primaryColor: "#800020",
+    secondaryColor: "#00A3E0",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "basaksehir",
+    officialName: "Rams Başakşehir FK",
+    displayName: "Başakşehir FK",
+    shortName: "Başakşehir",
+    aliases: ["Başakşehir", "Basaksehir", "Rams Başakşehir", "İstanbul Başakşehir"],
+    colors: ["#002D62", "#FF671F", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FF671F",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "samsunspor",
+    officialName: "Samsunspor",
+    displayName: "Samsunspor",
+    shortName: "Samsunspor",
+    aliases: ["Samsunspor", "Samsun"],
+    colors: ["#E30A17", "#FFFFFF", "#000000"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "eyupspor",
+    officialName: "İkas Eyüpspor",
+    displayName: "Eyüpspor",
+    shortName: "Eyüpspor",
+    aliases: ["Eyüpspor", "Eyupspor", "İkas Eyüpspor", "Eyüp"],
+    colors: ["#800080", "#FFCC00", "#FFFFFF"],
+    primaryColor: "#800080",
+    secondaryColor: "#FFCC00",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "goztepe",
+    officialName: "Göztepe A.Ş.",
+    displayName: "Göztepe",
+    shortName: "Göztepe",
+    aliases: ["Göztepe", "Goztepe", "Göztepe SK"],
+    colors: ["#FFED00", "#E30A17", "#000000"],
+    primaryColor: "#FFED00",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#000000"
+  },
+  {
+    id: "kasimpasa",
+    officialName: "Kasımpaşa A.Ş.",
+    displayName: "Kasımpaşa",
+    shortName: "Kasımpaşa",
+    aliases: ["Kasımpaşa", "Kasimpasa", "Kasımpaşa SK"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "rizespor",
+    officialName: "Çaykur Rizespor",
+    displayName: "Çaykur Rizespor",
+    shortName: "Rizespor",
+    aliases: ["Çaykur Rizespor", "Rizespor", "Çaykur Rize", "Rize"],
+    colors: ["#009639", "#002D62", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "gaziantepfk",
+    officialName: "Gaziantep FK",
+    displayName: "Gaziantep FK",
+    shortName: "Gaziantep",
+    aliases: ["Gaziantep FK", "Gaziantep", "Gaziantep Futbol Kulübü"],
+    colors: ["#E30A17", "#000000", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "konyaspor",
+    officialName: "Tümosan Konyaspor",
+    displayName: "Konyaspor",
+    shortName: "Konyaspor",
+    aliases: ["Konyaspor", "Tümosan Konyaspor", "Konya"],
+    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "alanyaspor",
+    officialName: "Corendon Alanyaspor",
+    displayName: "Alanyaspor",
+    shortName: "Alanyaspor",
+    aliases: ["Alanyaspor", "Corendon Alanyaspor", "Alanya"],
+    colors: ["#FF671F", "#009639", "#FFFFFF"],
+    primaryColor: "#FF671F",
+    secondaryColor: "#009639",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "hatayspor",
+    officialName: "Atakaş Hatayspor",
+    displayName: "Hatayspor",
+    shortName: "Hatayspor",
+    aliases: ["Hatayspor", "Atakaş Hatayspor", "Hatay"],
+    colors: ["#800020", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#800020",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "adanademirspor",
+    officialName: "Adana Demirspor",
+    displayName: "Adana Demirspor",
+    shortName: "Adana Demir",
+    aliases: ["Adana Demirspor", "Adana Demir", "Demirspor"],
+    colors: ["#002D62", "#00A3E0", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#00A3E0",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "trabzon1461",
+    officialName: "1461 Trabzon FK",
+    displayName: "1461 Trabzon FK",
+    shortName: "1461 Trabzon",
+    aliases: ["1461 Trabzon FK", "1461 Trabzon", "1461 Trabzon FK."],
+    colors: ["#800020", "#00A3E0", "#FFFFFF"],
+    primaryColor: "#800020",
+    secondaryColor: "#00A3E0",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "inegolspor",
+    officialName: "İnegölspor",
+    displayName: "İnegölspor",
+    shortName: "İnegölspor",
+    aliases: ["İnegölspor", "Inegolspor", "İnegöl", "Inegol"],
+    colors: ["#800020", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#800020",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "iskenderunspor",
+    officialName: "İskenderunspor A.Ş.",
+    displayName: "İskenderunspor",
+    shortName: "İskenderun",
+    aliases: ["İskenderunspor A.Ş.", "İskenderunspor", "Iskenderunspor", "İskenderun", "Iskenderun"],
+    colors: ["#FF671F", "#002D62", "#FFFFFF"],
+    primaryColor: "#FF671F",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "kastamonuspor",
+    officialName: "GMG Kastamonuspor",
+    displayName: "Kastamonuspor",
+    shortName: "Kastamonu",
+    aliases: ["GMG Kastamonuspor", "Kastamonuspor", "Kastamonu Spor", "Kastamonu"],
+    colors: ["#E30A17", "#000000", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "erzincanspor",
+    officialName: "24Erzincanspor",
+    displayName: "Erzincanspor",
+    shortName: "Erzincan Spor",
+    aliases: ["24Erzincanspor", "Erzincan Spor", "Erzincanspor", "Anagold 24Erzincanspor", "Erzincan"],
+    colors: ["#E30A17", "#000000", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "kmarasisktiklal",
+    officialName: "Kahramanmaraş İstiklal Spor",
+    displayName: "K.Maraş İstiklal",
+    shortName: "İstiklal Spor",
+    aliases: ["Kahramanmaraş İstiklal Spor", "K.Maraş İstiklal", "Kahramanmaraş İstiklal", "Kahramanmaras Istiklal", "K.Maras Istiklal"],
+    colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "beyogluyencarsi",
+    officialName: "Beyoğlu Yeni Çarşı FK",
+    displayName: "Beyoğlu Y.Çarşı",
+    shortName: "Beyoğlu Y.Çarşı",
+    aliases: ["Beyoğlu Yeni Çarşı FK", "Beyoğlu Yeni Çarşı", "Beyoğlu Y.Çarşı", "Beyoglu Yeni Carsi", "Beyoglu Y.Carsi"],
+    colors: ["#002D62", "#E30A17", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "karacabeybld",
+    officialName: "Karacabey Belediyespor A.Ş.",
+    displayName: "Karacabey Bld",
+    shortName: "Karacabey",
+    aliases: ["Karacabey Bld", "Karacabey Belediyespor", "Karacabey Belediye", "Karacabey"],
+    colors: ["#002D62", "#FFCC00", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFCC00",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "fethiyespor",
+    officialName: "Fethiyespor",
+    displayName: "Fethiyespor",
+    shortName: "Fethiyespor",
+    aliases: ["Fethiyespor", "Fethiye"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "kirklarelispor",
+    officialName: "Kırklarelispor",
+    displayName: "Kırklarelispor",
+    shortName: "Kırklareli",
+    aliases: ["Kırklarelispor", "Kirklarelispor", "Kırklareli", "Kirklareli"],
+    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "kutahyaspor",
+    officialName: "Belediye Kütahyaspor",
+    displayName: "Kütahyaspor",
+    shortName: "Kütahya",
+    aliases: ["Belediye Kütahyaspor", "Kütahyaspor", "Kutahyaspor", "Kütahya", "Kutahya"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "serikspor",
+    officialName: "Serik Belediyespor",
+    displayName: "Serik Spor",
+    shortName: "Serik",
+    aliases: ["Serik Belediyespor", "Serik Spor", "Serikspor", "Serik"],
+    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "orduspor52",
+    officialName: "52 Orduspor FK",
+    displayName: "52 Orduspor FK",
+    shortName: "52 Orduspor",
+    aliases: ["52 Orduspor FK", "52 Orduspor", "Orduspor FK", "52 Ordu"],
+    colors: ["#800080", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#800080",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "adana01fk",
+    officialName: "Adana 01 FK",
+    displayName: "Adana 01 FK",
+    shortName: "Adana 01",
+    aliases: ["Adana 01 FK", "Adana 01", "Adana 1954 FK", "Adana 1954"],
+    colors: ["#FFCC00", "#000000", "#FFFFFF"],
+    primaryColor: "#FFCC00",
+    secondaryColor: "#000000",
+    textOnPrimary: "#000000"
+  },
+  {
+    id: "ankarademir",
+    officialName: "Ankara Demirspor",
+    displayName: "Ankara Demir",
+    shortName: "Ankara Demir",
+    aliases: ["Ankara Demir", "Ankara Demirspor", "Demirspor"],
+    colors: ["#002D62", "#00A3E0", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#00A3E0",
+    textOnPrimary: "#FFFFFF"
+  },
+  {
+    id: "bingolspor12",
+    officialName: "12 Bingölspor",
+    displayName: "12 Bingölspor",
+    shortName: "12 Bingöl",
+    aliases: ["12 Bingölspor", "12 Bingöl", "Bingölspor", "Bingolspor"],
+    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF"
   }
 ];
+
+/**
+ * Transliterates Turkish characters into ASCII equivalents (e.g. "Şanlıurfa" -> "Sanliurfa", "Çorum" -> "Corum").
+ */
+export function transliterateTurkish(text: string): string {
+  if (!text) return "";
+  const map: Record<string, string> = {
+    "ç": "c", "Ç": "C",
+    "ğ": "g", "Ğ": "G",
+    "ı": "i", "I": "I",
+    "İ": "I", "i": "i",
+    "ö": "o", "Ö": "O",
+    "ş": "s", "Ş": "S",
+    "ü": "u", "Ü": "U"
+  };
+  return text.split("").map((c) => map[c] || c).join("");
+}
 
 /**
  * Normalizes a Turkish team name by stripping sponsor prefixes, suffixes (A.Ş., SK, FK, etc.)
@@ -393,7 +752,21 @@ export function normalizeTeamName(name: string): string {
     .replace(/İ/g, "i")
     .toLowerCase();
 
-  // Remove common sponsors (specific to 1. Lig)
+  // Expand common Turkish abbreviations
+  if (clean.startsWith("f. ")) {
+    clean = "fatih " + clean.substring(3);
+  }
+  if (clean.includes("k.maraş") || clean.includes("k.maras")) {
+    clean = clean.replace(/k\.mara[sş]/g, "kahramanmaraş");
+  }
+  if (clean.includes("y.çarşı") || clean.includes("y.carsi")) {
+    clean = clean.replace(/y\.çarşı|y\.carsi/g, "yeni çarşı");
+  }
+  if (clean.endsWith(" bld.") || clean.endsWith(" bld")) {
+    clean = clean.replace(/\s+bld\.?$/g, " belediyespor");
+  }
+
+  // Remove common sponsors
   const sponsors = [
     "teksüt", "teksut",
     "ahlatcı", "ahlatci",
@@ -401,7 +774,9 @@ export function normalizeTeamName(name: string): string {
     "alagöz", "alagoz",
     "central hospital",
     "uğur okulları", "ugur okullari",
-    "bellona", "corendon", "atakaş", "atakas", "ramsay", "mondihome", "bitexen", "yukatel", "tümosan", "tumosan"
+    "artı değer", "arti deger",
+    "gmg", "ikas", "net global", "ems yapı", "ems yapi",
+    "bellona", "corendon", "atakaş", "atakas", "ramsay", "rams", "mondihome", "bitexen", "yukatel", "tümosan", "tumosan", "mke"
   ];
 
   for (const sponsor of sponsors) {
@@ -414,11 +789,15 @@ export function normalizeTeamName(name: string): string {
   const suffixes = [
     "spor kulübü", "spor kulubu",
     "futbol kulübü", "futbol kulubu",
+    "futbol şubesi",
     "derneği", "dernegi",
     "faaliyetleri",
     "sportif",
     "futbol",
+    "büyükşehir belediye spor", "buyuksehir belediye spor",
+    "büyükşehir belediyespor", "buyuksehir belediyespor",
     "büyükşehir belediye", "buyuksehir belediye",
+    "belediyespor", "belediye spor",
     "belediyesi", "belediye",
     "a.ş.", "a.s.", "as", "aş",
     "s.k.", "sk",
@@ -426,7 +805,7 @@ export function normalizeTeamName(name: string): string {
     "spor", "sporu"
   ];
 
-  // Run a few passes to strip nested suffixes like "FK A.Ş." or "Spor Kulübü Derneği"
+  // Run passes to strip nested suffixes
   for (let i = 0; i < 3; i++) {
     clean = clean.trim();
     for (const suffix of suffixes) {
@@ -470,7 +849,7 @@ export function slugifyTeamName(name: string): string {
 }
 
 /**
- * Gets all global teams (built-in 1. Lig TEAMS + saved custom teams in localStorage).
+ * Gets all global teams (built-in TEAMS + saved custom teams in localStorage).
  */
 export function getGlobalTeams(): Team[] {
   let customTeams: Team[] = [];
@@ -551,7 +930,7 @@ export function autoCreateTeamFromSource(sourceName: string): Team {
     officialName: clean,
     displayName: clean,
     shortName: clean,
-    aliases: [clean, clean.toUpperCase(), normalizeTeamName(clean)],
+    aliases: [clean, clean.toUpperCase(), normalizeTeamName(clean), transliterateTurkish(clean)],
     createdFrom: "sahadan",
     createdAt: new Date().toISOString()
   };
@@ -563,41 +942,59 @@ export function autoCreateTeamFromSource(sourceName: string): Team {
  */
 export function findTeamByInputName(input: string, customList?: Team[]): Team | null {
   if (!input) return null;
-  const normalizedInput = normalizeTeamName(input);
-  if (!normalizedInput) return null;
+  const rawClean = input.trim();
+  const normalizedInput = normalizeTeamName(rawClean);
+  const inputSlug = slugifyTeamName(rawClean);
+  const translitInput = transliterateTurkish(rawClean).toLowerCase();
 
   const allTeams = customList || getGlobalTeams();
 
   // 1. Direct match on ID
-  let match = allTeams.find((t) => t.id === normalizedInput || t.id === slugifyTeamName(input));
+  let match = allTeams.find((t) => t.id === normalizedInput || t.id === inputSlug);
   if (match) return match;
 
-  // 2. Exact match on normalized shortName, displayName, officialName
+  // 2. Exact match on raw names
   match = allTeams.find(
     (t) =>
-      normalizeTeamName(t.shortName) === normalizedInput ||
-      normalizeTeamName(t.displayName) === normalizedInput ||
-      normalizeTeamName(t.officialName) === normalizedInput
+      t.displayName.toLowerCase() === rawClean.toLowerCase() ||
+      t.officialName.toLowerCase() === rawClean.toLowerCase() ||
+      t.shortName.toLowerCase() === rawClean.toLowerCase() ||
+      (t.aliases || []).some((a) => a.toLowerCase() === rawClean.toLowerCase())
   );
   if (match) return match;
 
-  // 3. Match in aliases
-  match = allTeams.find((t) =>
-    (t.aliases || []).some((alias) => normalizeTeamName(alias) === normalizedInput)
-  );
-  if (match) return match;
-
-  // 4. Safe partial match
-  match = allTeams.find((t) => {
-    const normShort = normalizeTeamName(t.shortName);
-    const normDisplay = normalizeTeamName(t.displayName);
-    const normOfficial = normalizeTeamName(t.officialName);
-    return (
-      (normShort && (normShort.includes(normalizedInput) || normalizedInput.includes(normShort))) ||
-      (normDisplay && (normDisplay.includes(normalizedInput) || normalizedInput.includes(normDisplay))) ||
-      (normOfficial && (normOfficial.includes(normalizedInput) || normalizedInput.includes(normOfficial)))
+  // 3. Exact match on normalized shortName, displayName, officialName, or aliases
+  if (normalizedInput) {
+    match = allTeams.find(
+      (t) =>
+        normalizeTeamName(t.shortName) === normalizedInput ||
+        normalizeTeamName(t.displayName) === normalizedInput ||
+        normalizeTeamName(t.officialName) === normalizedInput ||
+        (t.aliases || []).some((alias) => normalizeTeamName(alias) === normalizedInput)
     );
+    if (match) return match;
+  }
+
+  // 4. Transliterated match
+  match = allTeams.find((t) => {
+    const tTrans = transliterateTurkish(t.displayName).toLowerCase();
+    const tOfficial = transliterateTurkish(t.officialName).toLowerCase();
+    const tShort = transliterateTurkish(t.shortName).toLowerCase();
+    return tTrans === translitInput || tOfficial === translitInput || tShort === translitInput;
   });
+  if (match) return match;
+
+  // 5. Word boundary / token match for composite names (e.g. "fatih karagumruk" vs "karagumruk")
+  if (normalizedInput.length >= 4) {
+    match = allTeams.find((t) => {
+      const normShort = normalizeTeamName(t.shortName);
+      const normDisplay = normalizeTeamName(t.displayName);
+      return (
+        (normShort.length >= 4 && (normShort === normalizedInput || normShort.startsWith(normalizedInput) || normalizedInput.startsWith(normShort))) ||
+        (normDisplay.length >= 4 && (normDisplay === normalizedInput || normDisplay.startsWith(normalizedInput) || normalizedInput.startsWith(normDisplay)))
+      );
+    });
+  }
 
   return match || null;
 }
@@ -668,7 +1065,7 @@ export function resolveSourceTeam(
 
 /**
  * Generates an exhaustive list of candidate logo file URLs for a team.
- * Prioritizes PNG files matching normal Turkish team names and identifiers.
+ * Prioritizes standard Turkish team names (.png) first so local files load instantly.
  */
 export function getPossibleLogoCandidates(
   team?: Team | null | string,
@@ -694,14 +1091,138 @@ export function getPossibleLogoCandidates(
     teamObj = team;
   }
 
-  // 1. Explicit custom logo or uploaded data URL
+  // 1. Priority 0: Explicit user uploaded custom logo or data URL
   if (teamObj?.logo) {
     addCandidate(teamObj.logo);
   }
 
-  // 2. Explicit default logo configured on team
+  // 2. Collect all primary base names associated with this team
+  const primaryNames = new Set<string>();
+
+  if (inputName) primaryNames.add(inputName);
+  if (teamObj) {
+    if (teamObj.displayName) primaryNames.add(teamObj.displayName);
+    if (teamObj.shortName) primaryNames.add(teamObj.shortName);
+    if (teamObj.officialName) primaryNames.add(teamObj.officialName);
+    if (Array.isArray(teamObj.aliases)) {
+      teamObj.aliases.forEach((a) => {
+        if (a && typeof a === "string") primaryNames.add(a.trim());
+      });
+    }
+  }
+
+  // 3. Expand abbreviation variants and clean names
+  const allNames = new Set<string>(primaryNames);
+
+  for (const n of Array.from(primaryNames)) {
+    if (!n) continue;
+    const trimmed = n.trim();
+
+    // Abbreviation expansions
+    if (trimmed.startsWith("F. ")) {
+      allNames.add(trimmed.replace(/^F\.\s+/i, "Fatih "));
+      allNames.add(trimmed.replace(/^F\.\s+/i, ""));
+    }
+    if (trimmed.includes("K.Maraş") || trimmed.includes("K.Maras")) {
+      allNames.add(trimmed.replace(/K\.Mara[sş]/gi, "Kahramanmaraş"));
+    }
+    if (trimmed.includes("Y.Çarşı") || trimmed.includes("Y.Carsi")) {
+      allNames.add(trimmed.replace(/Y\.Çarşı|Y\.Carsi/gi, "Yeni Çarşı"));
+    }
+    if (trimmed.includes("Bld.") || trimmed.includes("Bld")) {
+      allNames.add(trimmed.replace(/\s+Bld\.?$/gi, " Belediyespor"));
+      allNames.add(trimmed.replace(/\s+Bld\.?$/gi, " Belediye"));
+      allNames.add(trimmed.replace(/\s+Bld\.?$/gi, ""));
+    }
+    if (trimmed.startsWith("GMG ")) {
+      allNames.add(trimmed.replace(/^GMG\s+/i, ""));
+    }
+    if (trimmed.startsWith("MKE ")) {
+      allNames.add(trimmed.replace(/^MKE\s+/i, ""));
+    }
+    if (/^Ahlatc[ıi]\s+/i.test(trimmed)) {
+      allNames.add(trimmed.replace(/^Ahlatc[ıi]\s+/i, ""));
+    }
+    if (/^Alag[oö]z(\s+Holding)?\s+/i.test(trimmed)) {
+      allNames.add(trimmed.replace(/^Alag[oö]z(\s+Holding)?\s+/i, ""));
+    }
+    if (/^Teks[uü]t\s+/i.test(trimmed)) {
+      allNames.add(trimmed.replace(/^Teks[uü]t\s+/i, ""));
+    }
+    if (/^U[gğ]ur\s+Okullar[ıi]\s+/i.test(trimmed)) {
+      allNames.add(trimmed.replace(/^U[gğ]ur\s+Okullar[ıi]\s+/i, ""));
+    }
+    if (/^Central\s+Hospital\s+/i.test(trimmed)) {
+      allNames.add(trimmed.replace(/^Central\s+Hospital\s+/i, ""));
+    }
+    if (/^Art[ıi]\s+De[gğ]er\s+/i.test(trimmed)) {
+      allNames.add(trimmed.replace(/^Art[ıi]\s+De[gğ]er\s+/i, ""));
+    }
+
+    // Common stripped suffixes
+    const strippedSuffix = trimmed
+      .replace(/\s+(FK|SK|A\.Ş\.|A\.S\.|AŞ|AS|Futbol Kulübü|Futbol Kulubu|Spor Kulübü|Spor Kulubu|Sporu|Spor|Faaliyetleri)$/i, "")
+      .trim();
+    if (strippedSuffix && strippedSuffix !== trimmed) {
+      allNames.add(strippedSuffix);
+    }
+  }
+
+  // 4. Generate all textual casing and transliterated variants
+  const allVariants = new Set<string>();
+
+  for (const name of Array.from(allNames)) {
+    if (!name) continue;
+    const clean = name.trim();
+    if (!clean) continue;
+
+    allVariants.add(clean); // Exact Turkish casing (e.g. "Kayserispor", "Fatih Karagümrük", "Çorum FK")
+    allVariants.add(clean.toUpperCase()); // Upper (e.g. "KAYSERİSPOR")
+    allVariants.add(clean.toLowerCase()); // Lower (e.g. "kayserispor")
+
+    // Transliterated ASCII (e.g. "Corum FK", "Sanliurfaspor", "Igdir FK", "Istanbulspor", "Umraniyespor")
+    const translit = transliterateTurkish(clean);
+    if (translit) {
+      allVariants.add(translit);
+      allVariants.add(translit.toUpperCase());
+      allVariants.add(translit.toLowerCase());
+    }
+
+    // Slug versions (e.g. "manisafk", "manisa-fk", "erzurumspor", "fatih-karagumruk")
+    const slug = slugifyTeamName(clean);
+    if (slug) {
+      allVariants.add(slug);
+      allVariants.add(slug.replace(/-/g, ""));
+    }
+  }
+
+  if (teamObj?.id) {
+    allVariants.add(teamObj.id);
+  }
+
+  const variantList = Array.from(allVariants).filter(Boolean);
+
+  // Priority 1: /logos/{Name}.png & .PNG (User's standard saved Turkish filenames)
+  for (const v of variantList) {
+    addCandidate(`/logos/${v}.png`);
+    addCandidate(`/logos/${v}.PNG`);
+    if (v.includes(" ") || /[çğışöüÇĞİŞÖÜ]/.test(v)) {
+      addCandidate(`/logos/${encodeURIComponent(v)}.png`);
+      addCandidate(`/logos/${encodeURIComponent(v)}.PNG`);
+    }
+  }
+
+  // Priority 2: /logos/{Name}.svg & .SVG
+  for (const v of variantList) {
+    addCandidate(`/logos/${v}.svg`);
+    addCandidate(`/logos/${v}.SVG`);
+    if (v.includes(" ") || /[çğışöüÇĞİŞÖÜ]/.test(v)) {
+      addCandidate(`/logos/${encodeURIComponent(v)}.svg`);
+    }
+  }
+
+  // Priority 3: Configured default logo if any
   if (teamObj?.defaultLogo) {
-    // If it's an svg, also prepare its png counterpart
     if (teamObj.defaultLogo.endsWith(".svg")) {
       addCandidate(teamObj.defaultLogo.replace(/\.svg$/, ".png"));
       addCandidate(teamObj.defaultLogo);
@@ -710,92 +1231,18 @@ export function getPossibleLogoCandidates(
     }
   }
 
-  // 3. Collect all base names associated with this team
-  const baseNames = new Set<string>();
-
-  if (inputName) {
-    baseNames.add(inputName);
-  }
-
-  if (teamObj) {
-    if (teamObj.displayName) baseNames.add(teamObj.displayName);
-    if (teamObj.officialName) baseNames.add(teamObj.officialName);
-    if (teamObj.shortName) baseNames.add(teamObj.shortName);
-    if (teamObj.id) baseNames.add(teamObj.id);
-    if (Array.isArray(teamObj.aliases)) {
-      teamObj.aliases.forEach((a) => {
-        if (a && typeof a === "string") baseNames.add(a.trim());
-      });
-    }
-  }
-
-  // Expand with variations (case variations, slugs, normalized names, sponsor-stripped, suffix-stripped)
-  const allVariants = new Set<string>();
-
-  baseNames.forEach((name) => {
-    if (!name) return;
-    const trimmed = name.trim();
-    if (!trimmed) return;
-
-    allVariants.add(trimmed);
-    allVariants.add(trimmed.toLowerCase());
-
-    // Turkish slug (e.g. "manisa-fk", "erzurumspor-fk", "ahlatci-corum-fk")
-    const slug = slugifyTeamName(trimmed);
-    if (slug) {
-      allVariants.add(slug);
-      allVariants.add(slug.replace(/-/g, ""));
-    }
-
-    // Normalized name (sponsors and suffixes stripped)
-    const norm = normalizeTeamName(trimmed);
-    if (norm) {
-      allVariants.add(norm);
-      const normSlug = slugifyTeamName(norm);
-      if (normSlug) {
-        allVariants.add(normSlug);
-        allVariants.add(normSlug.replace(/-/g, ""));
-      }
-    }
-
-    // Common stripped suffixes: "FK", "SK", "A.Ş.", "Spor", "Futbol Kulübü"
-    const strippedSuffix = trimmed
-      .replace(/\s+(FK|SK|A\.Ş\.|A\.S\.|AŞ|AS|Futbol Kulübü|Futbol Kulubu|Spor Kulübü|Spor Kulubu|Sporu|Spor|Faaliyetleri)$/i, "")
-      .trim();
-    if (strippedSuffix && strippedSuffix !== trimmed) {
-      allVariants.add(strippedSuffix);
-      allVariants.add(strippedSuffix.toLowerCase());
-      const strippedSlug = slugifyTeamName(strippedSuffix);
-      if (strippedSlug) allVariants.add(strippedSlug);
-    }
-  });
-
-  const variantList = Array.from(allVariants).filter(Boolean);
-
-  // Priority 1: /logos/{name}.png (standard Turkish team names saved by user)
-  for (const v of variantList) {
-    addCandidate(`/logos/${v}.png`);
-    addCandidate(`/logos/${v}.PNG`);
-    addCandidate(`/logos/${encodeURIComponent(v)}.png`);
-  }
-
-  // Priority 2: /logos/{name}.svg
-  for (const v of variantList) {
-    addCandidate(`/logos/${v}.svg`);
-    addCandidate(`/logos/${v}.SVG`);
-    addCandidate(`/logos/${encodeURIComponent(v)}.svg`);
-  }
-
-  // Priority 3: Root paths (in case placed directly in /public/)
+  // Priority 4: Root paths (in case saved directly in /public/)
   for (const v of variantList) {
     addCandidate(`/${v}.png`);
+    addCandidate(`/${v}.PNG`);
     addCandidate(`/${v}.svg`);
   }
 
-  // Priority 4: Other formats (.webp, .jpg)
+  // Priority 5: WebP and JPG formats
   for (const v of variantList) {
     addCandidate(`/logos/${v}.webp`);
     addCandidate(`/logos/${v}.jpg`);
+    addCandidate(`/logos/${v}.jpeg`);
   }
 
   return candidates;
