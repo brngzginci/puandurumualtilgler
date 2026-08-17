@@ -3,9 +3,10 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { StandingRow, DesignConfig, Team } from "../types";
 import { CompetitionConfig, CompetitionGroup } from "../config/competitions";
+import { getPossibleLogoCandidates } from "../teams";
 import PosterRenderer from "./poster/PosterRenderer";
 
 export type LogoStatus = "not-provided" | "loading" | "ready" | "failed";
@@ -57,45 +58,49 @@ export function TeamLogoPlaceholder({
 export function TeamLogo({
   team,
   customLogo,
-  borderRadius
+  borderRadius,
+  rawTeamName
 }: {
-  team: Team;
+  team?: Team | null;
   customLogo?: string;
-  borderRadius: string;
+  borderRadius?: string;
+  rawTeamName?: string;
 }) {
-  const getInitialSource = () => {
-    return customLogo || team.logo || team.defaultLogo || `/logos/${team.id}.svg`;
-  };
+  const candidateUrls = useMemo(() => {
+    const combinedTeam = team ? { ...team, logo: customLogo || team.logo } : null;
+    return getPossibleLogoCandidates(combinedTeam, rawTeamName || team?.displayName || team?.officialName);
+  }, [team, customLogo, rawTeamName]);
 
-  const [logoState, setLogoState] = useState<TeamLogoState>(() => {
-    const src = getInitialSource();
-    return src ? { source: src, status: "ready" } : { status: "not-provided" };
-  });
+  const [candidateIndex, setCandidateIndex] = useState(0);
+  const [hasFailedAll, setHasFailedAll] = useState(false);
 
   useEffect(() => {
-    const src = getInitialSource();
-    if (src) {
-      setLogoState({ source: src, status: "ready" });
-    } else {
-      setLogoState({ status: "not-provided" });
-    }
-  }, [customLogo, team.logo, team.defaultLogo, team.id]);
+    setCandidateIndex(0);
+    setHasFailedAll(false);
+  }, [candidateUrls]);
 
-  if (logoState.status === "failed" || !logoState.source) {
+  const currentSource = candidateUrls[candidateIndex];
+
+  if (hasFailedAll || !currentSource) {
+    const fallbackName = team?.shortName || team?.displayName || rawTeamName || "Takım";
     return (
-      <TeamLogoPlaceholder shortName={team.shortName} borderRadius={borderRadius} />
+      <TeamLogoPlaceholder shortName={fallbackName} borderRadius={borderRadius} />
     );
   }
 
-  const isRemote = logoState.source.startsWith("http://") || logoState.source.startsWith("https://");
+  const isRemote =
+    currentSource.startsWith("http://") ||
+    currentSource.startsWith("https://") ||
+    currentSource.startsWith("data:");
 
   return (
     <img
-      src={logoState.source}
-      alt={`${team.displayName} logosu`}
-      data-team-id={team.id}
+      key={currentSource}
+      src={currentSource}
+      alt={`${team?.displayName || rawTeamName || "Takım"} logosu`}
+      data-team-id={team?.id || rawTeamName}
       data-export-optional-image="true"
-      {...(isRemote ? { crossOrigin: "anonymous" } : {})}
+      {...(isRemote && !currentSource.startsWith("data:") ? { crossOrigin: "anonymous" } : {})}
       referrerPolicy="no-referrer"
       style={{
         width: "30px",
@@ -105,14 +110,10 @@ export function TeamLogo({
         objectFit: "contain",
       }}
       onError={() => {
-        if (logoState.source && logoState.source.endsWith(".svg")) {
-          // Try png fallback
-          setLogoState({ source: logoState.source.replace(/\.svg$/, ".png"), status: "ready" });
-        } else if (logoState.source && logoState.source.endsWith(".png")) {
-          // Try svg fallback
-          setLogoState({ source: logoState.source.replace(/\.png$/, ".svg"), status: "ready" });
+        if (candidateIndex + 1 < candidateUrls.length) {
+          setCandidateIndex((prev) => prev + 1);
         } else {
-          setLogoState({ status: "failed", error: "Görsel yüklenemedi" });
+          setHasFailedAll(true);
         }
       }}
     />

@@ -58,14 +58,13 @@ export const StandingRowItem: React.FC<StandingRowItemProps> = ({
         <div className="w-[40px] h-[40px] shrink-0 flex items-center justify-center">
           {isSafeMode ? (
             <TeamLogoPlaceholder shortName={row.teamName} />
-          ) : team ? (
+          ) : (
             <TeamLogo
               team={team}
-              customLogo={team.logo !== team.defaultLogo ? team.logo : undefined}
+              rawTeamName={row.teamName}
+              customLogo={team?.logo !== team?.defaultLogo ? team?.logo : undefined}
               borderRadius="rounded-md"
             />
-          ) : (
-            <TeamLogoPlaceholder shortName={row.teamName} />
           )}
         </div>
         <span

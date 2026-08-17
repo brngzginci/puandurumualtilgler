@@ -11,6 +11,7 @@ export interface Team {
   aliases: string[];
   colors?: string[];
   defaultLogo?: string;
+  logo?: string;
   primaryColor?: string;
   secondaryColor?: string;
   textOnPrimary?: string;
@@ -664,3 +665,139 @@ export function resolveSourceTeam(
     notes: "Yeni yerel takım oluşturulacak"
   };
 }
+
+/**
+ * Generates an exhaustive list of candidate logo file URLs for a team.
+ * Prioritizes PNG files matching normal Turkish team names and identifiers.
+ */
+export function getPossibleLogoCandidates(
+  team?: Team | null | string,
+  rawName?: string
+): string[] {
+  const candidates: string[] = [];
+
+  const addCandidate = (path: string) => {
+    if (!path) return;
+    const trimmed = path.trim();
+    if (trimmed && !candidates.includes(trimmed)) {
+      candidates.push(trimmed);
+    }
+  };
+
+  let teamObj: Team | null = null;
+  let inputName = (rawName || "").trim();
+
+  if (typeof team === "string") {
+    inputName = inputName || team.trim();
+    teamObj = findTeamByInputName(team);
+  } else if (team && typeof team === "object") {
+    teamObj = team;
+  }
+
+  // 1. Explicit custom logo or uploaded data URL
+  if (teamObj?.logo) {
+    addCandidate(teamObj.logo);
+  }
+
+  // 2. Explicit default logo configured on team
+  if (teamObj?.defaultLogo) {
+    // If it's an svg, also prepare its png counterpart
+    if (teamObj.defaultLogo.endsWith(".svg")) {
+      addCandidate(teamObj.defaultLogo.replace(/\.svg$/, ".png"));
+      addCandidate(teamObj.defaultLogo);
+    } else {
+      addCandidate(teamObj.defaultLogo);
+    }
+  }
+
+  // 3. Collect all base names associated with this team
+  const baseNames = new Set<string>();
+
+  if (inputName) {
+    baseNames.add(inputName);
+  }
+
+  if (teamObj) {
+    if (teamObj.displayName) baseNames.add(teamObj.displayName);
+    if (teamObj.officialName) baseNames.add(teamObj.officialName);
+    if (teamObj.shortName) baseNames.add(teamObj.shortName);
+    if (teamObj.id) baseNames.add(teamObj.id);
+    if (Array.isArray(teamObj.aliases)) {
+      teamObj.aliases.forEach((a) => {
+        if (a && typeof a === "string") baseNames.add(a.trim());
+      });
+    }
+  }
+
+  // Expand with variations (case variations, slugs, normalized names, sponsor-stripped, suffix-stripped)
+  const allVariants = new Set<string>();
+
+  baseNames.forEach((name) => {
+    if (!name) return;
+    const trimmed = name.trim();
+    if (!trimmed) return;
+
+    allVariants.add(trimmed);
+    allVariants.add(trimmed.toLowerCase());
+
+    // Turkish slug (e.g. "manisa-fk", "erzurumspor-fk", "ahlatci-corum-fk")
+    const slug = slugifyTeamName(trimmed);
+    if (slug) {
+      allVariants.add(slug);
+      allVariants.add(slug.replace(/-/g, ""));
+    }
+
+    // Normalized name (sponsors and suffixes stripped)
+    const norm = normalizeTeamName(trimmed);
+    if (norm) {
+      allVariants.add(norm);
+      const normSlug = slugifyTeamName(norm);
+      if (normSlug) {
+        allVariants.add(normSlug);
+        allVariants.add(normSlug.replace(/-/g, ""));
+      }
+    }
+
+    // Common stripped suffixes: "FK", "SK", "A.Ş.", "Spor", "Futbol Kulübü"
+    const strippedSuffix = trimmed
+      .replace(/\s+(FK|SK|A\.Ş\.|A\.S\.|AŞ|AS|Futbol Kulübü|Futbol Kulubu|Spor Kulübü|Spor Kulubu|Sporu|Spor|Faaliyetleri)$/i, "")
+      .trim();
+    if (strippedSuffix && strippedSuffix !== trimmed) {
+      allVariants.add(strippedSuffix);
+      allVariants.add(strippedSuffix.toLowerCase());
+      const strippedSlug = slugifyTeamName(strippedSuffix);
+      if (strippedSlug) allVariants.add(strippedSlug);
+    }
+  });
+
+  const variantList = Array.from(allVariants).filter(Boolean);
+
+  // Priority 1: /logos/{name}.png (standard Turkish team names saved by user)
+  for (const v of variantList) {
+    addCandidate(`/logos/${v}.png`);
+    addCandidate(`/logos/${v}.PNG`);
+    addCandidate(`/logos/${encodeURIComponent(v)}.png`);
+  }
+
+  // Priority 2: /logos/{name}.svg
+  for (const v of variantList) {
+    addCandidate(`/logos/${v}.svg`);
+    addCandidate(`/logos/${v}.SVG`);
+    addCandidate(`/logos/${encodeURIComponent(v)}.svg`);
+  }
+
+  // Priority 3: Root paths (in case placed directly in /public/)
+  for (const v of variantList) {
+    addCandidate(`/${v}.png`);
+    addCandidate(`/${v}.svg`);
+  }
+
+  // Priority 4: Other formats (.webp, .jpg)
+  for (const v of variantList) {
+    addCandidate(`/logos/${v}.webp`);
+    addCandidate(`/logos/${v}.jpg`);
+  }
+
+  return candidates;
+}
+

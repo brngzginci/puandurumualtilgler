@@ -44,7 +44,7 @@ import {
 import { Team, StandingRow, DesignConfig, ZoneConfig, SourceTeamMapping, CompetitionSelection, StandingsWorkspace, LeagueZoneDefinition } from "./types";
 import { TEAMS, findTeamByInputName, getGlobalTeams, saveGlobalTeamsBatch, autoCreateTeamFromSource, slugifyTeamName } from "./teams";
 import { SAMPLE_STANDINGS } from "./sampleStandings";
-import DesignCanvas from "./components/DesignCanvas";
+import DesignCanvas, { TeamLogo } from "./components/DesignCanvas";
 import ZoneEditor from "./components/ZoneEditor";
 import { Trophy } from "lucide-react";
 
@@ -964,33 +964,27 @@ export default function App() {
   useEffect(() => {
     const matches: Record<string, Team | null> = {};
     const updatedStandings = standings.map((row) => {
-      const match = findTeamByInputName(row.teamName);
+      let match = findTeamByInputName(row.teamName);
+      const customLogo =
+        customLogos[match?.id || ""] ||
+        customLogos[row.teamId] ||
+        customLogos[row.teamName] ||
+        customLogos[slugifyTeamName(row.teamName)];
+
+      if (!match) {
+        // Auto draft team with rich aliases and metadata so logos can be found
+        match = autoCreateTeamFromSource(row.teamName);
+      }
+
       if (match) {
-        const customLogo = customLogos[match.id];
         matches[match.id] = {
           ...match,
-          logo: customLogo || match.defaultLogo
+          logo: customLogo || match.logo || match.defaultLogo
         };
+        matches[row.teamId] = matches[match.id];
         return { ...row, teamId: match.id };
       } else {
-        // Unmatched team - handle custom logo if uploaded via teamId or teamName
-        const customLogo = customLogos[row.teamId] || customLogos[row.teamName];
-        if (customLogo) {
-          matches[row.teamId] = {
-            id: row.teamId,
-            officialName: row.teamName,
-            displayName: row.teamName,
-            shortName: row.teamName.substring(0, 10),
-            aliases: [row.teamName],
-            colors: ["#1F2937", "#374151", "#FFFFFF"],
-            logo: customLogo,
-            primaryColor: "#1F2937",
-            secondaryColor: "#374151",
-            textOnPrimary: "#FFFFFF"
-          };
-        } else {
-          matches[row.teamId] = null;
-        }
+        matches[row.teamId] = null;
         return row;
       }
     });
@@ -2385,16 +2379,12 @@ export default function App() {
                             <td className="py-2.5 px-2 text-center bg-[#111827]/5">
                               <div className="flex items-center justify-center gap-2">
                                 <div className="w-8 h-8 rounded-full bg-gray-950/80 border border-gray-800 flex items-center justify-center overflow-hidden flex-shrink-0">
-                                  {currentTeam?.logo ? (
-                                    <img 
-                                      src={currentTeam.logo} 
-                                      alt="" 
-                                      className="w-6 h-6 object-contain" 
-                                      referrerPolicy="no-referrer"
-                                    />
-                                  ) : (
-                                    <span className="text-[9px] font-bold text-gray-500">YOK</span>
-                                  )}
+                                  <TeamLogo
+                                    team={currentTeam}
+                                    rawTeamName={row.teamName}
+                                    customLogo={customLogos[row.teamId] || customLogos[currentTeam?.id || ""]}
+                                    borderRadius="rounded-full"
+                                  />
                                 </div>
                                 <div className="flex flex-col gap-0.5 items-start">
                                   <label

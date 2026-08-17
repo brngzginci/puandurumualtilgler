@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { StandingRow, DesignConfig, Team, LeagueZoneDefinition } from "../../../types";
+import { getPossibleLogoCandidates } from "../../../teams";
 
 interface LowerLeagueRowProps {
   row: StandingRow;
@@ -58,7 +59,21 @@ export const LowerLeagueRow: React.FC<LowerLeagueRowProps> = ({
 
   const teamDisplayName = matchedTeam?.shortName || matchedTeam?.displayName || row.teamName;
   const shieldPlaceholder = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='rgba(255,255,255,0.7)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/></svg>";
-  const logoSrc = teamLogoUrl || matchedTeam?.defaultLogo || shieldPlaceholder;
+
+  const candidateUrls = useMemo(() => {
+    const combinedTeam = matchedTeam ? { ...matchedTeam, logo: teamLogoUrl || matchedTeam.logo } : null;
+    return getPossibleLogoCandidates(combinedTeam, row.teamName || teamDisplayName);
+  }, [matchedTeam, row.teamName, teamDisplayName, teamLogoUrl]);
+
+  const [candidateIndex, setCandidateIndex] = useState(0);
+  const [hasFailedAll, setHasFailedAll] = useState(false);
+
+  useEffect(() => {
+    setCandidateIndex(0);
+    setHasFailedAll(false);
+  }, [candidateUrls]);
+
+  const currentLogoSrc = hasFailedAll || !candidateUrls[candidateIndex] ? shieldPlaceholder : candidateUrls[candidateIndex];
 
   return (
     <div
@@ -76,17 +91,15 @@ export const LowerLeagueRow: React.FC<LowerLeagueRowProps> = ({
 
         <div className="lower-league-team-logo-container">
           <img
-            src={logoSrc}
+            key={currentLogoSrc}
+            src={currentLogoSrc}
             alt={teamDisplayName}
             className="lower-league-team-logo"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              if (target.src && target.src.endsWith(".svg")) {
-                target.src = target.src.replace(/\.svg$/, ".png");
-              } else if (target.src && target.src.endsWith(".png")) {
-                target.src = target.src.replace(/\.png$/, ".svg");
+            onError={() => {
+              if (candidateIndex + 1 < candidateUrls.length) {
+                setCandidateIndex((prev) => prev + 1);
               } else {
-                target.src = shieldPlaceholder;
+                setHasFailedAll(true);
               }
             }}
           />
