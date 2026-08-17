@@ -979,7 +979,7 @@ export default function App() {
       if (match) {
         matches[match.id] = {
           ...match,
-          logo: customLogo || match.logo || match.defaultLogo
+          logo: customLogo || match.logo
         };
         matches[row.teamId] = matches[match.id];
         return { ...row, teamId: match.id };

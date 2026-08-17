@@ -62,7 +62,7 @@ export const StandingRowItem: React.FC<StandingRowItemProps> = ({
             <TeamLogo
               team={team}
               rawTeamName={row.teamName}
-              customLogo={team?.logo !== team?.defaultLogo ? team?.logo : undefined}
+              customLogo={team?.logo}
               borderRadius="rounded-md"
             />
           )}

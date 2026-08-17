@@ -34,7 +34,6 @@ export const TEAMS: Team[] = [
     shortName: "Adanaspor",
     aliases: ["Adanaspor", "Adanaspor A.Ş.", "Adana"],
     colors: ["#FF7A00", "#FFFFFF", "#FFFFFF"],
-    defaultLogo: "/logos/adanaspor.svg",
     primaryColor: "#FF7A00",
     secondaryColor: "#FFFFFF",
     textOnPrimary: "#FFFFFF"
@@ -46,7 +45,6 @@ export const TEAMS: Team[] = [
     shortName: "Amed SK",
     aliases: ["Amed Sportif Faaliyetler", "Amed SK", "Amed", "Amedspor", "Amed Sportif"],
     colors: ["#009639", "#E30A17", "#FFFFFF"],
-    defaultLogo: "/logos/amed.svg",
     primaryColor: "#009639",
     secondaryColor: "#E30A17",
     textOnPrimary: "#FFFFFF"
@@ -58,7 +56,6 @@ export const TEAMS: Team[] = [
     shortName: "Ankaragücü",
     aliases: ["MKE Ankaragücü", "Ankaragücü", "Ankaragucu", "MKE Ankaragucu"],
     colors: ["#FFCC00", "#002D62", "#FFFFFF"],
-    defaultLogo: "/logos/ankaragucu.svg",
     primaryColor: "#FFCC00",
     secondaryColor: "#002D62",
     textOnPrimary: "#002D62"
@@ -81,7 +78,6 @@ export const TEAMS: Team[] = [
     shortName: "Bandırmaspor",
     aliases: ["Bandırmaspor", "Teksüt Bandırmaspor", "Bandirmaspor", "Teksut Bandirmaspor"],
     colors: ["#800020", "#FFFFFF", "#FFFFFF"],
-    defaultLogo: "/logos/bandirmaspor.svg",
     primaryColor: "#800020",
     secondaryColor: "#FFFFFF",
     textOnPrimary: "#FFFFFF"
@@ -115,7 +111,6 @@ export const TEAMS: Team[] = [
     shortName: "Boluspor",
     aliases: ["Boluspor", "Bolu"],
     colors: ["#009639", "#E30A17", "#FFFFFF"],
-    defaultLogo: "/logos/boluspor.svg",
     primaryColor: "#009639",
     secondaryColor: "#E30A17",
     textOnPrimary: "#FFFFFF"
@@ -138,7 +133,6 @@ export const TEAMS: Team[] = [
     shortName: "Çorum FK",
     aliases: ["Ahlatcı Çorum FK", "Çorum FK", "Ahlatci Corum FK", "Corum FK", "Çorum", "Corum", "Çorumspor"],
     colors: ["#E30A17", "#000000", "#FFFFFF"],
-    defaultLogo: "/logos/corum.svg",
     primaryColor: "#E30A17",
     secondaryColor: "#000000",
     textOnPrimary: "#FFFFFF"
@@ -150,7 +144,6 @@ export const TEAMS: Team[] = [
     shortName: "Erzurumspor",
     aliases: ["Erzurumspor FK", "Erzurumspor", "Erzurum Spor", "Büyükşehir Belediye Erzurumspor", "BB Erzurumspor"],
     colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
-    defaultLogo: "/logos/erzurumspor.svg",
     primaryColor: "#002D62",
     secondaryColor: "#FFFFFF",
     textOnPrimary: "#FFFFFF"
@@ -162,7 +155,6 @@ export const TEAMS: Team[] = [
     shortName: "Esenler Erok",
     aliases: ["Esenler Erokspor", "Erokspor", "Esenler Erok", "Erok"],
     colors: ["#FFCC00", "#0055A5", "#000000"],
-    defaultLogo: "/logos/esenlererok.svg",
     primaryColor: "#FFCC00",
     secondaryColor: "#0055A5",
     textOnPrimary: "#000000"
@@ -174,7 +166,6 @@ export const TEAMS: Team[] = [
     shortName: "Gençlerbirliği",
     aliases: ["Gençlerbirliği", "Genclerbirligi", "Gençler", "Gencler"],
     colors: ["#E30A17", "#000000", "#FFFFFF"],
-    defaultLogo: "/logos/genclerbirligi.svg",
     primaryColor: "#E30A17",
     secondaryColor: "#000000",
     textOnPrimary: "#FFFFFF"
@@ -186,7 +177,6 @@ export const TEAMS: Team[] = [
     shortName: "Iğdır FK",
     aliases: ["Iğdır FK", "Iğdır", "Alagöz Holding Iğdır FK", "Alagöz Holding Iğdır", "Igdir FK", "Igdir"],
     colors: ["#009639", "#FFFFFF", "#FFFFFF"],
-    defaultLogo: "/logos/igdir.svg",
     primaryColor: "#009639",
     secondaryColor: "#FFFFFF",
     textOnPrimary: "#FFFFFF"
@@ -198,7 +188,6 @@ export const TEAMS: Team[] = [
     shortName: "İstanbulspor",
     aliases: ["İstanbulspor", "Istanbulspor", "İstanbul", "Uğur Okulları İstanbulspor"],
     colors: ["#FFCC00", "#000000", "#000000"],
-    defaultLogo: "/logos/istanbulspor.svg",
     primaryColor: "#FFCC00",
     secondaryColor: "#000000",
     textOnPrimary: "#000000"
@@ -210,7 +199,6 @@ export const TEAMS: Team[] = [
     shortName: "Karagümrük",
     aliases: ["Fatih Karagümrük", "Fatih Karagümrük A.Ş.", "Karagümrük", "Karagumruk", "Fatih Karagumruk"],
     colors: ["#E30A17", "#000000", "#FFFFFF"],
-    defaultLogo: "/logos/karagumruk.svg",
     primaryColor: "#E30A17",
     secondaryColor: "#000000",
     textOnPrimary: "#FFFFFF"
@@ -233,7 +221,6 @@ export const TEAMS: Team[] = [
     shortName: "Keçiörengücü",
     aliases: ["Ankara Keçiörengücü", "Keçiörengücü", "Keciorengucu", "Ankara Keciorengucu"],
     colors: ["#800080", "#FFFFFF", "#FFFFFF"],
-    defaultLogo: "/logos/keciorengucu.svg",
     primaryColor: "#800080",
     secondaryColor: "#FFFFFF",
     textOnPrimary: "#FFFFFF"
@@ -245,7 +232,6 @@ export const TEAMS: Team[] = [
     shortName: "Kocaelispor",
     aliases: ["Kocaelispor", "Kocaeli", "Kocaelispor Kulübü"],
     colors: ["#009639", "#000000", "#FFFFFF"],
-    defaultLogo: "/logos/kocaelispor.svg",
     primaryColor: "#009639",
     secondaryColor: "#000000",
     textOnPrimary: "#FFFFFF"
@@ -257,7 +243,6 @@ export const TEAMS: Team[] = [
     shortName: "Manisa FK",
     aliases: ["Manisa FK", "Manisa Futbol Kulübü", "Manisa"],
     colors: ["#000000", "#FFFFFF", "#FFFFFF"],
-    defaultLogo: "/logos/manisafk.svg",
     primaryColor: "#000000",
     secondaryColor: "#FFFFFF",
     textOnPrimary: "#FFFFFF"
@@ -291,7 +276,6 @@ export const TEAMS: Team[] = [
     shortName: "Pendikspor",
     aliases: ["Pendikspor", "Pendik"],
     colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
-    defaultLogo: "/logos/pendikspor.svg",
     primaryColor: "#E30A17",
     secondaryColor: "#FFFFFF",
     textOnPrimary: "#FFFFFF"
@@ -303,7 +287,6 @@ export const TEAMS: Team[] = [
     shortName: "Sakaryaspor",
     aliases: ["Sakaryaspor", "Sakarya", "Sakaryaspor A.Ş."],
     colors: ["#009639", "#000000", "#FFFFFF"],
-    defaultLogo: "/logos/sakaryaspor.svg",
     primaryColor: "#009639",
     secondaryColor: "#000000",
     textOnPrimary: "#FFFFFF"
@@ -315,7 +298,6 @@ export const TEAMS: Team[] = [
     shortName: "Şanlıurfaspor",
     aliases: ["Şanlıurfaspor", "Sanliurfaspor", "Şanlıurfa", "Sanliurfa", "Urfaspor", "Urfa", "Şanlıurfa Spor"],
     colors: ["#FFCC00", "#009639", "#FFFFFF"],
-    defaultLogo: "/logos/sanliurfaspor.svg",
     primaryColor: "#FFCC00",
     secondaryColor: "#009639",
     textOnPrimary: "#000000"
@@ -349,7 +331,6 @@ export const TEAMS: Team[] = [
     shortName: "Ümraniyespor",
     aliases: ["Ümraniyespor", "Umraniyespor", "Ümraniye", "Central Hospital Ümraniyespor"],
     colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
-    defaultLogo: "/logos/umraniyespor.svg",
     primaryColor: "#E30A17",
     secondaryColor: "#FFFFFF",
     textOnPrimary: "#FFFFFF"
@@ -372,7 +353,6 @@ export const TEAMS: Team[] = [
     shortName: "Yeni Malatya",
     aliases: ["Yeni Malatyaspor", "Malatyaspor", "Yeni Malatya", "Malatya"],
     colors: ["#FFCC00", "#000000", "#FFFFFF"],
-    defaultLogo: "/logos/yenimalatyaspor.svg",
     primaryColor: "#FFCC00",
     secondaryColor: "#000000",
     textOnPrimary: "#000000"
@@ -1091,8 +1071,8 @@ export function getPossibleLogoCandidates(
     teamObj = team;
   }
 
-  // 1. Priority 0: Explicit user uploaded custom logo or data URL
-  if (teamObj?.logo) {
+  // 1. Priority 0: Explicit user custom uploaded logo (data URL or blob)
+  if (teamObj?.logo && (teamObj.logo.startsWith("data:") || teamObj.logo.startsWith("blob:") || (!teamObj.logo.endsWith(".svg") && !teamObj.logo.startsWith("/logos/")))) {
     addCandidate(teamObj.logo);
   }
 
