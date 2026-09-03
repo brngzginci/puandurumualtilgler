@@ -11,20 +11,85 @@ interface LowerLeagueSidebarProps {
   group: CompetitionGroup;
   currentWeek: number;
   season?: string;
+  customLeagueLogo?: string;
 }
 
 export const LowerLeagueSidebar: React.FC<LowerLeagueSidebarProps> = ({
   competition,
   group,
   currentWeek,
-  season = "2026/27"
+  season = "2026/27",
+  customLeagueLogo
 }) => {
   const is2ndLeague = competition.id === "tff-2-lig";
   const is3rdLeague = competition.id === "tff-3-lig";
 
-  const logoSrc = is2ndLeague || is3rdLeague
-    ? "/branding/lig-logo.png"
-    : "/branding/altligler-logo.png";
+  // Build ordered candidates list for league logo
+  const candidates = React.useMemo(() => {
+    const list: string[] = [];
+
+    // 1. User uploaded custom logo for this league
+    if (customLeagueLogo && customLeagueLogo.trim()) {
+      list.push(customLeagueLogo.trim());
+    }
+
+    // 2. Specific league logos
+    if (is2ndLeague) {
+      list.push(
+        "/branding/2-lig-logo.png",
+        "/branding/2-lig-logo.PNG",
+        "/branding/nesine-2-lig.png",
+        "/branding/nesine-2-lig.PNG",
+        "/branding/2-lig.png",
+        "/branding/2-lig.PNG",
+        "/branding/tff-2-lig.png",
+        "/branding/tff-2-lig.PNG",
+        "/branding/2-lig-logo.svg",
+        "/branding/2-lig.svg",
+        "/branding/altligler-logo.png",
+        "/branding/altligler-logo.svg"
+      );
+    } else if (is3rdLeague) {
+      list.push(
+        "/branding/3-lig-logo.png",
+        "/branding/3-lig-logo.PNG",
+        "/branding/nesine-3-lig.png",
+        "/branding/nesine-3-lig.PNG",
+        "/branding/3-lig.png",
+        "/branding/3-lig.PNG",
+        "/branding/tff-3-lig.png",
+        "/branding/tff-3-lig.PNG",
+        "/branding/3-lig-logo.svg",
+        "/branding/3-lig.svg",
+        "/branding/altligler-logo.png",
+        "/branding/altligler-logo.svg"
+      );
+    } else {
+      list.push(
+        "/branding/altligler-logo.png",
+        "/branding/altligler-logo.svg"
+      );
+    }
+
+    return list;
+  }, [customLeagueLogo, is2ndLeague, is3rdLeague]);
+
+  const [candidateIndex, setCandidateIndex] = React.useState(0);
+
+  React.useEffect(() => {
+    setCandidateIndex(0);
+  }, [candidates]);
+
+  const logoSrc = candidates[candidateIndex] || "/branding/altligler-logo.png";
+
+  const handleLogoError = () => {
+    setCandidateIndex((prev) => {
+      if (prev + 1 < candidates.length) {
+        return prev + 1;
+      }
+      return prev;
+    });
+  };
 
   const numOnly = is2ndLeague ? "2" : is3rdLeague ? "3" : "1";
   const leagueNumText = `${numOnly}.`;
@@ -43,12 +108,11 @@ export const LowerLeagueSidebar: React.FC<LowerLeagueSidebarProps> = ({
       {/* Top Branding Logo */}
       <div className="lower-league-sidebar-logo-box">
         <img
+          key={logoSrc}
           src={logoSrc}
           alt={competition.name}
           className="lower-league-sidebar-logo-img"
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = "/branding/altligler-logo.png";
-          }}
+          onError={handleLogoError}
         />
       </div>
 

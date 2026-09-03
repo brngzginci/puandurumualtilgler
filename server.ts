@@ -11,6 +11,14 @@ import app from "./server/app";
 const PORT = 3000;
 
 async function startLocalServer() {
+  const publicPath = path.join(process.cwd(), "public");
+  app.use(express.static(publicPath));
+
+  // For /logos and /branding, return 404 if file does not exist instead of SPA index.html
+  app.use(["/logos", "/branding"], (_req, res) => {
+    res.status(404).type("text/plain").send("Not found");
+  });
+
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({
       server: { middlewareMode: true },

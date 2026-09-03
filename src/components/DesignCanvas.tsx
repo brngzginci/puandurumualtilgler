@@ -127,6 +127,7 @@ interface DesignCanvasProps {
   config: DesignConfig;
   canvasRef: React.RefObject<HTMLDivElement | null>;
   matchedTeams: Record<string, Team | null>;
+  teamLogos?: Record<string, string>;
   isSafeMode?: boolean;
 }
 
@@ -137,6 +138,7 @@ export default function DesignCanvas({
   config,
   canvasRef,
   matchedTeams,
+  teamLogos,
   isSafeMode = false
 }: DesignCanvasProps) {
   return (
@@ -148,6 +150,7 @@ export default function DesignCanvas({
       config={config}
       canvasRef={canvasRef}
       matchedTeams={matchedTeams}
+      teamLogos={teamLogos}
       isSafeMode={isSafeMode}
     />
   );

@@ -48,6 +48,7 @@ export const LowerLeaguePoster: React.FC<LowerLeaguePosterProps> = ({
         group={group}
         currentWeek={config.currentWeek || 0}
         season={config.season}
+        customLeagueLogo={config.customLeagueLogos?.[competition.id] || config.leagueLogo || teamLogos?.[competition.id]}
       />
 
       {/* Right Main Content Area */}

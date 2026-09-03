@@ -17,6 +17,7 @@ export interface Team {
   primaryColor?: string;
   secondaryColor?: string;
   textOnPrimary?: string;
+  league?: LeagueId | "super-lig" | "tff-1-lig" | "tff-2-lig" | "tff-3-lig" | string;
   createdFrom?: "default" | "sahadan" | "manual";
   createdAt?: string;
 }
@@ -175,6 +176,8 @@ export interface DesignConfig {
 
   // Logo style
   logoBorderRadius: string; // "rounded-none", "rounded-full", "rounded-md"
+  leagueLogo?: string;
+  customLeagueLogos?: Record<string, string>;
 }
 
 export interface PosterDesignTokens {

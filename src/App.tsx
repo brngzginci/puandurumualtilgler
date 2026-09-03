@@ -20,7 +20,8 @@ import {
   ChevronRight,
   Eye,
   Sliders,
-  Sparkles
+  Sparkles,
+  Image as ImageIcon
 } from "lucide-react";
 import { toPng, getFontEmbedCSS } from "html-to-image";
 import { 
@@ -42,7 +43,7 @@ import {
   getDefaultZoneDefinitions
 } from "./config/competitions";
 import { Team, StandingRow, DesignConfig, ZoneConfig, SourceTeamMapping, CompetitionSelection, StandingsWorkspace, LeagueZoneDefinition } from "./types";
-import { TEAMS, findTeamByInputName, getGlobalTeams, saveGlobalTeamsBatch, autoCreateTeamFromSource, slugifyTeamName } from "./teams";
+import { TEAMS, findTeamByInputName, getGlobalTeams, getMatchingTeamsForLeague, saveGlobalTeamsBatch, autoCreateTeamFromSource, slugifyTeamName } from "./teams";
 import { SAMPLE_STANDINGS } from "./sampleStandings";
 import DesignCanvas, { TeamLogo } from "./components/DesignCanvas";
 import ZoneEditor from "./components/ZoneEditor";
@@ -1968,6 +1969,7 @@ export default function App() {
                 config={config} 
                 canvasRef={canvasRef} 
                 matchedTeams={matchedTeams}
+                teamLogos={customLogos}
                 isSafeMode={isSafeMode}
               />
             </div>
@@ -2641,6 +2643,70 @@ export default function App() {
             {/* TAB 2: DESIGN & THEME CONFIG */}
             {activeTab === "design" && (
               <div className="space-y-6">
+
+                {/* Lig Logosu & Markalama (2. Lig ve 3. Lig için) */}
+                {selection.leagueId !== "tff-1-lig" && (
+                  <div className="bg-[#111827]/40 border border-gray-800/60 p-5 rounded-xl space-y-4">
+                    <div className="flex items-center justify-between flex-wrap gap-2">
+                      <h3 className="font-bold text-white text-base flex items-center gap-2">
+                        <ImageIcon className="w-5 h-5 text-[#F4510B]" />
+                        {currentCompConfig.name} Logosu &amp; Markalama
+                      </h3>
+                      <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-orange-950/60 text-orange-400 border border-orange-800/40">
+                        {currentCompConfig.shortName} Şablonu
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 bg-gray-900/60 p-4 rounded-lg border border-gray-800">
+                      {/* Önizleme */}
+                      <div className="w-20 h-20 rounded-xl bg-gray-950 border border-gray-800 flex items-center justify-center p-2 shrink-0">
+                        <img
+                          src={
+                            customLogos[selection.leagueId] ||
+                            (selection.leagueId === "tff-2-lig" ? "/branding/2-lig-logo.png" : "/branding/3-lig-logo.png")
+                          }
+                          alt={`${currentCompConfig.name} Logosu`}
+                          className="max-w-full max-h-full object-contain"
+                          onError={(e) => {
+                            (e.target as HTMLImageElement).src = "/branding/altligler-logo.png";
+                          }}
+                        />
+                      </div>
+
+                      <div className="space-y-2 flex-1">
+                        <div className="text-sm font-bold text-white">
+                          Sol Kenar Çubuğu Lig Logosu
+                        </div>
+                        <p className="text-xs text-gray-400 leading-relaxed">
+                          {selection.leagueId === "tff-2-lig" ? "Nesine 2. Lig" : "Nesine 3. Lig"} posterinin sol dikey panelinde gösterilen logodur.
+                          İster buradan dosya yükleyebilir, isterseniz projenin <code className="text-orange-400 bg-gray-950 px-1.5 py-0.5 rounded">public/branding/{selection.leagueId === "tff-2-lig" ? "2-lig-logo.png" : "3-lig-logo.png"}</code> konumuna logo dosyanızı ekleyebilirsiniz.
+                        </p>
+
+                        <div className="flex items-center gap-2 pt-1">
+                          <label className="cursor-pointer px-3.5 py-2 bg-[#F4510B] hover:bg-[#d94406] text-white text-xs font-bold rounded-lg transition-colors flex items-center gap-1.5 shadow">
+                            <Upload className="w-3.5 h-3.5" />
+                            {customLogos[selection.leagueId] ? "Logoyu Güncelle" : "Özel Lig Logosu Yükle"}
+                            <input
+                              type="file"
+                              hidden
+                              accept="image/png,image/webp,image/svg+xml"
+                              onChange={(e) => handleLogoInputChange(selection.leagueId, e)}
+                            />
+                          </label>
+
+                          {customLogos[selection.leagueId] && (
+                            <button
+                              onClick={() => handleRemoveCustomLogo(selection.leagueId)}
+                              className="px-3.5 py-2 bg-red-950/40 hover:bg-red-900/40 text-red-300 border border-red-900/50 text-xs font-bold rounded-lg transition-colors"
+                            >
+                              Özel Logoyu Sıfırla
+                            </button>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
                 
                 {/* Visual Customizer Panel */}
                 <div className="bg-[#111827]/40 border border-gray-800/60 p-5 rounded-xl space-y-5">
@@ -3717,7 +3783,7 @@ export default function App() {
                                         className="bg-gray-900 border border-amber-600 rounded px-2 py-0.5 text-xs text-amber-200 focus:outline-none focus:ring-1 focus:ring-amber-500"
                                       >
                                         <option value="">Seç...</option>
-                                        {getGlobalTeams().map(t => {
+                                        {getMatchingTeamsForLeague(selection.leagueId).map(t => {
                                           const isAlreadyMapped = resolvedPreviewRows.some(pr => pr.resolvedLocalTeamId === t.id);
                                           return (
                                             <option key={t.id} value={t.id} disabled={isAlreadyMapped}>
@@ -3808,7 +3874,7 @@ export default function App() {
           {/* Symmetrical footer info on panel */}
           <footer className="bg-[#111827]/30 border-t border-[#1F2937]/50 px-6 py-4 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-2">
             <div>
-              Toplam Kayıtlı Takım: <strong className="text-white">{TEAMS.length} (Trendyol 1. Lig)</strong>
+              Toplam Kayıtlı Takım: <strong className="text-white">{getMatchingTeamsForLeague(selection.leagueId).length} ({currentCompConfig.name})</strong>
             </div>
             <div>
               Tasarım Ölçekleme: <span className="text-[#38BDF8] font-bold">1080x1350 px (HD Sürüm)</span>

@@ -15,6 +15,7 @@ export interface Team {
   primaryColor?: string;
   secondaryColor?: string;
   textOnPrimary?: string;
+  league?: "super-lig" | "tff-1-lig" | "tff-2-lig" | "tff-3-lig" | string;
   createdFrom?: "default" | "sahadan" | "manual";
   createdAt?: string;
 }
@@ -360,6 +361,7 @@ export const TEAMS: Team[] = [
   // --- Additional Turkish Teams (2. Lig, 3. Lig & Süper Lig) ---
   {
     id: "galatasaray",
+    league: "super-lig",
     officialName: "Galatasaray A.Ş.",
     displayName: "Galatasaray",
     shortName: "Galatasaray",
@@ -371,6 +373,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "fenerbahce",
+    league: "super-lig",
     officialName: "Fenerbahçe A.Ş.",
     displayName: "Fenerbahçe",
     shortName: "Fenerbahçe",
@@ -382,6 +385,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "besiktas",
+    league: "super-lig",
     officialName: "Beşiktaş A.Ş.",
     displayName: "Beşiktaş",
     shortName: "Beşiktaş",
@@ -393,6 +397,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "trabzonspor",
+    league: "super-lig",
     officialName: "Trabzonspor A.Ş.",
     displayName: "Trabzonspor",
     shortName: "Trabzonspor",
@@ -404,6 +409,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "basaksehir",
+    league: "super-lig",
     officialName: "Rams Başakşehir FK",
     displayName: "Başakşehir FK",
     shortName: "Başakşehir",
@@ -415,6 +421,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "samsunspor",
+    league: "super-lig",
     officialName: "Samsunspor",
     displayName: "Samsunspor",
     shortName: "Samsunspor",
@@ -426,6 +433,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "eyupspor",
+    league: "super-lig",
     officialName: "İkas Eyüpspor",
     displayName: "Eyüpspor",
     shortName: "Eyüpspor",
@@ -437,6 +445,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "goztepe",
+    league: "super-lig",
     officialName: "Göztepe A.Ş.",
     displayName: "Göztepe",
     shortName: "Göztepe",
@@ -448,6 +457,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "kasimpasa",
+    league: "super-lig",
     officialName: "Kasımpaşa A.Ş.",
     displayName: "Kasımpaşa",
     shortName: "Kasımpaşa",
@@ -459,6 +469,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "rizespor",
+    league: "super-lig",
     officialName: "Çaykur Rizespor",
     displayName: "Çaykur Rizespor",
     shortName: "Rizespor",
@@ -470,6 +481,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "gaziantepfk",
+    league: "super-lig",
     officialName: "Gaziantep FK",
     displayName: "Gaziantep FK",
     shortName: "Gaziantep",
@@ -481,6 +493,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "konyaspor",
+    league: "super-lig",
     officialName: "Tümosan Konyaspor",
     displayName: "Konyaspor",
     shortName: "Konyaspor",
@@ -492,6 +505,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "alanyaspor",
+    league: "super-lig",
     officialName: "Corendon Alanyaspor",
     displayName: "Alanyaspor",
     shortName: "Alanyaspor",
@@ -525,6 +539,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "trabzon1461",
+    league: "tff-2-lig",
     officialName: "1461 Trabzon FK",
     displayName: "1461 Trabzon FK",
     shortName: "1461 Trabzon",
@@ -536,6 +551,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "inegolspor",
+    league: "tff-2-lig",
     officialName: "İnegölspor",
     displayName: "İnegölspor",
     shortName: "İnegölspor",
@@ -547,6 +563,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "iskenderunspor",
+    league: "tff-2-lig",
     officialName: "İskenderunspor A.Ş.",
     displayName: "İskenderunspor",
     shortName: "İskenderun",
@@ -558,6 +575,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "kastamonuspor",
+    league: "tff-2-lig",
     officialName: "GMG Kastamonuspor",
     displayName: "Kastamonuspor",
     shortName: "Kastamonu",
@@ -569,6 +587,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "erzincanspor",
+    league: "tff-2-lig",
     officialName: "24Erzincanspor",
     displayName: "Erzincanspor",
     shortName: "Erzincan Spor",
@@ -580,6 +599,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "kmarasisktiklal",
+    league: "tff-2-lig",
     officialName: "Kahramanmaraş İstiklal Spor",
     displayName: "K.Maraş İstiklal",
     shortName: "İstiklal Spor",
@@ -591,6 +611,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "beyogluyencarsi",
+    league: "tff-2-lig",
     officialName: "Beyoğlu Yeni Çarşı FK",
     displayName: "Beyoğlu Y.Çarşı",
     shortName: "Beyoğlu Y.Çarşı",
@@ -602,6 +623,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "karacabeybld",
+    league: "tff-2-lig",
     officialName: "Karacabey Belediyespor A.Ş.",
     displayName: "Karacabey Bld",
     shortName: "Karacabey",
@@ -613,6 +635,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "fethiyespor",
+    league: "tff-2-lig",
     officialName: "Fethiyespor",
     displayName: "Fethiyespor",
     shortName: "Fethiyespor",
@@ -624,6 +647,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "kirklarelispor",
+    league: "tff-2-lig",
     officialName: "Kırklarelispor",
     displayName: "Kırklarelispor",
     shortName: "Kırklareli",
@@ -635,6 +659,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "kutahyaspor",
+    league: "tff-2-lig",
     officialName: "Belediye Kütahyaspor",
     displayName: "Kütahyaspor",
     shortName: "Kütahya",
@@ -646,6 +671,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "serikspor",
+    league: "tff-2-lig",
     officialName: "Serik Belediyespor",
     displayName: "Serik Spor",
     shortName: "Serik",
@@ -657,6 +683,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "orduspor52",
+    league: "tff-2-lig",
     officialName: "52 Orduspor FK",
     displayName: "52 Orduspor FK",
     shortName: "52 Orduspor",
@@ -668,6 +695,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "adana01fk",
+    league: "tff-2-lig",
     officialName: "Adana 01 FK",
     displayName: "Adana 01 FK",
     shortName: "Adana 01",
@@ -679,6 +707,7 @@ export const TEAMS: Team[] = [
   },
   {
     id: "ankarademir",
+    league: "tff-2-lig",
     officialName: "Ankara Demirspor",
     displayName: "Ankara Demir",
     shortName: "Ankara Demir",
@@ -697,8 +726,802 @@ export const TEAMS: Team[] = [
     colors: ["#009639", "#FFFFFF", "#FFFFFF"],
     primaryColor: "#009639",
     secondaryColor: "#FFFFFF",
-    textOnPrimary: "#FFFFFF"
-  }
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "aksaray-bld-68",
+    officialName: "68 Aksaray Belediyespor",
+    displayName: "68 Aksaray Bld",
+    shortName: "68 Aksaray",
+    aliases: ["68 Aksaray Bld", "68 Aksaray Belediyespor", "Aksarayspor", "68 Aksaray", "Aksaray Bld"],
+    colors: ["#000000", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#000000",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "aliaga-fk",
+    officialName: "Aliağa Futbol A.Ş.",
+    displayName: "Aliağa FK",
+    shortName: "Aliağa FK",
+    aliases: ["Aliağa FK", "Aliağa Futbol Kulübü", "Aliağaspor", "Aliağa"],
+    colors: ["#002D62", "#FFCC00", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFCC00",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "ankaraspor",
+    officialName: "Ankaraspor",
+    displayName: "Ankaraspor",
+    shortName: "Ankaraspor",
+    aliases: ["Ankaraspor", "Osmanlıspor", "BB Ankaraspor"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "arnavutkoy-bld",
+    officialName: "Arnavutköy Belediyesi Futbol SK",
+    displayName: "Arnavutköy Bld.",
+    shortName: "Arnavutköy",
+    aliases: ["Arnavutköy Bld.", "Arnavutköy Bld", "Arnavutköy Belediyespor", "Arnavutköy"],
+    colors: ["#002D62", "#009639", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#009639",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "corluspor-1947",
+    officialName: "Çorluspor 1947",
+    displayName: "Çorluspor 1947",
+    shortName: "Çorluspor",
+    aliases: ["Çorluspor 1947", "Çorluspor", "Çorlu 1947", "Corluspor"],
+    colors: ["#FFCC00", "#E30A17", "#FFFFFF"],
+    primaryColor: "#FFCC00",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "elazigspor",
+    officialName: "Çimentaş Elazığspor",
+    displayName: "Elazığspor",
+    shortName: "Elazığspor",
+    aliases: ["Elazığspor", "Elazigspor", "Çimentaş Elazığspor", "Elazığ"],
+    colors: ["#800020", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#800020",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "erbaaspor",
+    officialName: "Merkür Jet Erbaaspor",
+    displayName: "Erbaaspor",
+    shortName: "Erbaaspor",
+    aliases: ["Erbaaspor", "Erbaa Spor", "Erbaa", "Merkür Jet Erbaaspor"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "gebzespor",
+    officialName: "Gölcük / Gebzespor",
+    displayName: "G.Gebzespor",
+    shortName: "Gebzespor",
+    aliases: ["G.Gebzespor", "Gebzespor", "Gebze Spor", "Gebze"],
+    colors: ["#800080", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#800080",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "inegol-kafkas",
+    officialName: "İnegöl Kafkasspor",
+    displayName: "İnegöl Kafkas",
+    shortName: "İnegöl Kafkas",
+    aliases: ["İnegöl Kafkas", "İnegöl Kafkasspor", "Kafkasspor", "Inegol Kafkas"],
+    colors: ["#009639", "#000000", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "isparta-32-spor",
+    officialName: "Isparta 32 Spor",
+    displayName: "Isparta 32 Spor",
+    shortName: "Isparta 32",
+    aliases: ["Isparta 32 Spor", "Ispartaspor", "Isparta 32", "Isparta"],
+    colors: ["#009639", "#E30A17", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "menemen-fk",
+    officialName: "Menemen FK",
+    displayName: "Menemen FK",
+    shortName: "Menemen FK",
+    aliases: ["Menemen FK", "Menemenspor", "Menemen Futbol Kulübü", "Menemen"],
+    colors: ["#002D62", "#FFCC00", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFCC00",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "mus-spor",
+    officialName: "Muş Spor Kulübü",
+    displayName: "Muş Spor",
+    shortName: "Muş Spor",
+    aliases: ["Muş Spor", "Muşspor", "Muş 1984 Muşspor", "Musspor"],
+    colors: ["#FFCC00", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#FFCC00",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "sebat-spor",
+    officialName: "Sebat Gençlik Spor",
+    displayName: "Sebat Spor",
+    shortName: "Sebat Spor",
+    aliases: ["Sebat Spor", "Sebat Gençlikspor", "Akçaabat Sebatspor", "Sebat Gençlik"],
+    colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  {
+    id: "somaspor",
+    officialName: "Somaspor",
+    displayName: "Somaspor",
+    shortName: "Somaspor",
+    aliases: ["Somaspor", "Soma Spor", "Soma"],
+    colors: ["#000000", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#000000",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-2-lig"
+  },
+  // --- TFF 3. Lig Takımları ---
+  {
+    id: "amasyaspor-fk",
+    officialName: "Amasyaspor FK",
+    displayName: "Amasyaspor FK",
+    shortName: "Amasyaspor",
+    aliases: ["Amasyaspor FK", "Amasyaspor", "Amasya Spor", "Amasya"],
+    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "beykoz-as",
+    officialName: "Beykoz A.Ş.",
+    displayName: "Beykoz A.Ş.",
+    shortName: "Beykoz",
+    aliases: ["Beykoz A.Ş.", "Beykoz AS", "Beykoz", "Beykozspor"],
+    colors: ["#FFCC00", "#000000", "#FFFFFF"],
+    primaryColor: "#FFCC00",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "beykoz-ishaklispor",
+    officialName: "Beykoz İshaklıspor",
+    displayName: "Beykoz İshaklı",
+    shortName: "Beykoz İshaklı",
+    aliases: ["Beykoz İshaklıspor", "Beykoz İshaklı", "Beykoz Ishaklispor", "İshaklıspor"],
+    colors: ["#800020", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#800020",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "bulvarspor",
+    officialName: "Bulvarspor",
+    displayName: "Bulvarspor",
+    shortName: "Bulvarspor",
+    aliases: ["Bulvarspor", "Kartal Bulvarspor", "Bulvar"],
+    colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "duzcespor",
+    officialName: "Düzcespor",
+    displayName: "Düzcespor",
+    shortName: "Düzcespor",
+    aliases: ["Düzcespor", "Duzcespor", "Düzce Spor", "Düzce"],
+    colors: ["#E30A17", "#002D62", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "fatsa-bld",
+    officialName: "Fatsa Belediyespor",
+    displayName: "Fatsa Bld",
+    shortName: "Fatsa Bld",
+    aliases: ["Fatsa Bld", "Fatsa Belediyespor", "Fatsaspor", "Fatsa"],
+    colors: ["#002D62", "#FFCC00", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFCC00",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "galata",
+    officialName: "Galata SK",
+    displayName: "Galata",
+    shortName: "Galata",
+    aliases: ["Galata", "Galata SK", "Galataspor", "İstanbul Galata"],
+    colors: ["#E30A17", "#000000", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "golcukspor",
+    officialName: "Gölcükspor",
+    displayName: "Gölcükspor",
+    shortName: "Gölcükspor",
+    aliases: ["Gölcükspor", "Golcukspor", "Gölcük Spor", "Gölcük"],
+    colors: ["#E30A17", "#000000", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "inkilap-fsk",
+    officialName: "İnkılap FSK",
+    displayName: "İnkılap FSK",
+    shortName: "İnkılap",
+    aliases: ["İnkılap FSK", "Inkilap FSK", "İnkılap Spor", "İnkılap", "Inkilap"],
+    colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "karabuk-iy",
+    officialName: "Karabük İdman Yurdu",
+    displayName: "Karabük İ.Y.",
+    shortName: "Karabük İY",
+    aliases: ["Karabük İ.Y.", "Karabük İdman Yurdu", "Karabuk I.Y.", "Karabük IY", "Karabük İdmanyurdu"],
+    colors: ["#002D62", "#E30A17", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "kdz-eregli-bld",
+    officialName: "Karadeniz Ereğli Belediyespor",
+    displayName: "Kdz.Ereğli Bld",
+    shortName: "Kdz. Ereğli",
+    aliases: ["Kdz.Ereğli Bld", "Kdz Ereğli Bld", "Karadeniz Ereğli Belediyespor", "Ereğli Belediyespor", "Kdz. Ereğli"],
+    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "kc-sinopspor",
+    officialName: "Küçükçekmece Sinopspor",
+    displayName: "K.Ç Sinopspor",
+    shortName: "K.Ç. Sinop",
+    aliases: ["K.Ç Sinopspor", "K.Ç. Sinopspor", "Küçükçekmece Sinopspor", "Küçükçekmece Sinop", "Sinopspor"],
+    colors: ["#FFCC00", "#002D62", "#FFFFFF"],
+    primaryColor: "#FFCC00",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "orduspor-1967",
+    officialName: "Orduspor 1967 A.Ş.",
+    displayName: "Orduspor 1967",
+    shortName: "Orduspor 1967",
+    aliases: ["Orduspor 1967", "Orduspor 1967 A.Ş.", "Ordu 1967", "Orduspor 1967 SK"],
+    colors: ["#800080", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#800080",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "pazarspor",
+    officialName: "Pazarspor",
+    displayName: "Pazarspor",
+    shortName: "Pazarspor",
+    aliases: ["Pazarspor", "Pazar Spor", "Pazar"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "silivrispor",
+    officialName: "Silivrispor",
+    displayName: "Silivrispor",
+    shortName: "Silivrispor",
+    aliases: ["Silivrispor", "Silivri Spor", "Silivri"],
+    colors: ["#002D62", "#E30A17", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "tokat-bld",
+    officialName: "Tokat Belediye Plevnespor",
+    displayName: "Tokat Bld",
+    shortName: "Tokat Bld",
+    aliases: ["Tokat Bld", "Tokat Belediye Plevnespor", "Tokat Belediyespor", "Tokatspor", "Tokat Plevne"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "yalova-fk",
+    officialName: "Yalova FK",
+    displayName: "Yalova FK",
+    shortName: "Yalova FK",
+    aliases: ["Yalova FK", "Yalovaspor", "Yalova Futbol Kulübü", "Yalova"],
+    colors: ["#009639", "#E30A17", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "zonguldakspor-fk",
+    officialName: "Zonguldak Kömürspor FK",
+    displayName: "Zonguldakspor FK",
+    shortName: "Zonguldakspor",
+    aliases: ["Zonguldakspor FK", "Zonguldak Kömürspor", "Zonguldakspor", "Zonguldak", "Zonguldak FK"],
+    colors: ["#002D62", "#E30A17", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "aksehirspor-1922",
+    officialName: "1922 Akşehirspor",
+    displayName: "1922 Akşehirspor",
+    shortName: "1922 Akşehir",
+    aliases: ["1922 Akşehirspor", "1922 Akşehir", "Akşehirspor", "1922 Konyaspor"],
+    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "alanya-1221-fsk",
+    officialName: "Alanya 1221 FSK",
+    displayName: "Alanya 1221 FSK",
+    shortName: "Alanya 1221",
+    aliases: ["Alanya 1221 FSK", "Alanya 1221", "Alanya Kestelspor", "Armoni Alanya Kestelspor"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "altay",
+    officialName: "Altay",
+    displayName: "Altay",
+    shortName: "Altay",
+    aliases: ["Altay", "Altay SK", "Altay İzmir"],
+    colors: ["#000000", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#000000",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "ayvalikgucu-bld",
+    officialName: "Ayvalıkgücü Belediyespor",
+    displayName: "Ayvalıkgücü Bld",
+    shortName: "Ayvalıkgücü",
+    aliases: ["Ayvalıkgücü Bld", "Ayvalıkgücü Belediyespor", "Ayvalıkgücü", "Ayvalık"],
+    colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "balikesirspor",
+    officialName: "Balıkesirspor",
+    displayName: "Balıkesirspor",
+    shortName: "Balıkesir",
+    aliases: ["Balıkesirspor", "Balikesirspor", "Balıkesir", "Balıkesir Spor"],
+    colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "bigaspor",
+    officialName: "Bigaspor",
+    displayName: "Bigaspor",
+    shortName: "Bigaspor",
+    aliases: ["Bigaspor", "Biga Spor", "Biga"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "bucaspor-1928",
+    officialName: "Bucaspor 1928",
+    displayName: "Bucaspor 1928",
+    shortName: "Bucaspor 1928",
+    aliases: ["Bucaspor 1928", "Bucaspor", "Buca 1928", "Buca"],
+    colors: ["#FFCC00", "#002D62", "#FFFFFF"],
+    primaryColor: "#FFCC00",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "gemlik-sumerbey",
+    officialName: "Gemlik Sümerbeyspor",
+    displayName: "Gemlik Sümerbey",
+    shortName: "Gemlik Sümerbey",
+    aliases: ["Gemlik Sümerbey", "Gemlik Sümerbeyspor", "Gemlikspor", "Gemlik"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "bursa-yildirim",
+    officialName: "Bursa Yıldırımspor",
+    displayName: "Bursa Yıldırım",
+    shortName: "Bursa Yıldırım",
+    aliases: ["Bursa Yıldırım", "Bursa Yıldırımspor", "Yıldırımspor", "Bursa Yildirim"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "denizli-iy",
+    officialName: "Denizli İdman Yurdu Güreller",
+    displayName: "Denizli İY",
+    shortName: "Denizli İY",
+    aliases: ["Denizli İY", "Denizli İdman Yurdu", "Denizli IY", "Denizli İdmanyurdu"],
+    colors: ["#009639", "#000000", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "eskisehir-anadolu-sf",
+    officialName: "Eskişehir Anadolu SF",
+    displayName: "Eskişehir Anadolu SF",
+    shortName: "Eskişehir Anadolu",
+    aliases: ["Eskişehir Anadolu SF", "Eskişehir Anadolu", "Anadolu Üniversitesi", "Anadolu Üni"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "eskisehirspor",
+    officialName: "Eskişehirspor",
+    displayName: "Eskişehirspor",
+    shortName: "Eskişehirspor",
+    aliases: ["Eskişehirspor", "Eskisehirspor", "Eskişehir", "Es-Es"],
+    colors: ["#000000", "#E30A17", "#FFFFFF"],
+    primaryColor: "#000000",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "etimesgut-spor",
+    officialName: "Etimesgut Belediyespor",
+    displayName: "Etimesgut Spor",
+    shortName: "Etimesgut",
+    aliases: ["Etimesgut Spor", "Etimesgut Belediyespor", "Etimesgutspor", "Etimesgut"],
+    colors: ["#000000", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#000000",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "karsiyaka",
+    officialName: "Karşıyaka",
+    displayName: "Karşıyaka",
+    shortName: "Karşıyaka",
+    aliases: ["Karşıyaka", "Karsiyaka", "KSK", "Karşıyaka SK"],
+    colors: ["#009639", "#E30A17", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "kepezspor-as",
+    officialName: "Kepezspor A.Ş.",
+    displayName: "Kepezspor A.Ş",
+    shortName: "Kepezspor",
+    aliases: ["Kepezspor A.Ş", "Kepezspor A.Ş.", "Kepezspor", "Kepez Belediyespor"],
+    colors: ["#E30A17", "#002D62", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "soke-1970-spor",
+    officialName: "Söke 1970 Spor",
+    displayName: "Söke 1970 Spor",
+    shortName: "Söke 1970",
+    aliases: ["Söke 1970 Spor", "Sökespor", "Söke 1970", "Söke Spor"],
+    colors: ["#E30A17", "#002D62", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "gaziemir-gog",
+    officialName: "Gaziemir Gençlerbirliği",
+    displayName: "Gaziemir GOG",
+    shortName: "Gaziemir GOG",
+    aliases: ["Gaziemir GOG", "Gaziemir Gençlerbirliği", "Gaziemir Gençlik", "Gaziemir"],
+    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "usakspor-as",
+    officialName: "Uşakspor A.Ş.",
+    displayName: "Uşakspor A.Ş.",
+    shortName: "Uşakspor",
+    aliases: ["Uşakspor A.Ş.", "Uşakspor A.Ş", "Uşakspor", "Usakspor"],
+    colors: ["#E30A17", "#000000", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "a-adaletgucu",
+    officialName: "Ankara Adaletgücü",
+    displayName: "A.Adaletgücü",
+    shortName: "A. Adaletgücü",
+    aliases: ["A.Adaletgücü", "A. Adaletgücü", "Adaletgücü", "Ankara Adaletgücü", "Adalet Gücü"],
+    colors: ["#002D62", "#FFCC00", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFCC00",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "agri-1970",
+    officialName: "Ağrı 1970 Spor",
+    displayName: "Ağrı 1970",
+    shortName: "Ağrı 1970",
+    aliases: ["Ağrı 1970", "Ağrı 1970 Spor", "Agri 1970", "Ağrıspor"],
+    colors: ["#FFCC00", "#002D62", "#FFFFFF"],
+    primaryColor: "#FFCC00",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "bitlis-spor-1916",
+    officialName: "Bitlis Spor 1916",
+    displayName: "Bitlis Spor 1916",
+    shortName: "Bitlis 1916",
+    aliases: ["Bitlis Spor 1916", "Bitlisspor 1916", "Bitlis 1916", "Bitlisspor", "Bitlis Spor"],
+    colors: ["#009639", "#FFCC00", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#FFCC00",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "diyarbekirspor",
+    officialName: "Diyarbekirspor A.Ş.",
+    displayName: "Diyarbekirspor",
+    shortName: "Diyarbekir",
+    aliases: ["Diyarbekirspor", "Diyarbekirspor A.Ş.", "Diyarbekir Spor", "Diyarbekir"],
+    colors: ["#009639", "#E30A17", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "erciyes-38-fsk",
+    officialName: "Erciyes 38 FSK",
+    displayName: "Erciyes 38 FSK",
+    shortName: "Erciyes 38",
+    aliases: ["Erciyes 38 FSK", "Erciyes 38", "Erciyesspor", "Erciyes FSK"],
+    colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "karakopru-bld",
+    officialName: "Karaköprü Belediyespor",
+    displayName: "Karaköprü Bld.",
+    shortName: "Karaköprü",
+    aliases: ["Karaköprü Bld.", "Karaköprü Bld", "Karaköprü Belediyespor", "Karaköprüspor"],
+    colors: ["#E30A17", "#000000", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "karaman-fk",
+    officialName: "Karaman FK",
+    displayName: "Karaman FK",
+    shortName: "Karaman FK",
+    aliases: ["Karaman FK", "Karaman Futbol Kulübü", "Karaman Belediyespor", "Karamanspor"],
+    colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "kirikkale-fk",
+    officialName: "Kırıkkale FK",
+    displayName: "Kırıkkale FK",
+    shortName: "Kırıkkale FK",
+    aliases: ["Kırıkkale FK", "Kırıkkalespor", "Kırıkkale Büyük Anadoluspor", "Kirikkale FK"],
+    colors: ["#E30A17", "#002D62", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "kirsehir-fsk",
+    officialName: "Kırşehir FSK",
+    displayName: "Kırşehir FSK",
+    shortName: "Kırşehir FSK",
+    aliases: ["Kırşehir FSK", "Kırşehir Futbol Spor Kulübü", "Kırşehir Belediyespor", "Kirsehir FSK"],
+    colors: ["#009639", "#FFFFFF", "#FFFFFF"],
+    primaryColor: "#009639",
+    secondaryColor: "#FFFFFF",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "yesilyurtspor",
+    officialName: "Yeşilyurt D.Ç. Ofspor / Yeşilyurtspor",
+    displayName: "Yeşilyurtspor",
+    shortName: "Yeşilyurt",
+    aliases: ["Yeşilyurtspor", "Yeşilyurt Spor", "Malatya Yeşilyurtspor", "Yeşilyurt Belediyespor"],
+    colors: ["#002D62", "#FFCC00", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFCC00",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "mazidagi-fosfat",
+    officialName: "Mazıdağı Fosfat Spor",
+    displayName: "Mazıdağı Fosfat",
+    shortName: "Mazıdağı Fosfat",
+    aliases: ["Mazıdağı Fosfat", "Mazıdağı Fosfat Spor", "Mazidagi Fosfat", "Eti Gübre Mazıdağı Fosfat"],
+    colors: ["#002D62", "#FFCC00", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#FFCC00",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "nigde-bld",
+    officialName: "Niğde Belediyespor",
+    displayName: "Niğde Bld",
+    shortName: "Niğde Bld",
+    aliases: ["Niğde Bld", "Niğde Belediyespor", "Niğdespor", "Niğde Anadolu FK"],
+    colors: ["#E30A17", "#002D62", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "osmaniyespor-fk",
+    officialName: "Osmaniyespor FK",
+    displayName: "Osmaniyespor FK",
+    shortName: "Osmaniyespor",
+    aliases: ["Osmaniyespor FK", "Osmaniyespor", "Osmaniye Spor", "Osmaniye FK"],
+    colors: ["#FFCC00", "#009639", "#FFFFFF"],
+    primaryColor: "#FFCC00",
+    secondaryColor: "#009639",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "silifkespor-1964",
+    officialName: "1964 Silifkespor",
+    displayName: "1964 Silifkespor",
+    shortName: "Silifkespor",
+    aliases: ["1964 Silifkespor", "Silifkespor", "Silifke Belediyespor", "Silifkespor 1964"],
+    colors: ["#E30A17", "#002D62", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#002D62",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "yeni-mersin-iy",
+    officialName: "Yeni Mersin İdmanyurdu",
+    displayName: "Yeni Mersin İY",
+    shortName: "Yeni Mersin İY",
+    aliases: ["Yeni Mersin İY", "Yeni Mersin İdmanyurdu", "Mersin İdmanyurdu", "Mersin İY"],
+    colors: ["#002D62", "#E30A17", "#FFFFFF"],
+    primaryColor: "#002D62",
+    secondaryColor: "#E30A17",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
+  {
+    id: "yozgat-bl-bozok",
+    officialName: "Yozgat Belediyesi Bozokspor",
+    displayName: "Yozgat Bl Bozok",
+    shortName: "Yozgat Bozok",
+    aliases: ["Yozgat Bl Bozok", "Yozgat Belediyesi Bozokspor", "Yozgat Bozokspor", "Yozgatspor"],
+    colors: ["#E30A17", "#000000", "#FFFFFF"],
+    primaryColor: "#E30A17",
+    secondaryColor: "#000000",
+    textOnPrimary: "#FFFFFF",
+    league: "tff-3-lig"
+  },
 ];
 
 /**
@@ -857,6 +1680,33 @@ export function getGlobalTeams(): Team[] {
 }
 
 /**
+ * Returns available teams for manual matching filtered by competition / league context.
+ * Excludes Süper Lig teams and prioritizes the relevant league (e.g. 3. Lig, 2. Lig, 1. Lig).
+ */
+export function getMatchingTeamsForLeague(leagueId?: string): Team[] {
+  const allTeams = getGlobalTeams();
+
+  // Exclude teams marked as Süper Lig
+  const nonSuperLig = allTeams.filter(t => t.league !== "super-lig");
+
+  if (!leagueId) {
+    return nonSuperLig;
+  }
+
+  if (leagueId === "tff-3-lig") {
+    // Show 3. Lig teams first, then other lower league teams (excluding Süper Lig)
+    return nonSuperLig.filter(t => t.league === "tff-3-lig" || !t.league || t.league === "tff-2-lig" || t.league === "tff-1-lig");
+  }
+
+  if (leagueId === "tff-2-lig") {
+    // Show 2. Lig teams and 1. Lig teams (excluding Süper Lig)
+    return nonSuperLig.filter(t => t.league === "tff-2-lig" || !t.league || t.league === "tff-1-lig" || t.league === "tff-3-lig");
+  }
+
+  return nonSuperLig;
+}
+
+/**
  * Saves a team into the global_teams list in localStorage.
  */
 export function saveGlobalTeam(team: Team): void {
@@ -965,13 +1815,20 @@ export function findTeamByInputName(input: string, customList?: Team[]): Team | 
   if (match) return match;
 
   // 5. Word boundary / token match for composite names (e.g. "fatih karagumruk" vs "karagumruk")
+  // Only match composite prefixes/suffixes if length difference is small or whitespace/separator exists
   if (normalizedInput.length >= 4) {
     match = allTeams.find((t) => {
       const normShort = normalizeTeamName(t.shortName);
       const normDisplay = normalizeTeamName(t.displayName);
+      const isWordBoundary = (a: string, b: string) => {
+        if (a === b) return true;
+        if (a.startsWith(b + " ") || a.endsWith(" " + b) || a.includes(" " + b + " ")) return true;
+        if (b.startsWith(a + " ") || b.endsWith(" " + a) || b.includes(" " + a + " ")) return true;
+        return false;
+      };
       return (
-        (normShort.length >= 4 && (normShort === normalizedInput || normShort.startsWith(normalizedInput) || normalizedInput.startsWith(normShort))) ||
-        (normDisplay.length >= 4 && (normDisplay === normalizedInput || normDisplay.startsWith(normalizedInput) || normalizedInput.startsWith(normDisplay)))
+        (normShort.length >= 4 && isWordBoundary(normShort, normalizedInput)) ||
+        (normDisplay.length >= 4 && isWordBoundary(normDisplay, normalizedInput))
       );
     });
   }
@@ -1074,6 +1931,15 @@ export function getPossibleLogoCandidates(
   // 1. Priority 0: Explicit user custom uploaded logo (data URL or blob)
   if (teamObj?.logo && (teamObj.logo.startsWith("data:") || teamObj.logo.startsWith("blob:") || (!teamObj.logo.endsWith(".svg") && !teamObj.logo.startsWith("/logos/")))) {
     addCandidate(teamObj.logo);
+  }
+
+  // Priority 0.5: Direct Team ID in /logos/ (standard convention: /logos/{id}.png or .svg)
+  if (teamObj?.id) {
+    addCandidate(`/logos/${teamObj.id}.png`);
+    addCandidate(`/logos/${teamObj.id}.PNG`);
+    addCandidate(`/logos/${teamObj.id}.svg`);
+    addCandidate(`/logos/${teamObj.id}.SVG`);
+    addCandidate(`/logos/${teamObj.id}.webp`);
   }
 
   // 2. Collect all primary base names associated with this team

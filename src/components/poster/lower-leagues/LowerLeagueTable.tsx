@@ -57,7 +57,12 @@ export const LowerLeagueTable: React.FC<LowerLeagueTableProps> = ({
       <div className="lower-league-table-body">
         {sortedStandings.map((row, idx) => {
           const matched = matchedTeams[row.teamId] || null;
-          const logoUrl = teamLogos[row.teamId] || matched?.logo;
+          const logoUrl =
+            teamLogos[row.teamId] ||
+            (matched?.id ? teamLogos[matched.id] : undefined) ||
+            (matched?.displayName ? teamLogos[matched.displayName] : undefined) ||
+            teamLogos[row.teamName] ||
+            matched?.logo;
 
           return (
             <LowerLeagueRow
