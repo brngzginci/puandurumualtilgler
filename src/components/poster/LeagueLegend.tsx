@@ -5,23 +5,23 @@
 
 import React from "react";
 import { DesignConfig } from "../../types";
-import { POSTER_THEME } from "../../design/posterTheme";
+import { CompetitionConfig, getDefaultZoneDefinitions } from "../../config/competitions";
 
 interface LeagueLegendProps {
   config?: DesignConfig;
+  competition?: CompetitionConfig;
+  teamCount?: number;
 }
 
-export const LeagueLegend: React.FC<LeagueLegendProps> = ({ config }) => {
-  const visibleZones = config?.zoneDefinitions && Array.isArray(config.zoneDefinitions)
-    ? config.zoneDefinitions
-        .filter((z) => z.isEnabled)
-        .sort((a, b) => a.displayOrder - b.displayOrder)
-    : [
-        { id: "1", label: "Süper Lig", color: POSTER_THEME.green },
-        { id: "2", label: "Play-Off Finali", color: POSTER_THEME.blue },
-        { id: "3", label: "Play-Off", color: POSTER_THEME.yellow },
-        { id: "4", label: "Küme Düşme", color: POSTER_THEME.red }
-      ];
+export const LeagueLegend: React.FC<LeagueLegendProps> = ({ config, competition, teamCount }) => {
+  const defaultZones = getDefaultZoneDefinitions(competition?.id || "tff-1-lig", teamCount);
+
+  const visibleZones =
+    config?.zoneDefinitions && Array.isArray(config.zoneDefinitions) && config.zoneDefinitions.length > 0
+      ? config.zoneDefinitions
+          .filter((z) => z.isEnabled)
+          .sort((a, b) => a.displayOrder - b.displayOrder)
+      : defaultZones.filter((z) => z.isEnabled);
 
   return (
     <div className="w-[280px] h-full flex flex-col justify-center gap-2 px-3 py-2 bg-[#001011] border border-[#B4C3C3]/30 rounded-2xl overflow-hidden">

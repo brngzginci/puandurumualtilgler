@@ -44,7 +44,8 @@ import {
 } from "./config/competitions";
 import { Team, StandingRow, DesignConfig, ZoneConfig, SourceTeamMapping, CompetitionSelection, StandingsWorkspace, LeagueZoneDefinition } from "./types";
 import { TEAMS, findTeamByInputName, getGlobalTeams, getMatchingTeamsForLeague, saveGlobalTeamsBatch, autoCreateTeamFromSource, slugifyTeamName } from "./teams";
-import { SAMPLE_STANDINGS } from "./sampleStandings";
+import { getCanonicalTeamName } from "./config/teamNameOverrides";
+import { SAMPLE_STANDINGS, getSampleStandings } from "./sampleStandings";
 import DesignCanvas, { TeamLogo } from "./components/DesignCanvas";
 import ZoneEditor from "./components/ZoneEditor";
 import { Trophy } from "lucide-react";
@@ -411,7 +412,7 @@ export default function App() {
         console.error("Error loading standings from workspace:", e);
       }
     }
-    return selection.leagueId === "tff-1-lig" ? SAMPLE_STANDINGS : [];
+    return getSampleStandings(selection.leagueId, selection.groupId);
   });
 
   const [config, setConfig] = useState<DesignConfig>(() => {
@@ -603,9 +604,13 @@ export default function App() {
       }
     }
 
-    if (newStandings.length === 0 && targetLeagueId === "tff-1-lig") {
-      newStandings = SAMPLE_STANDINGS;
+    if (newStandings.length === 0) {
+      newStandings = getSampleStandings(targetLeagueId, targetGroupId);
     }
+
+    const targetTeamCount = newStandings.length;
+    const targetWeeks = targetTeamCount % 2 === 0 ? (targetTeamCount - 1) * 2 : targetTeamCount * 2;
+    const targetZones = getDefaultZoneDefinitions(targetLeagueId, targetTeamCount);
 
     setSelection({
       leagueId: targetLeagueId,
@@ -621,6 +626,8 @@ export default function App() {
         ? targetGroupConfig.name.toLocaleUpperCase("tr-TR") + " PUAN DURUMU"
         : "PUAN DURUMU",
       currentWeek: newCurrentWeek,
+      totalWeeks: targetWeeks,
+      zoneDefinitions: targetZones,
       noteText: newNoteText
     }));
   };
@@ -644,16 +651,19 @@ export default function App() {
   };
 
   const resolvePreviewLocalTeamId = (teamId: string, teamName: string): string => {
+    const canonicalName = getCanonicalTeamName(teamName);
     const globalTeams = getGlobalTeams();
     if (teamId && !teamId.startsWith("unmatched_") && !teamId.startsWith("unmatched-")) {
       const exists = globalTeams.some(t => t.id === teamId);
       if (exists) return teamId;
     }
 
-    const mapping = teamMappings.find(m => m.sourceTeamName === teamName || m.localTeamId === teamId);
+    const mapping = teamMappings.find(
+      m => m.sourceTeamName === teamName || m.sourceTeamName === canonicalName || m.localTeamId === teamId
+    );
     if (mapping) return mapping.localTeamId;
 
-    const match = findTeamByInputName(teamName);
+    const match = findTeamByInputName(canonicalName) || findTeamByInputName(teamName);
     if (match) return match.id;
 
     return "";
@@ -689,12 +699,20 @@ export default function App() {
       setCacheStatus(payload.cached ? `Aktif (Önbellekten çekildi: ${new Date(payload.fetchedAt).toLocaleTimeString("tr-TR")})` : "Pasif (Canlı veri çekildi)");
       setHasFetchFailed(false);
 
-      const dataRows = payload.standings || payload.data || [];
-      if (dataRows.length === 0) {
+      const rawRows = payload.standings || payload.data || [];
+      if (rawRows.length === 0) {
         setDataStatus("Geçersiz (Veri yok)");
         alert("Sahadan verisi çekildi ancak tablo boş döndü.");
         return;
       }
+
+      const dataRows = rawRows.map((r: any) => {
+        const canonical = getCanonicalTeamName(r.teamName || r.name || "");
+        return {
+          ...r,
+          teamName: canonical || r.teamName || r.name || ""
+        };
+      });
 
       const matchedCount = dataRows.filter((r: any) => resolvePreviewLocalTeamId(r.teamId, r.teamName) !== "").length;
       if (matchedCount === dataRows.length) {
@@ -760,7 +778,7 @@ export default function App() {
         rank: row.position || idx + 1,
         position: row.position || idx + 1,
         teamId: matchedId,
-        teamName: globalTeam?.displayName || globalTeam?.shortName || row.teamName,
+        teamName: getCanonicalTeamName(globalTeam?.displayName || globalTeam?.shortName || row.teamName),
         played: row.played ?? 0,
         won: row.won ?? 0,
         drawn: row.drawn ?? 0,
@@ -815,7 +833,7 @@ export default function App() {
       position: row.position || idx + 1,
       rank: row.position || idx + 1,
       teamId: row.resolvedLocalTeamId,
-      teamName: allGlobal.find(t => t.id === row.resolvedLocalTeamId)?.displayName || row.teamName,
+      teamName: getCanonicalTeamName(allGlobal.find(t => t.id === row.resolvedLocalTeamId)?.displayName || row.teamName),
       played: row.played,
       won: row.won,
       drawn: row.drawn,
@@ -882,9 +900,11 @@ export default function App() {
   };
 
   const resolvedPreviewRows = (previewData || []).map(row => {
-    const localId = resolvePreviewLocalTeamId(row.teamId, row.teamName);
+    const canonicalName = getCanonicalTeamName(row.teamName);
+    const localId = resolvePreviewLocalTeamId(row.teamId, canonicalName);
     return {
       ...row,
+      teamName: canonicalName,
       resolvedLocalTeamId: localId
     };
   });
@@ -1196,15 +1216,30 @@ export default function App() {
 
   // Reset to initial sample standings (just reset data)
   const handleResetData = () => {
-    setStandings(SAMPLE_STANDINGS);
+    const samples = getSampleStandings(selection.leagueId, selection.groupId);
+    const targetWeeks = samples.length % 2 === 0 ? (samples.length - 1) * 2 : samples.length * 2;
+    const targetZones = getDefaultZoneDefinitions(selection.leagueId, samples.length);
+    setStandings(samples);
+    setConfig((prev) => ({
+      ...prev,
+      totalWeeks: targetWeeks,
+      zoneDefinitions: targetZones
+    }));
     setSortNotice("Puan durumu varsayılan verilere sıfırlandı.");
     setTimeout(() => setSortNotice(null), 3000);
   };
 
   // Reset EVERYTHING to initial factory defaults (Varsayılan verilere dön)
   const handleResetAllDefaults = () => {
-    setStandings(SAMPLE_STANDINGS);
-    setConfig(DEFAULT_CONFIG);
+    const samples = getSampleStandings(selection.leagueId, selection.groupId);
+    const targetWeeks = samples.length % 2 === 0 ? (samples.length - 1) * 2 : samples.length * 2;
+    const targetZones = getDefaultZoneDefinitions(selection.leagueId, samples.length);
+    setStandings(samples);
+    setConfig({
+      ...DEFAULT_CONFIG,
+      totalWeeks: targetWeeks,
+      zoneDefinitions: targetZones
+    });
     setCustomLogos({});
     setTestPngResult(null);
     localStorage.removeItem("1lig_standings");

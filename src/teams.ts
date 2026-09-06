@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { getCanonicalTeamName } from "./config/teamNameOverrides";
+
 export interface Team {
   id: string;
   officialName: string;
@@ -601,9 +603,9 @@ export const TEAMS: Team[] = [
     id: "kmarasisktiklal",
     league: "tff-2-lig",
     officialName: "Kahramanmaraş İstiklal Spor",
-    displayName: "K.Maraş İstiklal",
-    shortName: "İstiklal Spor",
-    aliases: ["Kahramanmaraş İstiklal Spor", "K.Maraş İstiklal", "Kahramanmaraş İstiklal", "Kahramanmaras Istiklal", "K.Maras Istiklal"],
+    displayName: "Kahramanmaraş İstiklalspor",
+    shortName: "Kahramanmaraş İstiklalspor",
+    aliases: ["Kahramanmaraş İstiklalspor", "Kahramanmaraş İstiklal Spor", "K.Maraş İstiklal", "Kahramanmaraş İstiklal", "Kahramanmaras Istiklal", "K.Maras Istiklal", "İstiklal Spor"],
     colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
     primaryColor: "#E30A17",
     secondaryColor: "#FFFFFF",
@@ -876,9 +878,9 @@ export const TEAMS: Team[] = [
   {
     id: "sebat-spor",
     officialName: "Sebat Gençlik Spor",
-    displayName: "Sebat Spor",
-    shortName: "Sebat Spor",
-    aliases: ["Sebat Spor", "Sebat Gençlikspor", "Akçaabat Sebatspor", "Sebat Gençlik"],
+    displayName: "Sebatspor",
+    shortName: "Sebatspor",
+    aliases: ["Sebatspor", "Sebat Spor", "Sebat Gençlikspor", "Akçaabat Sebatspor", "Sebat Gençlik"],
     colors: ["#E30A17", "#FFFFFF", "#FFFFFF"],
     primaryColor: "#E30A17",
     secondaryColor: "#FFFFFF",
@@ -1236,10 +1238,10 @@ export const TEAMS: Team[] = [
   },
   {
     id: "eskisehir-anadolu-sf",
-    officialName: "Eskişehir Anadolu SF",
-    displayName: "Eskişehir Anadolu SF",
-    shortName: "Eskişehir Anadolu",
-    aliases: ["Eskişehir Anadolu SF", "Eskişehir Anadolu", "Anadolu Üniversitesi", "Anadolu Üni"],
+    officialName: "Eskişehir Anadoluspor",
+    displayName: "ESKİŞEHİR ANADOLUSPOR",
+    shortName: "ESKİŞEHİR ANADOLUSPOR",
+    aliases: ["ESKİŞEHİR ANADOLUSPOR", "Eskişehir Anadolu SF", "Eskişehir Anadolu", "Anadolu Üniversitesi", "Anadolu Üni", "Eskişehir Anadoluspor"],
     colors: ["#002D62", "#FFFFFF", "#FFFFFF"],
     primaryColor: "#002D62",
     secondaryColor: "#FFFFFF",
@@ -1307,11 +1309,11 @@ export const TEAMS: Team[] = [
     league: "tff-3-lig"
   },
   {
-    id: "gaziemir-gog",
-    officialName: "Gaziemir Gençlerbirliği",
-    displayName: "Gaziemir GOG",
-    shortName: "Gaziemir GOG",
-    aliases: ["Gaziemir GOG", "Gaziemir Gençlerbirliği", "Gaziemir Gençlik", "Gaziemir"],
+    id: "gaziemir-gsk",
+    officialName: "Gaziemir GSK",
+    displayName: "GAZİEMİR GSK",
+    shortName: "GAZİEMİR GSK",
+    aliases: ["GAZİEMİR GSK", "Gaziemir GSK", "Gaziemir GOG", "Gaziemir Gençlerbirliği", "Gaziemir Gençlik", "Gaziemir"],
     colors: ["#009639", "#FFFFFF", "#FFFFFF"],
     primaryColor: "#009639",
     secondaryColor: "#FFFFFF",
@@ -1331,11 +1333,11 @@ export const TEAMS: Team[] = [
     league: "tff-3-lig"
   },
   {
-    id: "a-adaletgucu",
-    officialName: "Ankara Adaletgücü",
-    displayName: "A.Adaletgücü",
-    shortName: "A. Adaletgücü",
-    aliases: ["A.Adaletgücü", "A. Adaletgücü", "Adaletgücü", "Ankara Adaletgücü", "Adalet Gücü"],
+    id: "adana-adaletgucu",
+    officialName: "Adana Adaletgücü Spor",
+    displayName: "ADANA ADALETGÜCÜSPOR",
+    shortName: "ADANA ADALETGÜCÜSPOR",
+    aliases: ["ADANA ADALETGÜCÜSPOR", "Adana Adaletgücü", "Adana Adaletgücü Spor", "A.Adaletgücü", "A. Adaletgücü", "Adaletgücü", "Ankara Adaletgücü", "Adalet Gücü"],
     colors: ["#002D62", "#FFCC00", "#FFFFFF"],
     primaryColor: "#002D62",
     secondaryColor: "#FFCC00",
@@ -1452,10 +1454,10 @@ export const TEAMS: Team[] = [
   },
   {
     id: "mazidagi-fosfat",
-    officialName: "Mazıdağı Fosfat Spor",
-    displayName: "Mazıdağı Fosfat",
-    shortName: "Mazıdağı Fosfat",
-    aliases: ["Mazıdağı Fosfat", "Mazıdağı Fosfat Spor", "Mazidagi Fosfat", "Eti Gübre Mazıdağı Fosfat"],
+    officialName: "Mazıdağı Fosfatspor",
+    displayName: "MAZIDAĞI FOSFATSPOR",
+    shortName: "MAZIDAĞI FOSFATSPOR",
+    aliases: ["MAZIDAĞI FOSFATSPOR", "Mazıdağı Fosfatspor", "Mazıdağı Fosfat", "Mazıdağı Fosfat Spor", "Mazidagi Fosfat", "Eti Gübre Mazıdağı Fosfat"],
     colors: ["#002D62", "#FFCC00", "#FFFFFF"],
     primaryColor: "#002D62",
     secondaryColor: "#FFCC00",
@@ -1773,36 +1775,67 @@ export function autoCreateTeamFromSource(sourceName: string): Team {
 export function findTeamByInputName(input: string, customList?: Team[]): Team | null {
   if (!input) return null;
   const rawClean = input.trim();
+  const canonicalName = getCanonicalTeamName(rawClean);
   const normalizedInput = normalizeTeamName(rawClean);
+  const normalizedCanonical = normalizeTeamName(canonicalName);
   const inputSlug = slugifyTeamName(rawClean);
+  const canonicalSlug = slugifyTeamName(canonicalName);
   const translitInput = transliterateTurkish(rawClean).toLowerCase();
 
   const allTeams = customList || getGlobalTeams();
 
-  // 1. Direct match on ID
-  let match = allTeams.find((t) => t.id === normalizedInput || t.id === inputSlug);
-  if (match) return match;
+  const formatMatch = (m: Team): Team => {
+    const finalDisplay = canonicalName || m.displayName;
+    return {
+      ...m,
+      displayName: finalDisplay
+    };
+  };
 
-  // 2. Exact match on raw names
+  // 1. Direct match on ID
+  let match = allTeams.find(
+    (t) =>
+      t.id === normalizedCanonical ||
+      t.id === canonicalSlug ||
+      t.id === normalizedInput ||
+      t.id === inputSlug
+  );
+  if (match) return formatMatch(match);
+
+  // 2. Exact match on raw/canonical names
   match = allTeams.find(
     (t) =>
+      t.displayName.toLowerCase() === canonicalName.toLowerCase() ||
       t.displayName.toLowerCase() === rawClean.toLowerCase() ||
+      t.officialName.toLowerCase() === canonicalName.toLowerCase() ||
       t.officialName.toLowerCase() === rawClean.toLowerCase() ||
+      t.shortName.toLowerCase() === canonicalName.toLowerCase() ||
       t.shortName.toLowerCase() === rawClean.toLowerCase() ||
-      (t.aliases || []).some((a) => a.toLowerCase() === rawClean.toLowerCase())
+      (t.aliases || []).some(
+        (a) =>
+          a.toLowerCase() === canonicalName.toLowerCase() ||
+          a.toLowerCase() === rawClean.toLowerCase()
+      )
   );
-  if (match) return match;
+  if (match) return formatMatch(match);
 
   // 3. Exact match on normalized shortName, displayName, officialName, or aliases
-  if (normalizedInput) {
+  if (normalizedCanonical || normalizedInput) {
     match = allTeams.find(
       (t) =>
-        normalizeTeamName(t.shortName) === normalizedInput ||
-        normalizeTeamName(t.displayName) === normalizedInput ||
-        normalizeTeamName(t.officialName) === normalizedInput ||
-        (t.aliases || []).some((alias) => normalizeTeamName(alias) === normalizedInput)
+        (normalizedCanonical && normalizeTeamName(t.shortName) === normalizedCanonical) ||
+        (normalizedInput && normalizeTeamName(t.shortName) === normalizedInput) ||
+        (normalizedCanonical && normalizeTeamName(t.displayName) === normalizedCanonical) ||
+        (normalizedInput && normalizeTeamName(t.displayName) === normalizedInput) ||
+        (normalizedCanonical && normalizeTeamName(t.officialName) === normalizedCanonical) ||
+        (normalizedInput && normalizeTeamName(t.officialName) === normalizedInput) ||
+        (t.aliases || []).some(
+          (alias) =>
+            (normalizedCanonical && normalizeTeamName(alias) === normalizedCanonical) ||
+            (normalizedInput && normalizeTeamName(alias) === normalizedInput)
+        )
     );
-    if (match) return match;
+    if (match) return formatMatch(match);
   }
 
   // 4. Transliterated match
@@ -1810,13 +1843,22 @@ export function findTeamByInputName(input: string, customList?: Team[]): Team | 
     const tTrans = transliterateTurkish(t.displayName).toLowerCase();
     const tOfficial = transliterateTurkish(t.officialName).toLowerCase();
     const tShort = transliterateTurkish(t.shortName).toLowerCase();
-    return tTrans === translitInput || tOfficial === translitInput || tShort === translitInput;
+    const transCanonical = transliterateTurkish(canonicalName).toLowerCase();
+    return (
+      tTrans === transCanonical ||
+      tTrans === translitInput ||
+      tOfficial === transCanonical ||
+      tOfficial === translitInput ||
+      tShort === transCanonical ||
+      tShort === translitInput
+    );
   });
-  if (match) return match;
+  if (match) return formatMatch(match);
 
   // 5. Word boundary / token match for composite names (e.g. "fatih karagumruk" vs "karagumruk")
   // Only match composite prefixes/suffixes if length difference is small or whitespace/separator exists
-  if (normalizedInput.length >= 4) {
+  const testNorm = normalizedCanonical || normalizedInput;
+  if (testNorm.length >= 4) {
     match = allTeams.find((t) => {
       const normShort = normalizeTeamName(t.shortName);
       const normDisplay = normalizeTeamName(t.displayName);
@@ -1827,13 +1869,20 @@ export function findTeamByInputName(input: string, customList?: Team[]): Team | 
         return false;
       };
       return (
-        (normShort.length >= 4 && isWordBoundary(normShort, normalizedInput)) ||
-        (normDisplay.length >= 4 && isWordBoundary(normDisplay, normalizedInput))
+        (normShort.length >= 4 && (isWordBoundary(normShort, testNorm) || isWordBoundary(normShort, normalizedInput))) ||
+        (normDisplay.length >= 4 && (isWordBoundary(normDisplay, testNorm) || isWordBoundary(normDisplay, normalizedInput)))
       );
     });
   }
 
-  return match || null;
+  if (match) {
+    const finalDisplay = canonicalName || match.displayName;
+    return {
+      ...match,
+      displayName: finalDisplay
+    };
+  }
+  return null;
 }
 
 export interface TeamResolutionResult {
@@ -1855,25 +1904,29 @@ export function resolveSourceTeam(
   savedMappings: Record<string, string> = {}
 ): TeamResolutionResult {
   const cleanName = sourceName.trim();
+  const canonicalName = getCanonicalTeamName(cleanName);
 
   // 1. Check saved manual mapping
-  if (savedMappings[cleanName]) {
-    const mappedTeamId = savedMappings[cleanName];
+  const mappedTeamId = savedMappings[canonicalName] || savedMappings[cleanName];
+  if (mappedTeamId) {
     const globalTeams = getGlobalTeams();
     const mappedTeam = globalTeams.find((t) => t.id === mappedTeamId);
     if (mappedTeam) {
       return {
         sourceName: cleanName,
         rank,
-        matchedTeam: mappedTeam,
+        matchedTeam: {
+          ...mappedTeam,
+          displayName: canonicalName || mappedTeam.displayName
+        },
         status: "matched-existing",
         isNew: false
       };
     }
   }
 
-  // 2. Search global registry
-  const matched = findTeamByInputName(cleanName);
+  // 2. Search global registry using canonical name first
+  const matched = findTeamByInputName(canonicalName) || findTeamByInputName(cleanName);
   if (matched) {
     const isAlias =
       normalizeTeamName(matched.shortName) !== normalizeTeamName(cleanName) &&
@@ -1882,14 +1935,17 @@ export function resolveSourceTeam(
     return {
       sourceName: cleanName,
       rank,
-      matchedTeam: matched,
+      matchedTeam: {
+        ...matched,
+        displayName: canonicalName || matched.displayName
+      },
       status: isAlias ? "matched-alias" : "matched-existing",
       isNew: false
     };
   }
 
-  // 3. Auto-draft new team
-  const newTeam = autoCreateTeamFromSource(cleanName);
+  // 3. Auto-draft new team using canonicalName
+  const newTeam = autoCreateTeamFromSource(canonicalName || cleanName);
   return {
     sourceName: cleanName,
     rank,

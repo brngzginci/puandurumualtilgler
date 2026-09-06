@@ -11,7 +11,8 @@ export type GroupId =
   | "white"
   | "group-1"
   | "group-2"
-  | "group-3";
+  | "group-3"
+  | "group-4";
 
 export type PosterTemplateId =
   | "standings-1-lig"
@@ -67,20 +68,22 @@ export const COMPETITIONS: Record<LeagueId, CompetitionConfig> = {
     provider: "sahadan",
     sourceUrl:
       "https://www.sahadan.com/lig/nesine-2-lig/2nttcoriwf5co73vmz1vr8frm",
-    templateId: "standings-2-lig",
+    templateId: "standings-1-lig",
     requiresGroup: true,
     groups: [
       {
         id: "red",
         name: "Kırmızı Grup",
         sourceLabel: "Kırmızı Grup",
-        shortName: "KIRMIZI GRUP"
+        shortName: "KIRMIZI GRUP",
+        expectedTeamCount: 17
       },
       {
         id: "white",
         name: "Beyaz Grup",
         sourceLabel: "Beyaz Grup",
-        shortName: "BEYAZ GRUP"
+        shortName: "BEYAZ GRUP",
+        expectedTeamCount: 18
       }
     ]
   },
@@ -93,7 +96,7 @@ export const COMPETITIONS: Record<LeagueId, CompetitionConfig> = {
     provider: "sahadan",
     sourceUrl:
       "https://www.sahadan.com/lig/nesine-3-lig/907l7wtxdvugdo9i2249wcmr0",
-    templateId: "standings-3-lig",
+    templateId: "standings-1-lig",
     requiresGroup: true,
     groups: [
       {
@@ -185,34 +188,42 @@ export function buildExportFilename(
 
 import { LeagueZoneDefinition } from "../types";
 
-export function getDefaultZoneDefinitions(leagueId: string): LeagueZoneDefinition[] {
+export function getDefaultZoneDefinitions(leagueId: string, teamCount?: number): LeagueZoneDefinition[] {
   if (leagueId === "tff-1-lig") {
+    const totalTeams = teamCount || 20;
+    const relStart = Math.max(1, totalTeams - 3);
     return [
       { id: "direct-promotion", label: "Süper Lig", color: "#109D13", startPosition: 1, endPosition: 2, displayOrder: 1, isEnabled: true },
       { id: "playoff-final", label: "Play-Off Finali", color: "#138EC7", startPosition: 3, endPosition: 3, displayOrder: 2, isEnabled: true },
       { id: "playoff-quarter", label: "Play-Off", color: "#D7DF00", startPosition: 4, endPosition: 7, displayOrder: 3, isEnabled: true },
-      { id: "relegation", label: "Küme Düşme", color: "#D40000", startPosition: 17, endPosition: 20, displayOrder: 4, isEnabled: true }
+      { id: "relegation", label: "Küme Düşme", color: "#D40000", startPosition: relStart, endPosition: totalTeams, displayOrder: 4, isEnabled: true }
     ];
   }
   if (leagueId === "tff-2-lig") {
+    const totalTeams = teamCount || 18;
+    const relStart = Math.max(1, totalTeams - 2); // 3 teams relegated (e.g. 16-18 for 18 teams, 15-17 for 17 teams)
     return [
       { id: "direct-promotion", label: "Doğrudan 1. Lig", color: "#128C08", startPosition: 1, endPosition: 1, displayOrder: 1, isEnabled: true },
       { id: "playoff-final", label: "Play-Off Finali", color: "#078ECC", startPosition: 2, endPosition: 2, displayOrder: 2, isEnabled: true },
       { id: "playoff-quarter", label: "Play-Off Çeyrek Final", color: "#D6E600", startPosition: 3, endPosition: 6, displayOrder: 3, isEnabled: true },
-      { id: "relegation", label: "Küme Düşme", color: "#B90000", startPosition: 16, endPosition: 18, displayOrder: 4, isEnabled: true }
+      { id: "relegation", label: "Küme Düşme", color: "#B90000", startPosition: relStart, endPosition: totalTeams, displayOrder: 4, isEnabled: true }
     ];
   }
   if (leagueId === "tff-3-lig") {
+    const totalTeams = teamCount || 18;
+    const relStart = Math.max(1, totalTeams - 2); // 3 teams relegated (16-18 for 18 teams)
     return [
       { id: "direct-promotion", label: "Doğrudan 2. Lig", color: "#128C08", startPosition: 1, endPosition: 1, displayOrder: 1, isEnabled: true },
       { id: "playoff-final", label: "Play-Off Finali", color: "#078ECC", startPosition: 2, endPosition: 2, displayOrder: 2, isEnabled: true },
       { id: "playoff-quarter", label: "Play-Off Çeyrek Final", color: "#D6E600", startPosition: 3, endPosition: 6, displayOrder: 3, isEnabled: true },
-      { id: "relegation", label: "Küme Düşme", color: "#B90000", startPosition: 14, endPosition: 16, displayOrder: 4, isEnabled: true }
+      { id: "relegation", label: "Küme Düşme", color: "#B90000", startPosition: relStart, endPosition: totalTeams, displayOrder: 4, isEnabled: true }
     ];
   }
+  const totalTeams = teamCount || 20;
+  const relStart = Math.max(1, totalTeams - 3);
   return [
     { id: "promotion", label: "Yükselme", color: "#128C08", startPosition: 1, endPosition: 2, displayOrder: 1, isEnabled: true },
     { id: "playoff", label: "Play-Off", color: "#078ECC", startPosition: 3, endPosition: 6, displayOrder: 2, isEnabled: true },
-    { id: "relegation", label: "Küme Düşme", color: "#B90000", startPosition: 17, endPosition: 20, displayOrder: 3, isEnabled: true }
+    { id: "relegation", label: "Küme Düşme", color: "#B90000", startPosition: relStart, endPosition: totalTeams, displayOrder: 3, isEnabled: true }
   ];
 }

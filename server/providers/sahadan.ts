@@ -13,6 +13,7 @@ import {
   getStandingsCacheKey
 } from "../../src/config/competitions";
 import { findTeamByInputName } from "../../src/teams";
+import { getCanonicalTeamName } from "../../src/config/teamNameOverrides";
 import { StandingRow, ProviderStandingsResult } from "../../src/types";
 import { SAMPLE_STANDINGS } from "../../src/sampleStandings";
 
@@ -91,6 +92,8 @@ function getGroupSearchLabels(groupId: GroupId): string[] {
       return ["grup 2", "2. grup", "group 2", "grup-2"];
     case "group-3":
       return ["grup 3", "3. grup", "group 3", "grup-3"];
+    case "group-4":
+      return ["grup 4", "4. grup", "group 4", "grup-4"];
     case "overall":
     default:
       return ["genel", "overall", "total", ""];
@@ -181,7 +184,15 @@ function extractRawRowsFromNuxtPayload(
     expectedIndex = groupId === "red" ? 0 : groupId === "white" ? 1 : 0;
   } else if (leagueId === "tff-3-lig") {
     expectedIndex =
-      groupId === "group-1" ? 0 : groupId === "group-2" ? 1 : groupId === "group-3" ? 2 : 0;
+      groupId === "group-1"
+        ? 0
+        : groupId === "group-2"
+        ? 1
+        : groupId === "group-3"
+        ? 2
+        : groupId === "group-4"
+        ? 3
+        : 0;
   }
 
   if (candidateTables[expectedIndex]) {
@@ -433,9 +444,12 @@ async function doFetchSahadanStandings(input: {
     const rawName =
       item.team?.name || item.team?.display_name || item.rawTeamName || item.team_name || "";
     const cleanName = String(rawName).trim();
+    const canonicalName = getCanonicalTeamName(cleanName);
     const pos = item.rank ? parseInteger(item.rank) : index + 1;
 
-    const matchedTeam = findTeamByInputName(cleanName);
+    const matchedTeam = findTeamByInputName(canonicalName) || findTeamByInputName(cleanName);
+    const finalName = canonicalName || (matchedTeam ? matchedTeam.displayName : cleanName);
+
     if (!matchedTeam) {
       if (cleanName && !unmatchedTeams.some((u) => u.sourceName === cleanName)) {
         unmatchedTeams.push({ sourceName: cleanName, rank: pos });
@@ -458,8 +472,8 @@ async function doFetchSahadanStandings(input: {
     standings.push({
       position: pos,
       rank: pos,
-      teamId: matchedTeam ? matchedTeam.id : `unmatched_${pos}_${cleanName.toLowerCase().replace(/\s+/g, "_")}`,
-      teamName: cleanName,
+      teamId: matchedTeam ? matchedTeam.id : `unmatched_${pos}_${finalName.toLowerCase().replace(/\s+/g, "_")}`,
+      teamName: finalName,
       played,
       won,
       drawn,
