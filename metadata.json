@@ -1,6 +1,6 @@
 {
-  "name": "1. Lig Sosyal Medya Tasarım Stüdyosu",
-  "description": "Trendyol 1. Lig, TFF 2. Lig ve TFF 3. Lig Puan Durumu Sosyal Medya Tasarım Kartı Oluşturucu.",
+  "name": "Alt Ligler - Haftanın Sonuçları",
+  "description": "Trendyol 1. Lig, Nesine 2. Lig ve Nesine 3. Lig maç sonuçları ve fikstürleri için profesyonel 1080x1350 sosyal medya grafik ve poster üretim platformu",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
