@@ -76,6 +76,7 @@ export const StandingsPoster: React.FC<StandingsPosterProps> = ({
           config={config}
           competition={competition}
           teamCount={teamCount}
+          groupId={group?.id}
         />
 
         {/* Orta: Week Card */}

@@ -43,7 +43,7 @@ export const LowerLeagueFooter: React.FC<LowerLeagueFooterProps> = ({
       .sort((a, b) => a.displayOrder - b.displayOrder)
       .map((z) => {
         const lower = z.color.toLowerCase();
-        const isLight = lower === "#d6e600" || lower === "#ffffff" || lower === "#ffff00" || lower === "yellow";
+        const isLight = lower === "#d6e600" || lower === "#d7df00" || lower === "#ffffff" || lower === "#ffff00" || lower === "yellow";
         return {
           label: z.label,
           color: z.color,
@@ -53,8 +53,7 @@ export const LowerLeagueFooter: React.FC<LowerLeagueFooterProps> = ({
   } else {
     legendItems = [
       { label: topPromotionLabel, color: "#128C08", textColor: "#FFFFFF" },
-      { label: "Play-Off Çeyrek Final", color: "#078ECC", textColor: "#FFFFFF" },
-      { label: "Play-Off Finali", color: "#D6E600", textColor: "#000000" },
+      { label: "Play-Off", color: "#078ECC", textColor: "#FFFFFF" },
       { label: "Küme Düşme", color: "#B90000", textColor: "#FFFFFF" }
     ];
   }

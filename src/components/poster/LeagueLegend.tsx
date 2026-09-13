@@ -11,10 +11,11 @@ interface LeagueLegendProps {
   config?: DesignConfig;
   competition?: CompetitionConfig;
   teamCount?: number;
+  groupId?: string;
 }
 
-export const LeagueLegend: React.FC<LeagueLegendProps> = ({ config, competition, teamCount }) => {
-  const defaultZones = getDefaultZoneDefinitions(competition?.id || "tff-1-lig", teamCount);
+export const LeagueLegend: React.FC<LeagueLegendProps> = ({ config, competition, teamCount, groupId }) => {
+  const defaultZones = getDefaultZoneDefinitions(competition?.id || "tff-1-lig", teamCount, groupId);
 
   const visibleZones =
     config?.zoneDefinitions && Array.isArray(config.zoneDefinitions) && config.zoneDefinitions.length > 0

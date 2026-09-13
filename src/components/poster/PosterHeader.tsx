@@ -1,133 +1,134 @@
-import React from 'react';
-import type { Fixture } from '../../types/fixture';
-import altLiglerLogo from '../../../assets/AltLigler.png';
-import logo1Lig from '../../../assets/logo1.lig.png';
-import logo2Lig from '../../../assets/logo2.lig.png';
-import logo3Lig from '../../../assets/logo3.lig.png';
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+import React, { useState } from "react";
+import { DesignConfig } from "../../types";
+import { CompetitionConfig, CompetitionGroup } from "../../config/competitions";
 
 interface PosterHeaderProps {
-  week: number;
-  season?: string;
-  leagueId?: string;
-  leagueName?: string;
-  groupName?: string;
-  matches: Fixture[];
+  config: DesignConfig;
+  competition?: CompetitionConfig;
+  group?: CompetitionGroup;
 }
 
 export const PosterHeader: React.FC<PosterHeaderProps> = ({
-  week,
-  season = '2026-2027',
-  leagueId = 'trendyol-1-lig',
-  leagueName = 'TRENDYOL 1. LİG',
-  groupName,
-  matches = [],
+  config,
+  competition,
+  group
 }) => {
-  // Determine if the week is mostly played or upcoming
-  const safeMatches = matches || [];
-  const playedCount = safeMatches.filter(
-    (m) =>
-      m?.status === 'played' ||
-      (m?.homeScore !== null &&
-        m?.awayScore !== null &&
-        m?.homeScore !== undefined &&
-        m?.awayScore !== undefined &&
-        String(m?.homeScore).trim() !== '' &&
-        String(m?.awayScore).trim() !== '')
-  ).length;
-  const isMostlyPlayed = safeMatches.length > 0 && playedCount >= Math.max(1, safeMatches.length / 2);
+  const [altLogoFailed, setAltLogoFailed] = useState(false);
+  const [ligLogoFailed, setLigLogoFailed] = useState(false);
 
-  const headlineText = isMostlyPlayed ? 'HAFTANIN SONUÇLARI' : 'GELECEK HAFTANIN FİKSTÜRÜ';
+  // Determine league logo based on competition
+  const defaultLeagueLogo =
+    competition?.id === "tff-2-lig"
+      ? "/branding/2-lig-logo.png"
+      : competition?.id === "tff-3-lig"
+      ? "/branding/3-lig-logo.png"
+      : "/branding/lig-logo.png";
 
-  // Determine official logo & alt text based on selected league
-  let currentLeagueLogo = logo1Lig;
-  let currentLeagueAlt = 'Trendyol 1. Lig Logo';
-  const isVerticalLogo = leagueId === 'nesine-2-lig' || leagueId === 'nesine-3-lig';
+  const leagueLogoSrc = config.leagueLogo || defaultLeagueLogo;
 
-  if (leagueId === 'nesine-2-lig') {
-    currentLeagueLogo = logo2Lig;
-    currentLeagueAlt = 'Nesine 2. Lig Logo';
-  } else if (leagueId === 'nesine-3-lig') {
-    currentLeagueLogo = logo3Lig;
-    currentLeagueAlt = 'Nesine 3. Lig Logo';
-  }
+  const titleText =
+    config.title ||
+    (competition?.name
+      ? competition.name.toLocaleUpperCase("tr-TR")
+      : "TRENDYOL 1. LİG");
 
-  // Strictly enforce Turkish dotted 'İ' in NESİNE and LİG
-  const toTurkishUpper = (str: string | undefined | null): string => {
-    if (!str) return '';
-    return str
-      .replace(/i/g, 'İ')
-      .replace(/ı/g, 'I')
-      .toLocaleUpperCase('tr-TR')
-      .replace(/\bNESINE\b/g, 'NESİNE')
-      .replace(/\bLIG\b/g, 'LİG');
-  };
+  const subtitleText =
+    config.subtitle ||
+    (competition?.requiresGroup && group?.name
+      ? `${group.name.toLocaleUpperCase("tr-TR")} PUAN DURUMU`
+      : "PUAN DURUMU");
 
-  let officialLeagueTitle = 'TRENDYOL 1. LİG';
-  if (leagueId === 'nesine-2-lig') {
-    officialLeagueTitle = 'NESİNE 2. LİG';
-  } else if (leagueId === 'nesine-3-lig') {
-    officialLeagueTitle = 'NESİNE 3. LİG';
-  } else if (leagueName) {
-    officialLeagueTitle = toTurkishUpper(leagueName);
-  }
+  // Dynamic typography sizing for optimal visual balance
+  const titleFontSize =
+    titleText.length > 22
+      ? "38px"
+      : titleText.length > 17
+      ? "44px"
+      : titleText.length > 13
+      ? "48px"
+      : "54px";
 
-  const groupFormatted = groupName ? toTurkishUpper(groupName) : '';
-
-  const displaySubtitle = groupFormatted
-    ? `${officialLeagueTitle} • ${groupFormatted}`
-    : officialLeagueTitle;
+  const subtitleFontSize =
+    subtitleText.length > 26
+      ? "34px"
+      : subtitleText.length > 20
+      ? "39px"
+      : subtitleText.length > 15
+      ? "45px"
+      : "54px";
 
   return (
-    <div className="w-full flex flex-col items-center justify-center relative z-10 mb-0 pt-1">
-      {/* Top Header Row with Official Brand & League Logos */}
-      <div className="w-full flex items-center justify-between px-2 mb-2">
-        {/* Left: Alt Ligler Official Logo */}
-        <div className="flex items-center gap-3">
+    <header className="w-full flex items-center justify-between px-2 pt-2 pb-1 h-[190px] shrink-0 box-sizing-border">
+      {/* Left: Alt Ligler Brand Logo */}
+      <div className="w-[140px] h-[140px] shrink-0 flex items-center justify-center">
+        {!altLogoFailed ? (
           <img
-            src={altLiglerLogo}
+            src="/branding/altligler-logo.png"
             alt="Alt Ligler Logo"
-            className="h-20 w-auto object-contain drop-shadow-[0_4px_20px_rgba(0,175,175,0.45)]"
+            className="w-full h-full object-contain rounded-2xl"
+            onError={() => setAltLogoFailed(true)}
           />
-        </div>
-
-        {/* Right: League Official Logo */}
-        <div className="flex items-center gap-2">
+        ) : (
           <img
-            src={currentLeagueLogo}
-            alt={currentLeagueAlt}
-            className={`${
-              isVerticalLogo ? 'h-28' : 'h-24'
-            } w-auto object-contain drop-shadow-[0_4px_20px_rgba(255,101,0,0.4)]`}
+            src="/branding/altligler-logo.svg"
+            alt="Alt Ligler Logo"
+            className="w-full h-full object-contain rounded-2xl"
           />
-        </div>
+        )}
       </div>
 
-      {/* Main Editorial Headline Block */}
-      <div className="flex flex-col items-center text-center w-full mt-1">
-        {/* Subtitle - Competition Identity with guaranteed Turkish İ */}
-        <span className="text-2xl font-black font-montserrat tracking-[0.25em] text-[#00AFAF] drop-shadow mb-1 whitespace-nowrap">
-          {displaySubtitle}
-        </span>
-
-        {/* Big Editorial Display Headline */}
-        <h1 className="text-6xl sm:text-7xl font-black font-bebas tracking-wider text-white leading-none drop-shadow-[0_4px_24px_rgba(0,0,0,0.9)] my-1 whitespace-nowrap">
-          {headlineText}
+      {/* Center: Two-line Title */}
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-2">
+        <h1
+          lang="tr"
+          className="text-[#F5F5F5] font-extrabold uppercase tracking-tight text-center leading-[1.05]"
+          style={{
+            fontSize: titleFontSize,
+            fontFamily:
+              config.headerFontFamily ||
+              "'Montserrat Variable', 'Oswald Variable', sans-serif"
+          }}
+        >
+          {titleText}
         </h1>
-
-        {/* Thin Glowing Accent Line */}
-        <div className="w-80 h-[2px] bg-gradient-to-r from-transparent via-[#00AFAF] to-transparent my-1.5 opacity-90" />
-
-        {/* Week & Season Sub-Headline Badge */}
-        <div className="flex items-center gap-2.5 text-sm font-mono font-black tracking-[0.25em] text-cyan-200 bg-[#072430]/90 px-4 py-1 rounded-full border border-cyan-500/40 shadow-md whitespace-nowrap">
-          <span className="text-[#FF6500] font-black">{week}. HAFTA</span>
-          <span className="text-cyan-500/60">•</span>
-          <span>{season} SEZONU</span>
-        </div>
+        <h2
+          lang="tr"
+          className="text-[#F5F5F5] font-extrabold uppercase tracking-tight text-center leading-[1.05]"
+          style={{
+            fontSize: subtitleFontSize,
+            fontFamily:
+              config.headerFontFamily ||
+              "'Montserrat Variable', 'Oswald Variable', sans-serif"
+          }}
+        >
+          {subtitleText}
+        </h2>
       </div>
-    </div>
+
+      {/* Right: League Logo in Light Panel */}
+      <div className="w-[135px] h-[135px] shrink-0 flex items-center justify-center bg-white/95 rounded-2xl p-2.5 shadow-md">
+        {!ligLogoFailed ? (
+          <img
+            src={leagueLogoSrc}
+            alt={competition?.shortName || "Lig Logo"}
+            className="w-full h-full object-contain"
+            onError={() => setLigLogoFailed(true)}
+          />
+        ) : (
+          <img
+            src="/branding/lig-logo.svg"
+            alt="Lig Logo"
+            className="w-full h-full object-contain"
+          />
+        )}
+      </div>
+    </header>
   );
 };
 
-
-
-
+export default PosterHeader;

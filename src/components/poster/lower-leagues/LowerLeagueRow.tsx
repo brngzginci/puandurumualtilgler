@@ -38,7 +38,7 @@ export const LowerLeagueRow: React.FC<LowerLeagueRowProps> = ({
     if (matchedZone) {
       rankBg = matchedZone.color;
       const lower = matchedZone.color.toLowerCase();
-      if (lower === "#d6e600" || lower === "#ffffff" || lower === "#ffff00" || lower === "yellow") {
+      if (lower === "#d6e600" || lower === "#d7df00" || lower === "#ffffff" || lower === "#ffff00" || lower === "yellow") {
         rankTextColor = "#000000";
       } else {
         rankTextColor = "#FFFFFF";
@@ -49,9 +49,8 @@ export const LowerLeagueRow: React.FC<LowerLeagueRowProps> = ({
       rankBg = "#128C08";
     } else if (config.playoffFinalPosition && position === config.playoffFinalPosition) {
       rankBg = "#078ECC";
-    } else if (position >= (config.playoffStart ?? 3) && position <= (config.playoffEnd ?? 6)) {
-      rankBg = "#D6E600";
-      rankTextColor = "#000000";
+    } else if (position >= (config.playoffStart ?? 2) && position <= (config.playoffEnd ?? 5)) {
+      rankBg = "#078ECC";
     } else if (position >= (config.relegationStart ?? 16) && position <= (config.relegationEnd ?? 18)) {
       rankBg = "#B90000";
     }

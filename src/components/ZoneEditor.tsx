@@ -10,6 +10,7 @@ import { AlertTriangle, Plus, Trash2, ArrowUp, ArrowDown, RotateCcw, Check } fro
 
 interface ZoneEditorProps {
   leagueId: string;
+  groupId?: string;
   zoneDefinitions: LeagueZoneDefinition[];
   onChange: (zones: LeagueZoneDefinition[]) => void;
   teamCount: number;
@@ -17,6 +18,7 @@ interface ZoneEditorProps {
 
 export const ZoneEditor: React.FC<ZoneEditorProps> = ({
   leagueId,
+  groupId,
   zoneDefinitions,
   onChange,
   teamCount
@@ -25,7 +27,7 @@ export const ZoneEditor: React.FC<ZoneEditorProps> = ({
   const currentZones = (
     zoneDefinitions && zoneDefinitions.length > 0
       ? zoneDefinitions
-      : getDefaultZoneDefinitions(leagueId)
+      : getDefaultZoneDefinitions(leagueId, teamCount, groupId)
   ).sort((a, b) => a.displayOrder - b.displayOrder);
 
   // Active zones conflict detection (Requirement 11)
@@ -127,7 +129,7 @@ export const ZoneEditor: React.FC<ZoneEditorProps> = ({
   // Helper to reset to default
   const handleReset = () => {
     if (window.confirm("Bu lig için varsayılan derece bölgelerine dönmek istediğinize emin misiniz?")) {
-      onChange(getDefaultZoneDefinitions(leagueId));
+      onChange(getDefaultZoneDefinitions(leagueId, teamCount, groupId));
     }
   };
 

@@ -53,14 +53,14 @@ export function getRankZoneColor(rank: number, config?: DesignConfig): string {
 
   const dirStart = config?.directPromotionStart ?? 1;
   const dirEnd = config?.directPromotionEnd ?? 2;
-  const finalPos = config?.playoffFinalPosition ?? 3;
+  const finalPos = config?.playoffFinalPosition;
   const playStart = config?.playoffStart ?? 4;
   const playEnd = config?.playoffEnd ?? 7;
   const relStart = config?.relegationStart ?? 17;
   const relEnd = config?.relegationEnd ?? 20;
 
   if (rank >= dirStart && rank <= dirEnd) return POSTER_THEME.green;
-  if (rank === finalPos) return POSTER_THEME.blue;
+  if (typeof finalPos === "number" && rank === finalPos) return POSTER_THEME.blue;
   if (rank >= playStart && rank <= playEnd) return POSTER_THEME.yellow;
   if (rank >= relStart && rank <= relEnd) return POSTER_THEME.red;
   

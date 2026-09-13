@@ -76,11 +76,18 @@ export const StandingRowItem: React.FC<StandingRowItemProps> = ({
       {/* 1. SIRA Rank Block */}
       <div className="flex items-center justify-start h-full pl-2">
         <div
-          className="w-[68px] rounded-r-xl flex items-center justify-center font-extrabold text-white shadow-sm"
+          className="w-[68px] rounded-r-xl flex items-center justify-center font-extrabold shadow-sm"
           style={{
             height: `${rankPillHeight}px`,
             fontSize: `${resolvedRankFontSize}px`,
-            backgroundColor: zoneColor
+            backgroundColor: zoneColor,
+            color:
+              zoneColor?.toLowerCase() === "#d7df00" ||
+              zoneColor?.toLowerCase() === "#d6e600" ||
+              zoneColor?.toLowerCase() === "yellow" ||
+              zoneColor?.toLowerCase() === "#ffffff"
+                ? "#000000"
+                : "#FFFFFF"
           }}
         >
           {rank}
